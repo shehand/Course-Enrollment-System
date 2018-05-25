@@ -129,18 +129,32 @@
                                   <EmptySpace min="-2" pref="386" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel12" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                      <Component id="jLabel13" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                                      <Component id="jLabel14" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtIndexNumberUnd" max="32767" attributes="0"/>
-                                      <Component id="txtStreamUnd" max="32767" attributes="0"/>
-                                      <Component id="txtZScoreUnd" max="32767" attributes="0"/>
-                                      <Component id="txtIslandRankUnd" pref="192" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel12" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
+                                              <Component id="jLabel13" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
+                                              <Component id="jLabel14" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtIndexNumberUnd" max="32767" attributes="0"/>
+                                              <Component id="txtStreamUnd" max="32767" attributes="0"/>
+                                              <Component id="txtZScoreUnd" max="32767" attributes="0"/>
+                                              <Component id="txtIslandRankUnd" pref="192" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cmboUndergraduate" min="-2" pref="180" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtUndRegNumber" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -206,11 +220,15 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtEmailUnd" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmboUndergraduate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtPasswordUnd" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtUndRegNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -322,7 +340,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jLabel14"/>
+                    <Property name="text" type="java.lang.String" value="Island Rank"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtIslandRankUnd">
@@ -336,6 +354,35 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Register"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterUndActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel28">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Choose your Faculty :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmboUndergraduate">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="School of Business"/>
+                        <StringItem index="1" value="School of Computing"/>
+                        <StringItem index="2" value="School of Engineering"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel30">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NSBM Registered Number :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtUndRegNumber">
                 </Component>
               </SubComponents>
             </Container>
@@ -385,21 +432,36 @@
                                                   <Component id="txtPhoneNumberPost" alignment="0" pref="400" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace min="203" pref="203" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtYoCPost" max="32767" attributes="0"/>
-                                              <Component id="txtInstitutePost" max="32767" attributes="0"/>
-                                              <Component id="txtQualificationPost" pref="225" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="txtYoCPost" max="32767" attributes="0"/>
+                                                      <Component id="txtInstitutePost" max="32767" attributes="0"/>
+                                                      <Component id="txtQualificationPost" pref="225" max="32767" attributes="0"/>
+                                                      <Component id="cmboPostgraduate" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="txtPostRegNumber" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="121" max="32767" attributes="0"/>
+                                  <EmptySpace pref="130" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -463,14 +525,18 @@
                               <Component id="txtdoBPost" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtEmailPost" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtEmailPost" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmboPostgraduate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtPasswordPost" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPostRegNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -580,6 +646,35 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Register"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegisterPostActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel29">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Choose your Facilty :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmboPostgraduate">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="School of Business"/>
+                        <StringItem index="1" value="School of Computing"/>
+                        <StringItem index="2" value="School of Engineering"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel31">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="NSBM Registered Number :"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtPostRegNumber">
                 </Component>
               </SubComponents>
             </Container>

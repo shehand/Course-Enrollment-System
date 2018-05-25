@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sono
@@ -14,8 +16,17 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     /**
      * Creates new form StudentProfile
      */
+    ArrayList<Assignment> assingnmentList; // Array list for holding student instances
+    StudentDBOperations stdOps = new StudentDBOperations(); // object creation for backend access
+    String regNumber; // to identify the user
+    ArrayList<LabSession> labSessions; // use to store the data of the lab sessions
+    ArrayList<Subject> subjects;
+    
     public StudentProfileFrame() {
         initComponents();
+        loadAssignments();
+        loadLabSessions();
+        loadSubjectDetails();
     }
 
     /**
@@ -29,7 +40,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtStudentName = new javax.swing.JTextField();
+        txtStudentRegNumber = new javax.swing.JTextField();
         btnStudentLogout = new javax.swing.JButton();
         tpdStudentProfile = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -59,7 +70,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblAssignmentTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudentLabSessions = new javax.swing.JTable();
@@ -72,7 +83,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         jLabel1.setText("User :");
 
-        txtStudentName.setEditable(false);
+        txtStudentRegNumber.setEditable(false);
 
         btnStudentLogout.setText("Logout");
 
@@ -116,6 +127,11 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtFFourthSubject.setToolTipText("");
 
         btnConfirmSubjects.setText("Confirm");
+        btnConfirmSubjects.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmSubjectsActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Selected Subjects");
 
@@ -226,7 +242,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         tpdStudentProfile.addTab("Subjects", jPanel2);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblAssignmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -237,7 +253,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 "Subject", "Place", "Time"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblAssignmentTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -319,7 +335,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtStudentRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnStudentLogout)))
                 .addContainerGap())
@@ -330,7 +346,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStudentRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnStudentLogout))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -340,7 +356,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtStudentFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(tpdStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -365,9 +381,46 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnConfirmSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmSubjectsActionPerformed
+        
+        String subjects[] = new String[8];
+        subjects[0] = txtFFirstSubject.getText();
+        subjects[1] = txtFSecondSubject.getText();
+        subjects[2] = txtFThirdSubject.getText();
+        subjects[3] = txtFFourthSubject.getText();
+        subjects[4] = txtSFirstSubject.getText();
+        subjects[5] = txtSSecondSubject.getText();
+        subjects[6] = txtSThirdSubject.getText();
+        subjects[7] = txtSFourthSubject.getText();
+        
+        stdOps.insertSemesterSubjects(subjects, regNumber);
+        
+    }//GEN-LAST:event_btnConfirmSubjectsActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    void setRegNumber(String regNumber){
+        this.regNumber = regNumber;
+    }
+    
+    void loadAssignments(){
+        assingnmentList = stdOps.getAssignmentList(regNumber); // assign the returning array list to the assignment list
+        AssignmentDetails assgDetails = new AssignmentDetails(assingnmentList);
+        tblAssignmentTable.setModel(assgDetails);
+    }
+    
+    void loadLabSessions(){
+        labSessions = stdOps.getLabSessionDetails(regNumber);
+        LabSessionDetails lbsd = new LabSessionDetails(labSessions);
+        tblStudentLabSessions.setModel(lbsd);
+    }
+    
+    void loadSubjectDetails(){
+        subjects = stdOps.getSubjectDetails();
+        SubjectDetails sbjDetails = new SubjectDetails(subjects);
+        tblCourseSubjects.setModel(sbjDetails);
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -427,7 +480,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblAssignmentTable;
     private javax.swing.JTable tblCourseSubjects;
     private javax.swing.JTable tblStudentLabSessions;
     private javax.swing.JTabbedPane tpdStudentProfile;
@@ -441,6 +494,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtSThirdSubject;
     private javax.swing.JTextField txtStudentFaculty;
     private javax.swing.JTextField txtStudentGPA;
-    private javax.swing.JTextField txtStudentName;
+    private javax.swing.JTextField txtStudentRegNumber;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,8 +15,8 @@ public class CourseEnrollmentSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        StudentProfileFrame srf = new StudentProfileFrame();
-        srf.setVisible(true);
+        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
     }
     
 }
