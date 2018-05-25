@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sono
@@ -16,12 +18,24 @@ public class InstructorProfile extends javax.swing.JFrame {
      */
     public InstructorProfile() {
         initComponents();
+        loadAssigmnetDetails();
+        loadLabSessions();
     }
     
     InstructorDBOperations instOps = new InstructorDBOperations();
+    ArrayList<Assignment> asgList;
+    ArrayList<LabSession> lbSessions;
     
     void loadAssigmnetDetails(){
-        
+        asgList = instOps.loadAssigmnetDetails();
+        AssignmentDetails asgDetail = new AssignmentDetails(asgList);
+        tblAvalableAssignmnets.setModel(asgDetail);
+    }
+    
+    void loadLabSessions(){
+        lbSessions = instOps.getLabSessionDetails();
+        LabSessionDetails lbDetails = new LabSessionDetails(lbSessions);
+        tblAvalableLabSessions.setModel(lbDetails);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +94,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblAvalableAssignmnets1 = new javax.swing.JTable();
+        tblAvalableLabSessions = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -435,7 +449,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel15.setText("Lab Schedule");
 
-        tblAvalableAssignmnets1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAvalableLabSessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -446,7 +460,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 "Subject", "Date", "Place"
             }
         ));
-        jScrollPane2.setViewportView(tblAvalableAssignmnets1);
+        jScrollPane2.setViewportView(tblAvalableLabSessions);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -624,7 +638,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblAvalableAssignmnets;
-    private javax.swing.JTable tblAvalableAssignmnets1;
+    private javax.swing.JTable tblAvalableLabSessions;
     private javax.swing.JTextField txtAssignmentDate;
     private javax.swing.JTextField txtAssignmentPalce;
     private javax.swing.JTextField txtAssignmnetIDUp;

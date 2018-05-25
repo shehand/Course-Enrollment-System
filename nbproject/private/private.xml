@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LabSession.java</file>
             <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/InstructorProfile.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LabSessionDetails.java</file>
             <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/StudentDBOperations.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/Assignment.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/MainFrame.java</file>
             <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/Instructor.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/StudentProfileFrame.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/AssignmentDetails.java</file>
+            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/InstructorDBOperations.java</file>
         </group>
     </open-files>
 </project-private>
