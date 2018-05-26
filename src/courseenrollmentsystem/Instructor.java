@@ -13,6 +13,9 @@ public class Instructor {
     
     private String instructorID;
     private String name;
+    private String dob;
+    private String nic;
+    private String email;
     private String password;
 
     /**
@@ -55,6 +58,48 @@ public class Instructor {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the dob
+     */
+    public String getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the nic
+     */
+    public String getNic() {
+        return nic;
+    }
+
+    /**
+     * @param nic the nic to set
+     */
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

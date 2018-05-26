@@ -12,13 +12,13 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Sono
  */
-public class LabSessionDetails extends AbstractTableModel{
+public class InstructorDetails extends AbstractTableModel{
     
-    private static final String COLUMN_NAMES[] = {"Subject Name","Lab Name","Time Slot","Teacher-In-Charge"};
-    private static ArrayList<LabSession> list;
+    private static final String COLUMN_NAMES[] = {"Registration Number,","Name","email"};
+    private static ArrayList<Instructor> list;
     
-    public LabSessionDetails(ArrayList<LabSession> list){
-        LabSessionDetails.list = list;
+    public InstructorDetails(ArrayList<Instructor> list){
+        InstructorDetails.list = list;
     }
 
     @Override
@@ -35,15 +35,13 @@ public class LabSessionDetails extends AbstractTableModel{
     public String getColumnName(int columnIndex){
         return COLUMN_NAMES[columnIndex];
     }
-
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex){
-            case 0: return list.get(rowIndex).getSubjectName();
-            case 1: return list.get(rowIndex).getPlace();
-            case 2: return list.get(rowIndex).getDate();
-            case 3: return list.get(rowIndex).getPosterID();
-            default : return "You didn't subscribe for this subject";
+        switch(columnIndex){
+            case 0: return list.get(rowIndex).getInstructorID();
+            case 1: return list.get(rowIndex).getName();
+            case 2: return list.get(rowIndex).getEmail();
+            default: return "ERROR";
         }
     }
     

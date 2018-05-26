@@ -18,7 +18,7 @@ public class AssignmentDetails extends AbstractTableModel{
     private static final String COLUMN_NAMES [] = {"Assignmnet ID","Subject Name","Taking Place","Time","Teacher In-Charge"};
     
     public AssignmentDetails(ArrayList<Assignment> list){
-        this.list = list;
+        AssignmentDetails.list = list;
     }
 
     @Override
@@ -26,6 +26,7 @@ public class AssignmentDetails extends AbstractTableModel{
         return list.size();
     }
     
+    @Override
     public String getColumnName(int columnIndex){
         return COLUMN_NAMES[columnIndex];
     }

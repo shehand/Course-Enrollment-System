@@ -18,7 +18,7 @@ public class SubjectDetails extends AbstractTableModel{
     private static ArrayList<Subject> list;
     
     public SubjectDetails(ArrayList<Subject> list){
-        this.list = list;
+        SubjectDetails.list = list;
     }
     
     @Override
