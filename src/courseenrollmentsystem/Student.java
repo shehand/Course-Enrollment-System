@@ -23,6 +23,7 @@ public class Student {
     protected String address;
     protected String facultyName;
     protected String regNum;
+    protected String degreeType;
 
     /**
      * @return the fullName
@@ -148,6 +149,20 @@ public class Student {
      */
     public void setRegNum(String regNum) {
         this.regNum = regNum;
+    }
+
+    /**
+     * @return the degreeType
+     */
+    public String getDegreeType() {
+        return degreeType;
+    }
+
+    /**
+     * @param degreeType the degreeType to set
+     */
+    public void setDegreeType(String degreeType) {
+        this.degreeType = degreeType;
     }
     
     

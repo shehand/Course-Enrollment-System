@@ -88,6 +88,8 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         cmboPostgraduate = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
         txtPostRegNumber = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        cmboDegreeType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("frmStudentReg"); // NOI18N
@@ -161,7 +163,13 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         jpnlUnergraduate.setLayout(jpnlUnergraduateLayout);
         jpnlUnergraduateLayout.setHorizontalGroup(
             jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnlUnergraduateLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlUnergraduateLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegisterUnd)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelUnd)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlUnergraduateLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +202,8 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(386, 386, 386))
                     .addGroup(jpnlUnergraduateLayout.createSequentialGroup()
-                        .addGroup(jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jpnlUnergraduateLayout.createSequentialGroup()
+                        .addGroup(jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnlUnergraduateLayout.createSequentialGroup()
                                 .addGroup(jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,21 +215,15 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                                     .addComponent(txtStreamUnd)
                                     .addComponent(txtZScoreUnd)
                                     .addComponent(txtIslandRankUnd, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))
-                            .addGroup(jpnlUnergraduateLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnlUnergraduateLayout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmboUndergraduate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpnlUnergraduateLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnlUnergraduateLayout.createSequentialGroup()
                                 .addComponent(jLabel30)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtUndRegNumber)))
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlUnergraduateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegisterUnd)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelUnd)
-                .addContainerGap())
         );
         jpnlUnergraduateLayout.setVerticalGroup(
             jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,6 +332,10 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel31.setText("NSBM Registered Number :");
 
+        jLabel32.setText("Degree Type :");
+
+        cmboDegreeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSc", "Msc" }));
+
         javax.swing.GroupLayout jpnlPostgaduateLayout = new javax.swing.GroupLayout(jpnlPostgaduate);
         jpnlPostgaduate.setLayout(jpnlPostgaduateLayout);
         jpnlPostgaduateLayout.setHorizontalGroup(
@@ -371,7 +377,8 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                                             .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel26)
                                                 .addComponent(jLabel25)
-                                                .addComponent(jLabel27))
+                                                .addComponent(jLabel27)
+                                                .addComponent(jLabel32))
                                             .addGroup(jpnlPostgaduateLayout.createSequentialGroup()
                                                 .addComponent(jLabel29)
                                                 .addGap(11, 11, 11)))
@@ -379,7 +386,8 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                                             .addComponent(txtYoCPost)
                                             .addComponent(txtInstitutePost)
                                             .addComponent(txtQualificationPost, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                            .addComponent(cmboPostgraduate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(cmboPostgraduate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cmboDegreeType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(jpnlPostgaduateLayout.createSequentialGroup()
                                         .addComponent(jLabel31)
                                         .addGap(18, 18, 18)
@@ -424,14 +432,21 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                     .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtAddressPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel20)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPhoneNumberPost, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21))
-                .addGap(18, 18, 18)
-                .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(txtdoBPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpnlPostgaduateLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPhoneNumberPost, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(txtdoBPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnlPostgaduateLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(cmboDegreeType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmailPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,6 +556,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         pst.setPassword(txtPasswordPost.getText());
         pst.setNic(txtNICPost.getText());
         pst.setYoc(Integer.parseInt(txtYoCPost.getText()));
+        pst.setDegreeType(cmboDegreeType.getSelectedItem().toString());
         
         sdbOps.addPostgrasuate(pst);
     }//GEN-LAST:event_btnRegisterPostActionPerformed
@@ -586,6 +602,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelUnd;
     private javax.swing.JButton btnRegisterPost;
     private javax.swing.JButton btnRegisterUnd;
+    private javax.swing.JComboBox<String> cmboDegreeType;
     private javax.swing.JComboBox<String> cmboPostgraduate;
     private javax.swing.JComboBox<String> cmboUndergraduate;
     private javax.swing.JLabel jLabel1;
@@ -613,6 +630,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

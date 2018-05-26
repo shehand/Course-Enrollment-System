@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sono
@@ -17,6 +19,9 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
     }
+    
+    StudentDBOperations stdOps = new StudentDBOperations();
+    InstructorDBOperations instOps = new InstructorDBOperations();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,8 +263,50 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginUserNameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        StudentProfileFrame stdProfile = new StudentProfileFrame();
-        stdProfile.setRegNumber("pass the registration number");
+        String temp = txtLoginUserName.getText();
+        
+        if(temp.charAt(0) == 'S'){
+            if(temp.charAt(1) == 'U'){
+                Undergraduate und = new Undergraduate();
+                und.setRegNum(txtLoginUserName.getText());
+                und.setPassword(txtLoginPassword.getText());
+                
+                if(stdOps.undergraduateStudentVerification(und)){
+                    StudentProfileFrame stdProfile = new StudentProfileFrame();
+                    stdProfile.regNumber = txtLoginUserName.getText();
+                    stdProfile.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                }
+            }else if(temp.charAt(1) == 'P'){
+                Postgraduate pst = new Postgraduate();
+                pst.setRegNum(txtLoginUserName.getText());
+                pst.setPassword(txtLoginPassword.getText());
+                
+                if(stdOps.postgraduateStudentVerification(pst)){
+                    StudentProfileFrame stdProfile = new StudentProfileFrame();
+                    stdProfile.regNumber = txtLoginUserName.getText();
+                    stdProfile.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                }
+            }else{
+                
+            }
+        }else if(temp.charAt(0) == 'I'){
+            Instructor inst = new Instructor();
+            inst.setInstructorID(txtLoginUserName.getText());
+            inst.setPassword(txtLoginPassword.getText());
+            
+            if(instOps.instructorAuthentication(inst)){
+                InstructorProfile instProfile = new InstructorProfile();
+                instProfile.setVisible(true);
+            }
+        }else if(temp.charAt(0) == 'A'){
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed

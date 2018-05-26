@@ -13,6 +13,7 @@ public class Instructor {
     
     private String instructorID;
     private String name;
+    private String password;
 
     /**
      * @return the instructorID
@@ -40,6 +41,20 @@ public class Instructor {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

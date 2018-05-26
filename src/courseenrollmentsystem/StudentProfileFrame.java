@@ -24,9 +24,9 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     
     public StudentProfileFrame() {
         initComponents();
-        loadAssignments();
-        loadLabSessions();
-        loadSubjectDetails();
+        //loadAssignments();
+        //loadLabSessions();
+        //loadSubjectDetails();
     }
 
     /**
@@ -78,6 +78,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtStudentGPA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtStudentFaculty = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -314,6 +316,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         txtStudentFaculty.setEditable(false);
 
+        jLabel17.setText("Year of Study :");
+
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -336,6 +342,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtStudentRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(167, 167, 167)
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnStudentLogout)))
                 .addContainerGap())
@@ -347,7 +357,9 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtStudentRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStudentLogout))
+                    .addComponent(btnStudentLogout)
+                    .addComponent(jLabel17)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -465,6 +477,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -480,6 +493,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblAssignmentTable;
     private javax.swing.JTable tblCourseSubjects;
     private javax.swing.JTable tblStudentLabSessions;
