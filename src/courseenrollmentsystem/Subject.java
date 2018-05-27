@@ -14,6 +14,8 @@ public class Subject {
     private String subCode;
     private int credits;
     private int semester;
+    private String course;
+    private String courseFee;
 
     /**
      * @return the name
@@ -69,5 +71,33 @@ public class Subject {
      */
     public int getCredits() {
         return credits;
+    }
+
+    /**
+     * @return the course
+     */
+    public String getCourse() {
+        return course;
+    }
+
+    /**
+     * @param course the course to set
+     */
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    /**
+     * @return the courseFee
+     */
+    public String getCourseFee() {
+        return courseFee;
+    }
+
+    /**
+     * @param courseFee the courseFee to set
+     */
+    public void setCourseFee(String courseFee) {
+        this.courseFee = courseFee;
     }
 }

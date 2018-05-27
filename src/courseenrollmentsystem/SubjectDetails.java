@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class SubjectDetails extends AbstractTableModel{
     
-    private static final String COLUMN_NAMES[] = {"Subject Code","Subject Name","Semester","Number of Credits"};
+    private static final String COLUMN_NAMES[] = {"Subject Code","Subject Name","Semester","Number of Credits","Course Fee"};
     private static ArrayList<Subject> list;
     
     public SubjectDetails(ArrayList<Subject> list){
@@ -43,6 +43,7 @@ public class SubjectDetails extends AbstractTableModel{
             case 1: return list.get(rowIndex).getName();
             case 2: return list.get(rowIndex).getSemester();
             case 3: return list.get(rowIndex).getCredits();
+            case 4: return list.get(rowIndex).getCourseFee();
             default: return "Error";
         }
     }

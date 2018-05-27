@@ -119,8 +119,13 @@ public class AdminFrame extends javax.swing.JFrame {
         txtSubjectCode = new javax.swing.JTextField();
         txtSemesterNumber = new javax.swing.JTextField();
         btnInsertSubject = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        cmboSourseName = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
+        txtCourseFee = new javax.swing.JTextField();
         txtDeleteSubjectCode = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -309,8 +314,6 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel10.setText("Delete Student");
 
         jLabel11.setText("Registration Number :");
-
-        txtDeleteRegNumber.setText("jTextField8");
 
         btnDeleteStudent.setText("Delete");
 
@@ -602,6 +605,12 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel27.setText("Course Name :");
+
+        cmboSourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School of Business", "School of Computing", "School of Engineering" }));
+
+        jLabel28.setText("Course Fee :");
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -609,22 +618,26 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnInsertSubject))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
                             .addComponent(jLabel20)
                             .addComponent(jLabel21)
                             .addComponent(jLabel22)
-                            .addComponent(jLabel24))
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel28))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCredit, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                             .addComponent(txtSubjectName)
                             .addComponent(txtSubjectCode)
-                            .addComponent(txtSemesterNumber)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnInsertSubject)))
+                            .addComponent(txtSemesterNumber)
+                            .addComponent(cmboSourseName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCourseFee))))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -648,9 +661,17 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(cmboSourseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(txtCourseFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnInsertSubject)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         jLabel26.setText("Subject Code");
@@ -681,7 +702,7 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(btnRemoveSubject)
                     .addComponent(txtDeleteSubjectCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel26))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -689,6 +710,19 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Subject Management", jPanel4);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1249, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Payment Details", jPanel13);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -755,6 +789,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
         Student st = new Student();
         
+        st.setRegNum(txtStudentRegistrationNumber.getText());
         st.setFullName(txtUpFullName.getText());
         st.setAddress(txtUpAddress.getText());
         st.setPhoneNumber(Integer.parseInt(txtUpPhoneNumber.getText()));
@@ -792,6 +827,8 @@ public class AdminFrame extends javax.swing.JFrame {
         sbj.setName(txtSubjectName.getText());
         sbj.setSemester(Integer.parseInt(txtSemesterNumber.getText()));
         sbj.setCredits(Integer.parseInt(txtCredit.getText()));
+        sbj.setCourse(cmboSourseName.getSelectedItem().toString());
+        sbj.setCourseFee(txtCourseFee.getText());
         
         adminOps.insetNewSubject(sbj);
         loadSubjectDetails();
@@ -849,6 +886,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveInstructor;
     private javax.swing.JButton btnRemoveSubject;
     private javax.swing.JButton btnUpdateStudent;
+    private javax.swing.JComboBox<String> cmboSourseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -868,6 +906,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -879,6 +919,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -894,6 +935,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tblInstructorDetails;
     private javax.swing.JTable tblSubjectDetails;
+    private javax.swing.JTextField txtCourseFee;
     private javax.swing.JTextField txtCredit;
     private javax.swing.JTextField txtDeleteInstID;
     private javax.swing.JTextField txtDeleteRegNumber;

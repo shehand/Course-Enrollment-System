@@ -84,7 +84,7 @@ public class StudentDBOperations {
             pst.setString(11, pgs.getQualification()); // configer frontend data with the query statement
             pst.setString(12, pgs.getFacultyName()); // configer frontend data with the query statement
             pst.setString(13, pgs.getDegreeType()); // configer frontend data with the query statement
- 
+
             pst.executeUpdate();  // execute the query
 
         } catch (Exception e) {
@@ -236,6 +236,7 @@ public class StudentDBOperations {
                 sbj.setName(rs.getString(2));
                 sbj.setSemester(rs.getInt(3));
                 sbj.setCredits(rs.getInt(4));
+                sbj.setCourseFee(rs.getString(6));
 
                 sbjList.add(sbj);
             }
@@ -320,6 +321,35 @@ public class StudentDBOperations {
             }
         } catch (Exception e) {
             return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    ArrayList<Payment> getPaymentDetails(String regNumber) {
+        
+        ArrayList<Payment> plst = new ArrayList<>();
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            
+            
+            return plst;
+        } catch (Exception e) {
+            return null;
         } finally {
             try {
                 if (con != null) {

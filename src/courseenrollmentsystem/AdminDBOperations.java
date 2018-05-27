@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class AdminDBOperations {
 
-    String url = "jdbc:mysql://localhost:3306/nsbm_databse";
+    String url = "jdbc:mysql://localhost:3306/nsbm_database";
     String username = "root";
     String password = "";
     Connection con = null;
@@ -31,9 +31,9 @@ public class AdminDBOperations {
             con = (Connection)DriverManager.getConnection(url, username, password);
             String query = "";
             if (regNumber.charAt(1) == 'U') {
-                query = "SELECT * FROM undergraduate_student WHERE reg_number ='" + regNumber + ";";
+                query = "SELECT * FROM undergraduate_student WHERE reg_number ='" + regNumber + "'";
             } else if (regNumber.charAt(1) == 'P') {
-                query = "SELECT * FROM postgraduate_student WHERE reg_number ='" + regNumber + ";";
+                query = "SELECT * FROM postgraduate_student WHERE reg_number ='" + regNumber + "'";
             }
 
             pst = (PreparedStatement) con.prepareStatement(query);
@@ -51,6 +51,7 @@ public class AdminDBOperations {
             }
             return st;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -72,15 +73,16 @@ public class AdminDBOperations {
             con = (Connection)DriverManager.getConnection(url, username, password);
             String query = "";
             if (st.regNum.charAt(1) == 'U') {
-                query = "UPDATE undergraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + ";";
+                query = "UPDATE undergraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";
             } else if (st.regNum.charAt(1) == 'P') {
-                query = "UPDATE postgraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + ";";
+                query = "UPDATE postgraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";
             }
 
             pst = (PreparedStatement) con.prepareStatement(query);
             pst.executeUpdate();
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -113,6 +115,7 @@ public class AdminDBOperations {
            
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -145,6 +148,7 @@ public class AdminDBOperations {
             pst.executeUpdate();
             return true;
         }catch(Exception e){
+            System.out.println(e);
             return false;
         }finally{
             try {
@@ -165,7 +169,7 @@ public class AdminDBOperations {
         ArrayList<Instructor> inst = new ArrayList<>();
         try{
             con = (Connection)DriverManager.getConnection(url, username, password);
-            String query = "SELECT reg_name, instructor_name, email FROM instrucor_details";
+            String query = "SELECT * FROM instrucor_details";
             pst = (PreparedStatement) con.prepareStatement(query);
             rs = pst.executeQuery();
             
@@ -180,6 +184,7 @@ public class AdminDBOperations {
             }
             return inst;
         }catch(Exception e){
+            System.out.println(e);
             return null;
         }finally{
             try {
@@ -207,6 +212,7 @@ public class AdminDBOperations {
             return true;
 
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -240,11 +246,13 @@ public class AdminDBOperations {
                 sbj.setName(rs.getString(2));
                 sbj.setSemester(rs.getInt(3));
                 sbj.setCredits(rs.getInt(4));
+                sbj.setCourseFee(rs.getString(6));
 
                 sbjList.add(sbj);
             }
             return sbjList;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -265,17 +273,20 @@ public class AdminDBOperations {
         
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "INSERT INTO subjects VALUES (?,?,?,?)";
+            String query = "INSERT INTO subjects VALUES (?,?,?,?,?,?)";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             pst.setString(1, sbj.getSubCode());
             pst.setString(2, sbj.getName());
             pst.setInt(3, sbj.getSemester());
             pst.setInt(4, sbj.getCredits());
+            pst.setString(5, sbj.getCourse());
+            pst.setString(6, sbj.getCourseFee());
 
             pst.executeUpdate();
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -303,6 +314,7 @@ public class AdminDBOperations {
             return true;
 
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {

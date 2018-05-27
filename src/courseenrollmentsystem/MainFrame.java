@@ -302,8 +302,13 @@ public class MainFrame extends javax.swing.JFrame {
                 InstructorProfile instProfile = new InstructorProfile();
                 instProfile.setVisible(true);
             }
-        }else if(temp.charAt(0) == 'A'){
-            
+        }else if(temp.equals("Admin")){
+            if(txtLoginPassword.getText().equals("admin")){
+                AdminFrame adProfil = new AdminFrame();
+                adProfil.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
         }

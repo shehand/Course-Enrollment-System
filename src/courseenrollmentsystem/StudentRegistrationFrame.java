@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sono
@@ -145,6 +147,11 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         jLabel14.setText("Island Rank");
 
         btnCancelUnd.setText("Cancel");
+        btnCancelUnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelUndActionPerformed(evt);
+            }
+        });
 
         btnRegisterUnd.setText("Register");
         btnRegisterUnd.addActionListener(new java.awt.event.ActionListener() {
@@ -318,6 +325,11 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         jLabel27.setText("Qualification Type :");
 
         btnCancelPost.setText("Cancel");
+        btnCancelPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelPostActionPerformed(evt);
+            }
+        });
 
         btnRegisterPost.setText("Register");
         btnRegisterPost.addActionListener(new java.awt.event.ActionListener() {
@@ -538,7 +550,11 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         und.setIslandRank(Integer.parseInt(txtIslandRankUnd.getText())); // take data from text fields
         und.setzScore(txtZScoreUnd.getText()); // take data from text fields
         
-        sdbOps.addUndergraduate(und); //pass the data to student db operation class to handle backend queries
+        if(sdbOps.addUndergraduate(und)){ //pass the data to student db operation class to handle backend queries
+            JOptionPane.showMessageDialog(this, "Inserted");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error");
+        } 
     }//GEN-LAST:event_btnRegisterUndActionPerformed
 
     private void btnRegisterPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterPostActionPerformed
@@ -560,6 +576,14 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         
         sdbOps.addPostgrasuate(pst);
     }//GEN-LAST:event_btnRegisterPostActionPerformed
+
+    private void btnCancelUndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUndActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelUndActionPerformed
+
+    private void btnCancelPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPostActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelPostActionPerformed
 
     /**
      * @param args the command line arguments
