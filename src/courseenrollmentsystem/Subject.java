@@ -15,7 +15,7 @@ public class Subject {
     private int credits;
     private int semester;
     private String course;
-    private String courseFee;
+    private int courseFee;
 
     /**
      * @return the name
@@ -90,14 +90,21 @@ public class Subject {
     /**
      * @return the courseFee
      */
-    public String getCourseFee() {
+    public int getCourseFee() {
         return courseFee;
     }
 
     /**
      * @param courseFee the courseFee to set
      */
-    public void setCourseFee(String courseFee) {
+    public void setCourseFee(int courseFee) {
         this.courseFee = courseFee;
     }
+
+    /**
+     * @return the courseFee
+     */
+  
+
+  
 }

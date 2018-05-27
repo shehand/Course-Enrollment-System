@@ -19,6 +19,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     ArrayList<Assignment> assingnmentList; // Array list for holding student instances
     StudentDBOperations stdOps = new StudentDBOperations(); // object creation for backend access
     String regNumber; // to identify the user
+    String facultyName;
     ArrayList<LabSession> labSessions; // use to store the data of the lab sessions
     ArrayList<Subject> subjects; // use to store subject result set
     ArrayList<Payment> payList; // use to store payment details
@@ -101,11 +102,13 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPayments = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
         txtAmountToPay = new javax.swing.JTextField();
-        btnCheck = new javax.swing.JButton();
+        btnCheckFirst = new javax.swing.JButton();
         btnPay = new javax.swing.JButton();
+        btnCheckSecond = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtStudentGPA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -118,6 +121,11 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jLabel1.setText("User :");
 
         txtStudentRegNumber.setEditable(false);
+        txtStudentRegNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentRegNumberActionPerformed(evt);
+            }
+        });
 
         btnStudentLogout.setText("Logout");
         btnStudentLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +241,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(435, 435, 435)
                         .addComponent(btnConfirmSubjects)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -318,7 +326,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,8 +409,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                                         .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tpdStudentProfile.addTab("Subjects", jPanel2);
@@ -426,14 +434,14 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1211, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -458,14 +466,14 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1211, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -475,7 +483,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         jLabel19.setText("Payments ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPayments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -486,15 +494,34 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(tblPayments);
 
         jLabel18.setText("Amount to Pay :");
 
         txtAmountToPay.setEditable(false);
 
-        btnCheck.setText("Calculate");
+        btnCheckFirst.setText("1st Semester");
+        btnCheckFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckFirstActionPerformed(evt);
+            }
+        });
 
         btnPay.setText("Pay");
+        btnPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayActionPerformed(evt);
+            }
+        });
+
+        btnCheckSecond.setText("2nd Semester");
+        btnCheckSecond.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckSecondActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Calculate");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -512,10 +539,17 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtAmountToPay, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 714, Short.MAX_VALUE)))
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(btnCheckFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCheckSecond)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnPay, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(89, 89, 89)
+                                        .addComponent(jLabel20)))))
+                        .addGap(0, 572, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -523,12 +557,15 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(txtAmountToPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheck)
-                    .addComponent(btnPay))
+                    .addComponent(btnCheckFirst)
+                    .addComponent(btnPay)
+                    .addComponent(btnCheckSecond))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -560,6 +597,11 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jLabel16.setText("Your Faculty :");
 
         txtStudentFaculty.setEditable(false);
+        txtStudentFaculty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentFacultyActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("Year of Study :");
 
@@ -587,7 +629,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtStudentRegNumber)
                                     .addComponent(txtStudentGPA))))
-                        .addGap(167, 167, 167)
+                        .addGap(155, 155, 155)
                         .addComponent(jLabel17)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -605,11 +647,11 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                     .addComponent(btnStudentLogout)
                     .addComponent(jLabel17)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(txtStudentGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtStudentFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -657,6 +699,37 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         stdOps.insertSemesterSubjects(subjects, regNumber);
     }//GEN-LAST:event_btnConfirmSubjectsActionPerformed
 
+    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
+        
+        Payment pay = new Payment();
+        pay.setPayID(0);
+        pay.setAmount(txtAmountToPay.getText());
+        pay.setRegNumber(txtStudentRegNumber.getText());
+        pay.setCourse(facultyName);
+        pay.setSemester(tblPayments.getRowCount()+1);
+        
+        CardDetails crdFrame = new CardDetails();
+        crdFrame.setCardDetails(pay);
+        crdFrame.setVisible(true);
+        
+    }//GEN-LAST:event_btnPayActionPerformed
+
+    private void txtStudentRegNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentRegNumberActionPerformed
+        txtStudentRegNumber.setText(regNumber);
+    }//GEN-LAST:event_txtStudentRegNumberActionPerformed
+
+    private void txtStudentFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentFacultyActionPerformed
+        txtStudentFaculty.setText(facultyName);
+    }//GEN-LAST:event_txtStudentFacultyActionPerformed
+
+    private void btnCheckFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckFirstActionPerformed
+        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber))); 
+    }//GEN-LAST:event_btnCheckFirstActionPerformed
+
+    private void btnCheckSecondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckSecondActionPerformed
+        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber)));
+    }//GEN-LAST:event_btnCheckSecondActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -664,6 +737,9 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         this.regNumber = regNumber;
     }
     
+    void setFacultyName(){
+        
+    }
     void loadAssignments(){
         assingnmentList = stdOps.getAssignmentList(regNumber); // assign the returning array list to the assignment list
         AssignmentDetails assgDetails = new AssignmentDetails(assingnmentList);
@@ -720,7 +796,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheck;
+    private javax.swing.JButton btnCheckFirst;
+    private javax.swing.JButton btnCheckSecond;
     private javax.swing.JButton btnConfirmSubjects;
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnStudentLogout;
@@ -738,6 +815,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -767,7 +845,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -779,6 +856,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tblAssignmentTable;
     private javax.swing.JTable tblCourseSubjects;
+    private javax.swing.JTable tblPayments;
     private javax.swing.JTable tblStudentLabSessions;
     private javax.swing.JTabbedPane tpdStudentProfile;
     private javax.swing.JTextField txtAmountToPay;

@@ -246,7 +246,7 @@ public class AdminDBOperations {
                 sbj.setName(rs.getString(2));
                 sbj.setSemester(rs.getInt(3));
                 sbj.setCredits(rs.getInt(4));
-                sbj.setCourseFee(rs.getString(6));
+                sbj.setCourseFee(rs.getInt(6));
 
                 sbjList.add(sbj);
             }
@@ -281,7 +281,7 @@ public class AdminDBOperations {
             pst.setInt(3, sbj.getSemester());
             pst.setInt(4, sbj.getCredits());
             pst.setString(5, sbj.getCourse());
-            pst.setString(6, sbj.getCourseFee());
+            pst.setInt(6, sbj.getCourseFee());
 
             pst.executeUpdate();
             return true;

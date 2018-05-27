@@ -236,7 +236,7 @@ public class StudentDBOperations {
                 sbj.setName(rs.getString(2));
                 sbj.setSemester(rs.getInt(3));
                 sbj.setCredits(rs.getInt(4));
-                sbj.setCourseFee(rs.getString(6));
+                sbj.setCourseFee(rs.getInt(6));
 
                 sbjList.add(sbj);
             }
@@ -337,16 +337,26 @@ public class StudentDBOperations {
     }
 
     ArrayList<Payment> getPaymentDetails(String regNumber) {
-        
+
         ArrayList<Payment> plst = new ArrayList<>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "";
+            String query = "SELECT * FROM payments WHERE reg_number='" + regNumber + "'";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
-            
-            
+
+            while (rs.next()) {
+                Payment pay = new Payment();
+
+                pay.setPayID(rs.getInt(1));
+                pay.setAmount(rs.getString(2));
+                pay.setSemester(rs.getInt(3));
+                pay.setCourse(rs.getString(4));
+                pay.setRegNumber(regNumber);
+
+                plst.add(pay);
+            }
             return plst;
         } catch (Exception e) {
             return null;
@@ -365,4 +375,86 @@ public class StudentDBOperations {
         }
     }
 
+    boolean insertPayments(Payment pay) {
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "INSERT INTO payments VALUES (?,?,?,?,?)";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            pst.setInt(1, pay.getPayID());
+            pst.setString(2, pay.getAmount());
+            pst.setInt(3, pay.getSemester());
+            pst.setString(4, pay.getCourse());
+            pst.setString(5, pay.getRegNumber());
+
+            pst.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    int getFirstSemesterAmountToPay(String regNumber) {
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT SUM(course_fee) FROM subjects WHERE name IN (SELECT first,second,third,fourth FROM semester_1_subjects WHERE reg_number ='" + regNumber + "')";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            
+            return rs.getInt(1);
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+    
+    int getSecondSemesterAmountToPay(String regNumber) {
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT SUM(course_fee) FROM subjects WHERE name IN (SELECT first,second,third,fourth FROM semester_2_subjects WHERE reg_number ='" + regNumber + "')";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            
+            return rs.getInt(1);
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 }

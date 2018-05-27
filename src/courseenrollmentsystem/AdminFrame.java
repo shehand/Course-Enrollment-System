@@ -828,7 +828,7 @@ public class AdminFrame extends javax.swing.JFrame {
         sbj.setSemester(Integer.parseInt(txtSemesterNumber.getText()));
         sbj.setCredits(Integer.parseInt(txtCredit.getText()));
         sbj.setCourse(cmboSourseName.getSelectedItem().toString());
-        sbj.setCourseFee(txtCourseFee.getText());
+        sbj.setCourseFee(Integer.parseInt(txtCourseFee.getText()));
         
         adminOps.insetNewSubject(sbj);
         loadSubjectDetails();
