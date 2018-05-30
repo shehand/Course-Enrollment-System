@@ -16,6 +16,7 @@ public class Subject {
     private int semester;
     private String course;
     private int courseFee;
+    private String compulsoraTag;
 
     /**
      * @return the name
@@ -99,6 +100,20 @@ public class Subject {
      */
     public void setCourseFee(int courseFee) {
         this.courseFee = courseFee;
+    }
+
+    /**
+     * @return the compulsoraTag
+     */
+    public String getCompulsoraTag() {
+        return compulsoraTag;
+    }
+
+    /**
+     * @param compulsoraTag the compulsoraTag to set
+     */
+    public void setCompulsoraTag(String compulsoraTag) {
+        this.compulsoraTag = compulsoraTag;
     }
 
     /**

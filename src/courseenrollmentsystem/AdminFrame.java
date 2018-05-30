@@ -6,6 +6,7 @@
 package courseenrollmentsystem;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,24 +19,39 @@ public class AdminFrame extends javax.swing.JFrame {
      */
     public AdminFrame() {
         initComponents();
-        loadInstructorDetails();
-        loadSubjectDetails();
+        loadInstructorDetails(); // load table at the very first of profile loading
+        loadSubjectDetails();  // load table at the very first of profile loading
+        loadTransactionDetails();  // load table at the very first of profile loading
     }
     
-    AdminDBOperations adminOps = new AdminDBOperations();
-    ArrayList<Instructor> instDetails;
-    ArrayList<Subject> sbjDetails;
+    AdminDBOperations adminOps = new AdminDBOperations();  // instance for do back end operations belong to administrator
+    ArrayList<Instructor> instDetails; // array list for hosling instructor details when instructor details loading to the instructor details table
+    ArrayList<Subject> sbjDetails;  // array list for holding subject details when subject details table loading
+    ArrayList<Payment> payDetails; // array list to store payment details for table details loading
     
+    /**
+     * method to load the instructor details table
+     * */
     void loadInstructorDetails(){
         instDetails = adminOps.getInstructorDetails();
         InstructorDetails instDetail = new InstructorDetails(instDetails);
         tblInstructorDetails.setModel(instDetail);
     }
-    
+    /**
+     * method to load the subject details
+     **/
     void loadSubjectDetails(){
         sbjDetails = adminOps.getSubjectDetails();
         SubjectDetails sbj = new SubjectDetails(sbjDetails);
         tblSubjectDetails.setModel(sbj);
+    }
+    /**
+     * method to load the transaction details
+     **/
+    void loadTransactionDetails(){
+        payDetails = adminOps.getPaymentDetails();
+        PaymentDetails pay = new PaymentDetails(payDetails);
+        tblTransactionDetails.setModel(pay);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,9 +139,13 @@ public class AdminFrame extends javax.swing.JFrame {
         cmboSourseName = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
         txtCourseFee = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        cmboCompusoryTag = new javax.swing.JComboBox<>();
         txtDeleteSubjectCode = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblTransactionDetails = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -316,6 +336,11 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel11.setText("Registration Number :");
 
         btnDeleteStudent.setText("Delete");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -611,6 +636,10 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel28.setText("Course Fee :");
 
+        jLabel29.setText("Cmpulsory or Not:");
+
+        cmboCompusoryTag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "NC" }));
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -629,7 +658,8 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(jLabel22)
                             .addComponent(jLabel24)
                             .addComponent(jLabel27)
-                            .addComponent(jLabel28))
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel29))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCredit, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
@@ -637,7 +667,8 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(txtSubjectCode)
                             .addComponent(txtSemesterNumber)
                             .addComponent(cmboSourseName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCourseFee))))
+                            .addComponent(txtCourseFee)
+                            .addComponent(cmboCompusoryTag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -669,9 +700,13 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
                     .addComponent(txtCourseFee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(cmboCompusoryTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnInsertSubject)
-                .addGap(44, 44, 44))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jLabel26.setText("Subject Code");
@@ -711,15 +746,34 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Subject Management", jPanel4);
 
+        tblTransactionDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tblTransactionDetails);
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1249, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1225, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Payment Details", jPanel13);
@@ -742,7 +796,7 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAdminLogout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -768,78 +822,157 @@ public class AdminFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLogoutActionPerformed
-        this.dispose();
+        this.dispose(); // loging out from the system
     }//GEN-LAST:event_btnAdminLogoutActionPerformed
-
+    
+    /**
+     * method to view the details of an existing student for updating process
+     * 
+     **/
     private void btnCheckAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckAvailabilityActionPerformed
-        String tempRegNumber = txtStudentRegistrationNumber.getText();
+        String tempRegNumber = txtStudentRegistrationNumber.getText(); // assignning values
         Student st = adminOps.loadStudentDetails(tempRegNumber);
         
-        txtStudentRegistrationNumber.setText(st.getRegNum());
-        txtUpFullName.setText(st.getFullName());
-        txtUpNIC.setText(st.getNic());
-        txtUpAddress.setText(st.getAddress());
-        txtUpPhoneNumber.setText(Integer.toString(st.getPhoneNumber()));
-        txtUpDoB.setText(st.getDob());
-        txtUpEmail.setText(st.getEmail());
-        txtUpPassword.setText(st.getPassword());
+        txtStudentRegistrationNumber.setText(st.getRegNum()); // assignning values
+        txtUpFullName.setText(st.getFullName()); // assignning values
+        txtUpNIC.setText(st.getNic()); // assignning values
+        txtUpAddress.setText(st.getAddress()); // assignning values
+        txtUpPhoneNumber.setText(Integer.toString(st.getPhoneNumber())); // assignning values
+        txtUpDoB.setText(st.getDob()); // assignning values
+        txtUpEmail.setText(st.getEmail()); // assignning values
+        txtUpPassword.setText(st.getPassword()); // assignning values
                 
     }//GEN-LAST:event_btnCheckAvailabilityActionPerformed
-
+    
+    /**
+     * method to update student details
+     **/
     private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
-        Student st = new Student();
+        Student st = new Student(); // create student instance and assign values to it
         
-        st.setRegNum(txtStudentRegistrationNumber.getText());
-        st.setFullName(txtUpFullName.getText());
-        st.setAddress(txtUpAddress.getText());
-        st.setPhoneNumber(Integer.parseInt(txtUpPhoneNumber.getText()));
-        st.setDob(txtUpDoB.getText());
-        st.setEmail(txtUpEmail.getText());
-        st.setPassword(txtUpPassword.getText());
+        st.setRegNum(txtStudentRegistrationNumber.getText()); // assignning values
+        st.setFullName(txtUpFullName.getText()); // assignning values
+        st.setAddress(txtUpAddress.getText()); // assignning values
+        st.setPhoneNumber(Integer.parseInt(txtUpPhoneNumber.getText())); // assignning values
+        st.setDob(txtUpDoB.getText()); // assignning values
+        st.setEmail(txtUpEmail.getText()); // assignning values
+        st.setPassword(txtUpPassword.getText()); // assignning values
         
-        adminOps.updateStudent(st);
+        if(adminOps.updateStudent(st)){
+            JOptionPane.showMessageDialog(this, "Updated successfully");  // message box
+            txtStudentRegistrationNumber.setText(""); // assignning values
+            txtUpNIC.setText(""); // assignning values
+            txtUpFullName.setText(""); // assignning values
+            txtUpAddress.setText(""); // assignning values
+            txtUpPhoneNumber.setText(""); // assignning values
+            txtUpDoB.setText(""); // assignning values
+            txtUpEmail.setText(""); // assignning values
+            txtUpPassword.setText(""); // assignning values
+        }else{
+            JOptionPane.showMessageDialog(this, "Ops ! Something went wront. Please try again."); // message box
+        }
     }//GEN-LAST:event_btnUpdateStudentActionPerformed
-
+    
+    /**
+     * method to add new instructor to the system
+     **/
     private void btnAddInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInstructorActionPerformed
-        Instructor inst = new Instructor();
+        Instructor inst = new Instructor();  // create an instance of instructor and assign values by setters
         
-        inst.setName(txtInstName.getText());
-        inst.setInstructorID(txtInstRegNumber.getText());
-        inst.setPassword(txtInstPassword.getText());
-        inst.setEmail(txtInstEmail.getText());
-        inst.setDob(txtInstDoB.getText());
-        inst.setNic(txtInstNIC.getText());
+        inst.setName(txtInstName.getText()); // assignning values
+        inst.setInstructorID(txtInstRegNumber.getText()); // assignning values
+        inst.setPassword(txtInstPassword.getText()); // assignning values
+        inst.setEmail(txtInstEmail.getText()); // assignning values
+        inst.setDob(txtInstDoB.getText()); // assignning values
+        inst.setNic(txtInstNIC.getText()); // assignning values
         
-        adminOps.addInstructor(inst);
-        loadInstructorDetails();
+        if(adminOps.addInstructor(inst)){ // pass to do backend queries
+            loadInstructorDetails(); // refresh table
+            JOptionPane.showMessageDialog(this, "Instructor added successfully"); // message box
+            txtInstDoB.setText(""); // assignning values
+            txtInstEmail.setText(""); // assignning values
+            txtInstNIC.setText(""); // assignning values
+            txtInstName.setText(""); // assignning values
+            txtInstPassword.setText(""); // assignning values
+            txtInstRegNumber.setText(""); // assignning values
+        }else{
+            JOptionPane.showMessageDialog(this, "Ops ! Something went wront. Please try again."); // message box
+        }
+        
     }//GEN-LAST:event_btnAddInstructorActionPerformed
-
+    
+    /**
+     * method to remove existing instructor from the system
+     **/
     private void btnRemoveInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInstructorActionPerformed
         String tmpID = txtDeleteInstID.getText();
-        adminOps.removeInstructor(tmpID);
-        loadInstructorDetails();
+        
+        if(adminOps.removeInstructor(tmpID)){
+            loadInstructorDetails(); // refresh table
+            JOptionPane.showMessageDialog(this, "Instructor removed successfully"); // message box
+            txtDeleteInstID.setText(""); // assignning values
+        }else{
+            JOptionPane.showMessageDialog(this, "Can not find the Instructor details"); // message box
+        }
+        
     }//GEN-LAST:event_btnRemoveInstructorActionPerformed
-
+    
+    /**
+     * method to insert new subject to the course
+     **/
     private void btnInsertSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertSubjectActionPerformed
-        Subject sbj = new Subject();
+        Subject sbj = new Subject();  // create instance of subject to set values
         
-        sbj.setSubCode(txtSubjectCode.getText());
-        sbj.setName(txtSubjectName.getText());
-        sbj.setSemester(Integer.parseInt(txtSemesterNumber.getText()));
-        sbj.setCredits(Integer.parseInt(txtCredit.getText()));
-        sbj.setCourse(cmboSourseName.getSelectedItem().toString());
-        sbj.setCourseFee(Integer.parseInt(txtCourseFee.getText()));
+        sbj.setSubCode(txtSubjectCode.getText()); // assignning values
+        sbj.setName(txtSubjectName.getText()); // assignning values
+        sbj.setSemester(Integer.parseInt(txtSemesterNumber.getText())); // assignning values
+        sbj.setCredits(Integer.parseInt(txtCredit.getText())); // assignning values
+        sbj.setCourse(cmboSourseName.getSelectedItem().toString()); // assignning values
+        sbj.setCourseFee(Integer.parseInt(txtCourseFee.getText())); // assignning values
+        sbj.setCompulsoraTag(cmboCompusoryTag.getSelectedItem().toString());
         
-        adminOps.insetNewSubject(sbj);
-        loadSubjectDetails();
+        if(adminOps.insetNewSubject(sbj)){
+            loadSubjectDetails(); // refresh table
+            JOptionPane.showMessageDialog(this, "Subject addedd successfully"); // message box
+            txtSubjectCode.setText(""); // assignning values
+            txtSubjectName.setText(""); // assignning values
+            txtSemesterNumber.setText(""); // assignning values
+            txtCredit.setText(""); // assignning values
+            txtCourseFee.setText(""); // assignning values
+        }else{
+             JOptionPane.showMessageDialog(this, "Ops ! Something went wront. Please try again."); // message box
+        }
+        
     }//GEN-LAST:event_btnInsertSubjectActionPerformed
-
+    
+    /**
+     * method to remove a subject from the course
+     **/
     private void btnRemoveSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSubjectActionPerformed
-        String tempID = txtDeleteSubjectCode.getText();
+        String tempID = txtDeleteSubjectCode.getText(); // assignning values
         
-        adminOps.removeSubject(tempID);
-        loadSubjectDetails();
+        if(adminOps.removeSubject(tempID)){
+            loadSubjectDetails(); // refresh table
+            JOptionPane.showMessageDialog(this, "Subject removed successfully"); // message box
+            txtDeleteSubjectCode.setText(""); // assignning values
+        }else{ 
+            JOptionPane.showMessageDialog(this, "Can not find the subject details"); // message box
+        }
+        
     }//GEN-LAST:event_btnRemoveSubjectActionPerformed
+    
+    /**
+     * method to delete a student from the system
+     **/
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        String regNum = txtDeleteRegNumber.getText();
+        if(adminOps.deleteStudent(regNum)){
+            JOptionPane.showMessageDialog(this, "Student details deleted successfully"); // message box
+            txtDeleteRegNumber.setText(""); // assignning values
+        }else{ 
+            JOptionPane.showMessageDialog(this, "Can not find the student details"); // message box
+        }
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -886,6 +1019,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveInstructor;
     private javax.swing.JButton btnRemoveSubject;
     private javax.swing.JButton btnUpdateStudent;
+    private javax.swing.JComboBox<String> cmboCompusoryTag;
     private javax.swing.JComboBox<String> cmboSourseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -908,6 +1042,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -931,10 +1066,12 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tblInstructorDetails;
     private javax.swing.JTable tblSubjectDetails;
+    private javax.swing.JTable tblTransactionDetails;
     private javax.swing.JTextField txtCourseFee;
     private javax.swing.JTextField txtCredit;
     private javax.swing.JTextField txtDeleteInstID;

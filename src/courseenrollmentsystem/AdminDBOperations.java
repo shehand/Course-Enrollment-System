@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 public class AdminDBOperations {
 
-    String url = "jdbc:mysql://localhost:3306/nsbm_database";
-    String username = "root";
-    String password = "";
-    Connection con = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    String url = "jdbc:mysql://localhost:3306/nsbm_database";   // ur to cennect the database
+    String username = "root";  // access crediantials fot the database
+    String password = "";  // access crediantials fot the database
+    Connection con = null;  // use to store the established connection with the database
+    PreparedStatement pst = null;  // use to store the preapared sql query
+    ResultSet rs = null; //  use to store the result set of the sql query
 
     Student loadStudentDetails(String regNumber) {
 
@@ -104,15 +104,14 @@ public class AdminDBOperations {
             con = (Connection)DriverManager.getConnection(url, username, password);
             String query = "";
             if (regNumber.charAt(1) == 'U') {
-                query = "DELETE FROM undergraduate_student WHERE reg_number ='" + regNumber + ";";
+                query = "DELETE FROM undergraduate_student WHERE reg_number ='" + regNumber + "';";
             } else if (regNumber.charAt(1) == 'P') {
-                query = "DELETE FROM postgraduate_student WHERE reg_number ='" + regNumber + ";";
+                query = "DELETE FROM postgraduate_student WHERE reg_number ='" + regNumber + "';";
             }
 
             pst = (PreparedStatement) con.prepareStatement(query);
-            pst.executeQuery();
-
-           
+            pst.executeUpdate();
+            
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -273,7 +272,7 @@ public class AdminDBOperations {
         
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "INSERT INTO subjects VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO subjects VALUES (?,?,?,?,?,?,?)";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             pst.setString(1, sbj.getSubCode());
@@ -282,6 +281,7 @@ public class AdminDBOperations {
             pst.setInt(4, sbj.getCredits());
             pst.setString(5, sbj.getCourse());
             pst.setInt(6, sbj.getCourseFee());
+            pst.setString(7, sbj.getCompulsoraTag());
 
             pst.executeUpdate();
             return true;
@@ -316,6 +316,45 @@ public class AdminDBOperations {
         } catch (Exception e) {
             System.out.println(e);
             return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+    
+    ArrayList<Payment> getPaymentDetails() {
+
+        ArrayList<Payment> plst = new ArrayList<>();
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM payments";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Payment pay = new Payment();
+
+                pay.setPayID(rs.getInt(1));
+                pay.setAmount(rs.getString(2));
+                pay.setSemester(rs.getInt(3));
+                pay.setCourse(rs.getString(4));
+                pay.setRegNumber(rs.getString(5));
+
+                plst.add(pay);
+            }
+            return plst;
+        } catch (Exception e) {
+            return null;
         } finally {
             try {
                 if (con != null) {

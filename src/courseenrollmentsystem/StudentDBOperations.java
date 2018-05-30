@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -96,10 +97,9 @@ public class StudentDBOperations {
     ArrayList<Assignment> getAssignmentList(String regNumber) {
 
         ArrayList<Assignment> lst = new ArrayList<Assignment>();
-
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT first,secont,third,fourth FROM semester_1_subjects WHERE reg_number = '" + regNumber + "' AND SELECT first,second,third,fourth FROM semester_2_subjects WHERE reg_nymber='" + regNumber + "')";
+            String query = "SELECT * FROM assignments ";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -116,6 +116,7 @@ public class StudentDBOperations {
             }
             return lst;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -139,7 +140,7 @@ public class StudentDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT first,secont,third,fourth FROM semester_1_subjects WHERE reg_number = '" + regNumber + "' AND SELECT first,second,third,fourth FROM semester_2_subjects WHERE reg_nymber='" + regNumber + "')";
+            String query = "SELECT * FROM lab_sessions ";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -174,12 +175,12 @@ public class StudentDBOperations {
         }
     }
 
-    boolean insertSemesterSubjects(String[] subjects, String regNumber) {
+    boolean insertSemesterSubjects(String[] subjects, String regNumber, String yos) {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query1 = "INSERT INTO semester_1_subjects VALUES (?,?,?,?,?,?)";
-            String query2 = "INSERT INTO semester_2_subjects VALUES (?,?,?,?,?,?)";
+            String query1 = "INSERT INTO semester_1_subjects VALUES (?,?,?,?,?,?,?)";
+            String query2 = "INSERT INTO semester_2_subjects VALUES (?,?,?,?,?,?,?)";
 
             PreparedStatement pst2 = (PreparedStatement) con.prepareStatement(query2);
             pst = (PreparedStatement) con.prepareStatement(query1);
@@ -190,6 +191,7 @@ public class StudentDBOperations {
             pst.setString(4, subjects[1]);
             pst.setString(5, subjects[2]);
             pst.setString(6, subjects[3]);
+            pst.setString(7, yos);
 
             pst2.setString(1, regNumber);
             pst2.setInt(2, 2);
@@ -197,12 +199,14 @@ public class StudentDBOperations {
             pst2.setString(4, subjects[5]);
             pst2.setString(5, subjects[6]);
             pst2.setString(6, subjects[7]);
+            pst2.setString(7, yos);
 
             pst.executeUpdate();
             pst2.executeUpdate();
 
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -237,6 +241,7 @@ public class StudentDBOperations {
                 sbj.setSemester(rs.getInt(3));
                 sbj.setCredits(rs.getInt(4));
                 sbj.setCourseFee(rs.getInt(6));
+                sbj.setCompulsoraTag(rs.getString(7));
 
                 sbjList.add(sbj);
             }
@@ -390,6 +395,7 @@ public class StudentDBOperations {
             pst.executeUpdate();
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -457,4 +463,108 @@ public class StudentDBOperations {
             }
         }
     }
+    
+    Student getFacultyName(String regNumber){
+        Student st = new Student();
+        try {
+            con = (Connection)DriverManager.getConnection(url, username, password);
+            String query = "";
+            if (regNumber.charAt(1) == 'U') {
+                query = "SELECT faculty FROM undergraduate_student WHERE reg_number ='" + regNumber + "'";
+            } else if (regNumber.charAt(1) == 'P') {
+                query = "SELECT faculty FROM postgraduate_student WHERE reg_number ='" + regNumber + "'";
+            }
+
+            pst = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+  
+            while (rs.next()) {
+                st.setFacultyName(rs.getString("faculty"));
+            }
+            return st;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+    
+    boolean updateFirstSemesterSubjects(String sjdet[], int sem){
+        try {
+            con = (Connection)DriverManager.getConnection(url, username, password);
+            String query = "";
+            int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+            
+            if (month==2) {
+                query = "UPDATE semester_1_subjects SET reg_number ='"+sjdet[0]+"', semester ='"+sem+"', first = '"+sjdet[1]+"', second ='"+sjdet[2]+"', third = '"+sjdet[3]+"', fourth = '"+sjdet[4]+"'";
+            }else{
+                return false;
+            }
+
+            pst = (PreparedStatement) con.prepareStatement(query);
+            
+            pst.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+    
+    boolean updateSecondSemesterSubjects(String sjdet[], int sem){
+        try {
+            con = (Connection)DriverManager.getConnection(url, username, password);
+            String query = "";
+            int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+            
+            if (month==7 || month==2) {
+                query = "UPDATE semester_2_subjects SET reg_number ='"+sjdet[0]+"', semester ='"+sem+"', first = '"+sjdet[1]+"', second ='"+sjdet[2]+"', third = '"+sjdet[3]+"', fourth = '"+sjdet[4]+"'";
+            }else{
+                return false;
+            }
+            
+            pst = (PreparedStatement) con.prepareStatement(query);
+            
+            pst.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    } 
 }

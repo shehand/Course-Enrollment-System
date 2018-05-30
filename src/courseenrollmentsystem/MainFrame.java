@@ -5,6 +5,7 @@
  */
 package courseenrollmentsystem;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +17,10 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
+    
     public MainFrame() {
         initComponents();
+        
     }
     
     StudentDBOperations stdOps = new StudentDBOperations();
@@ -113,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogin)
                 .addContainerGap())
         );
@@ -163,6 +166,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), new javax.swing.border.MatteBorder(null)));
+
         jLabel7.setText("News Feed");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -179,7 +184,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(524, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -200,7 +205,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -208,9 +213,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(274, Short.MAX_VALUE)
+                .addContainerGap(268, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(250, 250, 250))
+                .addGap(256, 256, 256))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,16 +230,16 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -272,9 +277,17 @@ public class MainFrame extends javax.swing.JFrame {
                 und.setPassword(txtLoginPassword.getText());
                 
                 if(stdOps.undergraduateStudentVerification(und)){
+                    txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                     StudentProfileFrame stdProfile = new StudentProfileFrame();
-                    stdProfile.regNumber = txtLoginUserName.getText();
                     stdProfile.setVisible(true);
+                    stdProfile.setRegNumber(temp);
+                    stdProfile.loadAssignments();
+                    stdProfile.loadLabSessions();
+                    stdProfile.loadPaymentDetails();
+                    stdProfile.loadSubjectDetails();
+                    stdProfile.setFacultyName(temp);
+                    stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
                 }
@@ -284,9 +297,17 @@ public class MainFrame extends javax.swing.JFrame {
                 pst.setPassword(txtLoginPassword.getText());
                 
                 if(stdOps.postgraduateStudentVerification(pst)){
+                     txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                     StudentProfileFrame stdProfile = new StudentProfileFrame();
-                    stdProfile.regNumber = txtLoginUserName.getText();
                     stdProfile.setVisible(true);
+                    stdProfile.setRegNumber(temp);
+                    stdProfile.loadAssignments();
+                    stdProfile.loadLabSessions();
+                    stdProfile.loadPaymentDetails();
+                    stdProfile.loadSubjectDetails();
+                    stdProfile.setFacultyName(temp);
+                    stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
                 }
@@ -299,13 +320,19 @@ public class MainFrame extends javax.swing.JFrame {
             inst.setPassword(txtLoginPassword.getText());
             
             if(instOps.instructorAuthentication(inst)){
+                 txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                 InstructorProfile instProfile = new InstructorProfile();
                 instProfile.setVisible(true);
+                instProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         }else if(temp.equals("Admin")){
             if(txtLoginPassword.getText().equals("admin")){
+                 txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                 AdminFrame adProfil = new AdminFrame();
                 adProfil.setVisible(true);
+                adProfil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
             }

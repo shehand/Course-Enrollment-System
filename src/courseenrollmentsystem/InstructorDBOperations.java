@@ -268,4 +268,36 @@ public class InstructorDBOperations {
             }
         }
     }
+
+    boolean insertGPADetails(String regNum, String gpa, String year) {
+        try{
+            con = (Connection) DriverManager.getConnection(url,username,password);
+            String query = "INSERT INTO ranking VALUES (?,?,?)";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            
+            pst.setString(1, regNum);
+            pst.setString(2, gpa);
+            pst.setString(3, year);
+            
+            pst.executeUpdate();
+            
+            return true;
+        }catch(Exception e){
+            return false;
+        }finally{
+            try{
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            }catch(Exception e){
+            
+            }
+        }
+    }
+    
+    
 }
