@@ -5,11 +5,18 @@
  */
 package courseenrollmentsystem;
 
+import com.sun.org.apache.bcel.internal.util.ByteSequence;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -235,7 +242,7 @@ public class InstructorDBOperations {
         
         try{
             con = (Connection) DriverManager.getConnection(url,username,password);
-            String query = "SELECT reg_number,password FROM login_sessions";
+            String query = "SELECT reg_number,password FROM instrucor_details";
             pst = (PreparedStatement) con.prepareStatement(query);
             
             ResultSet rs = pst.executeQuery();
@@ -253,6 +260,7 @@ public class InstructorDBOperations {
                 return false;
             }
         }catch(Exception e){
+            System.out.println(e);
             return false;
         }finally{
             try{
@@ -284,6 +292,74 @@ public class InstructorDBOperations {
             return true;
         }catch(Exception e){
             return false;
+        }finally{
+            try{
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            }catch(Exception e){
+            
+            }
+        }
+    }
+
+    boolean insertExamResults(File file, String subCode) {
+        try{
+            con = (Connection) DriverManager.getConnection(url,username,password);
+            String query = "INSERT INTO results VALUES (?,?)";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            
+            byte[] pdfData = new byte[(int) file.length()];
+            DataInputStream dis = new DataInputStream(new FileInputStream(file));
+            dis.readFully(pdfData);
+            dis.close();
+            
+            pst.setString(1, subCode);
+            pst.setBytes(2, pdfData);
+            pst.executeUpdate();
+            
+            return true;
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
+        }finally{
+            try{
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            }catch(Exception e){
+            
+            }
+        }
+    }
+
+    ArrayList<Results> getResultDetails() {
+        
+        ArrayList<Results> res = new ArrayList<Results>();
+        try{
+            con = (Connection) DriverManager.getConnection(url,username,password);
+            String query = "SELECT * FROM results";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while(rs.next()){
+                Results r = new Results();
+                r.setSubjectName(rs.getString(1));
+                //r.setFileName(rs.getBytes(2));
+            }
+            return res;
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
         }finally{
             try{
                 if (con != null) {

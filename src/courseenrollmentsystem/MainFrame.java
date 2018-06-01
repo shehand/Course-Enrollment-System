@@ -5,6 +5,7 @@
  */
 package courseenrollmentsystem;
 
+import java.util.Calendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -320,8 +321,8 @@ public class MainFrame extends javax.swing.JFrame {
             inst.setPassword(txtLoginPassword.getText());
             
             if(instOps.instructorAuthentication(inst)){
-                 txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
+                txtLoginPassword.setText("");
+                txtLoginUserName.setText("");
                 InstructorProfile instProfile = new InstructorProfile();
                 instProfile.setVisible(true);
                 instProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -342,8 +343,15 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
-        StudentRegistrationFrame strf = new StudentRegistrationFrame();
-        strf.setVisible(true);
+        
+        int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+        
+        if(month==2 || month==7){
+            StudentRegistrationFrame strf = new StudentRegistrationFrame();
+            strf.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details");
+        }
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
 
     /**

@@ -22,12 +22,14 @@ public class AdminFrame extends javax.swing.JFrame {
         loadInstructorDetails(); // load table at the very first of profile loading
         loadSubjectDetails();  // load table at the very first of profile loading
         loadTransactionDetails();  // load table at the very first of profile loading
+        loadFourthYearStudents(); // load table at the very first of profile loading
     }
     
     AdminDBOperations adminOps = new AdminDBOperations();  // instance for do back end operations belong to administrator
     ArrayList<Instructor> instDetails; // array list for hosling instructor details when instructor details loading to the instructor details table
     ArrayList<Subject> sbjDetails;  // array list for holding subject details when subject details table loading
     ArrayList<Payment> payDetails; // array list to store payment details for table details loading
+    ArrayList<FourthYears> fourthYears; // array list to store fourth year details for table fourth year details loading
     
     /**
      * method to load the instructor details table
@@ -52,6 +54,14 @@ public class AdminFrame extends javax.swing.JFrame {
         payDetails = adminOps.getPaymentDetails();
         PaymentDetails pay = new PaymentDetails(payDetails);
         tblTransactionDetails.setModel(pay);
+    }
+    /**
+     * method to load fourth year selections details
+     **/
+    void loadFourthYearStudents(){
+        fourthYears = adminOps.getFourthYears();
+        FourthYearDetails frDetails = new FourthYearDetails(fourthYears);
+        tblFourthYears.setModel(frDetails);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +99,7 @@ public class AdminFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFourthYears = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -291,7 +301,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Fourth Year Selection");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFourthYears.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -302,7 +312,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblFourthYears);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1068,7 +1078,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblFourthYears;
     private javax.swing.JTable tblInstructorDetails;
     private javax.swing.JTable tblSubjectDetails;
     private javax.swing.JTable tblTransactionDetails;

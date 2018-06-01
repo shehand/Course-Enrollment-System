@@ -94,12 +94,12 @@ public class StudentDBOperations {
         return true;
     }
 
-    ArrayList<Assignment> getAssignmentList(String regNumber) {
+    ArrayList<Assignment> getAssignmentList(String facultyName) {
 
         ArrayList<Assignment> lst = new ArrayList<Assignment>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM assignments ";
+            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='"+facultyName+"')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -134,13 +134,13 @@ public class StudentDBOperations {
 
     }
 
-    ArrayList<LabSession> getLabSessionDetails(String regNumber) {
+    ArrayList<LabSession> getLabSessionDetails(String facultyName) {
 
         ArrayList<LabSession> lbSessions = new ArrayList<LabSession>();
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM lab_sessions ";
+            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='"+facultyName+"')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -223,12 +223,12 @@ public class StudentDBOperations {
         }
     }
 
-    ArrayList<Subject> getSubjectDetails() {
+    ArrayList<Subject> getSubjectDetails(String facultyName) {
 
         ArrayList<Subject> sbjList = new ArrayList<Subject>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM subjects";
+            String query = "SELECT * FROM subjects WHERE course ='"+facultyName+"'";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -567,4 +567,39 @@ public class StudentDBOperations {
             }
         }
     } 
+
+    double getCurrentGPA(String regNumber) {
+        try {
+            con = (Connection)DriverManager.getConnection(url, username, password);
+            String query = "SELECT gpa FROM ranking WHERE reg_number='"+regNumber+"'";
+            
+            pst = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            int count = 1;
+            double gpa = 0;
+            
+            while(rs.next()){
+                gpa += Integer.parseInt(rs.getString(1));
+                count++;
+            }
+            return (gpa/count);
+        } catch (Exception e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+   
 }

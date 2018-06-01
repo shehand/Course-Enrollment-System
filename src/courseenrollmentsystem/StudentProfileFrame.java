@@ -96,13 +96,9 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAssignmentTable = new javax.swing.JTable();
-        txtSearchFieldAss = new javax.swing.JTextField();
-        btnSearchAss = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudentLabSessions = new javax.swing.JTable();
-        txtSearchFieldLab = new javax.swing.JTextField();
-        btnSearchLab = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -114,13 +110,13 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         btnPay = new javax.swing.JButton();
         btnCheckSecond = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtStudentGPA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtStudentFaculty = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtYoS = new javax.swing.JTextField();
+        btnRequest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -352,7 +348,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32))
@@ -458,32 +454,20 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblAssignmentTable);
 
-        btnSearchAss.setText("Search");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtSearchFieldAss, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnSearchAss)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearchFieldAss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchAss))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -502,32 +486,20 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblStudentLabSessions);
 
-        btnSearchLab.setText("Search");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtSearchFieldLab, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(btnSearchLab)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearchFieldLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchLab))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -644,19 +616,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         tpdStudentProfile.addTab("Payments", jPanel5);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1320, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
-        );
-
-        tpdStudentProfile.addTab("Results", jPanel6);
-
         jLabel15.setText("Current GPA :");
 
         txtStudentGPA.setEditable(false);
@@ -673,6 +632,13 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jLabel17.setText("Year of Study :");
 
         txtYoS.setEditable(false);
+
+        btnRequest.setText("Request");
+        btnRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -696,12 +662,18 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtStudentRegNumber)
                                     .addComponent(txtStudentGPA))))
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtYoS, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnStudentLogout)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtYoS, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnStudentLogout))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRequest)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -717,8 +689,9 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(txtStudentGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                    .addComponent(txtStudentGPA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRequest))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtStudentFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -791,11 +764,11 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtStudentFacultyActionPerformed
 
     private void btnCheckFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckFirstActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber))); 
+        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber)+20000)); 
     }//GEN-LAST:event_btnCheckFirstActionPerformed
 
     private void btnCheckSecondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckSecondActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber)));
+        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber)+20000));
     }//GEN-LAST:event_btnCheckSecondActionPerformed
 
     private void btnUpdateFirstSemesterSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFirstSemesterSubjectsActionPerformed
@@ -832,6 +805,14 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateSecondSemesterSubjectsActionPerformed
 
+    private void btnRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestActionPerformed
+        if(stdOps.getCurrentGPA(regNumber)!=0){
+            txtStudentGPA.setText(Double.toString(stdOps.getCurrentGPA(regNumber)));
+        }else{
+            JOptionPane.showMessageDialog(this, "Sorry you are not allowed to do this at this moment");
+        }
+    }//GEN-LAST:event_btnRequestActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -844,19 +825,19 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtStudentFaculty.setText(facultyName);
     }
     void loadAssignments(){
-        assingnmentList = stdOps.getAssignmentList(regNumber); // assign the returning array list to the assignment list
+        assingnmentList = stdOps.getAssignmentList(facultyName); // assign the returning array list to the assignment list
         AssignmentDetails assgDetails = new AssignmentDetails(assingnmentList);
         tblAssignmentTable.setModel(assgDetails);
     }
     
     void loadLabSessions(){
-        labSessions = stdOps.getLabSessionDetails(regNumber);
+        labSessions = stdOps.getLabSessionDetails(facultyName);
         LabSessionDetails lbsd = new LabSessionDetails(labSessions);
         tblStudentLabSessions.setModel(lbsd);
     }
     
     void loadSubjectDetails(){
-        subjects = stdOps.getSubjectDetails();
+        subjects = stdOps.getSubjectDetails(facultyName);
         SubjectDetails sbjDetails = new SubjectDetails(subjects);
         tblCourseSubjects.setModel(sbjDetails);
     }
@@ -872,7 +853,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     
     void setYearOfStudy(){
         int year = tblPayments.getRowCount();
-        System.out.println(year);
+       
         switch(year){
             case 0: txtYoS.setText("1 st Year");break;
             case 1: txtYoS.setText("1 st Year");break;
@@ -927,8 +908,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckSecond;
     private javax.swing.JButton btnConfirmSubjects;
     private javax.swing.JButton btnPay;
-    private javax.swing.JButton btnSearchAss;
-    private javax.swing.JButton btnSearchLab;
+    private javax.swing.JButton btnRequest;
     private javax.swing.JButton btnStudentLogout;
     private javax.swing.JButton btnUpdateFirstSemesterSubjects;
     private javax.swing.JButton btnUpdateSecondSemesterSubjects;
@@ -970,7 +950,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -991,8 +970,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtSFourthSubject;
     private javax.swing.JTextField txtSSecondSubject;
     private javax.swing.JTextField txtSThirdSubject;
-    private javax.swing.JTextField txtSearchFieldAss;
-    private javax.swing.JTextField txtSearchFieldLab;
     private javax.swing.JTextField txtStudentFaculty;
     private javax.swing.JTextField txtStudentGPA;
     private javax.swing.JTextField txtStudentRegNumber;

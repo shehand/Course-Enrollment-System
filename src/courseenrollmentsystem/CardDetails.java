@@ -178,8 +178,8 @@ public class CardDetails extends javax.swing.JFrame {
     private void btnProceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedActionPerformed
        
         txtAmount.setText(payDetails.getAmount());
-        if(stdOps.insertPayments(pay())){
-            JOptionPane.showMessageDialog(this, "Transaction complete");
+        if(stdOps.insertPayments(payDetails)){
+            JOptionPane.showMessageDialog(this, "Transaction complete, Table will be updated soon");
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Transaction is not complete. Please try again later");
@@ -188,11 +188,9 @@ public class CardDetails extends javax.swing.JFrame {
     
     void setCardDetails(Payment pay){ // method to access back end with card details
         payDetails = pay;
+        txtAmount.setText(pay.getAmount());
     }
     
-    public Payment pay(){ // method to assign payment details
-        return payDetails;
-    }
     /**
      * @param args the command line arguments
      */

@@ -23,75 +23,81 @@ public class AdminDBOperations {
     Connection con = null;  // use to store the established connection with the database
     PreparedStatement pst = null;  // use to store the preapared sql query
     ResultSet rs = null; //  use to store the result set of the sql query
-
+    
+    /**
+     * method to load student details to student profile
+     **/
     Student loadStudentDetails(String regNumber) {
 
-        Student st = new Student();
+        Student st = new Student(); // instance of a student to store stdent details
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection)DriverManager.getConnection(url, username, password); // establishing connection with the database
             String query = "";
             if (regNumber.charAt(1) == 'U') {
-                query = "SELECT * FROM undergraduate_student WHERE reg_number ='" + regNumber + "'";
+                query = "SELECT * FROM undergraduate_student WHERE reg_number ='" + regNumber + "'"; // query
             } else if (regNumber.charAt(1) == 'P') {
-                query = "SELECT * FROM postgraduate_student WHERE reg_number ='" + regNumber + "'";
+                query = "SELECT * FROM postgraduate_student WHERE reg_number ='" + regNumber + "'"; // query
             }
 
-            pst = (PreparedStatement) con.prepareStatement(query);
-            rs = pst.executeQuery();
+            pst = (PreparedStatement) con.prepareStatement(query);  // preaparing the query to execute
+            rs = pst.executeQuery(); // executing the query
 
             while (rs.next()) {
-                st.setRegNum(rs.getString(1));
-                st.setFullName(rs.getString(2));
-                st.setNic(rs.getString(3));
-                st.setAddress(rs.getString(4));
-                st.setPhoneNumber(rs.getInt(5));
-                st.setDob(rs.getString(6));
-                st.setEmail(rs.getString(7));
-                st.setPassword(rs.getString(8));
+                st.setRegNum(rs.getString(1)); // setting student details
+                st.setFullName(rs.getString(2));  // setting student details
+                st.setNic(rs.getString(3));  // setting student details
+                st.setAddress(rs.getString(4));  // setting student details
+                st.setPhoneNumber(rs.getInt(5));  // setting student details
+                st.setDob(rs.getString(6));  // setting student details
+                st.setEmail(rs.getString(7));  // setting student details
+                st.setPassword(rs.getString(8));  // setting student details
             }
-            return st;
-        } catch (Exception e) {
+            return st; // return student object
+        } catch (Exception e) {                 // exception handling
             System.out.println(e);
             return null;
         } finally {
             try {
                 if (con != null) {
-                    con.close();
+                    con.close();   // closing the connection with the database
                 }
 
                 if (pst != null) {
-                    pst.close();
+                    pst.close();  // closing the prepared statement for reusing
                 }
             } catch (Exception e) {
 
             }
         }
     }
-
+    
+    /**
+     * method to update student details
+     **/
     boolean updateStudent(Student st) {
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection)DriverManager.getConnection(url, username, password);  // establishing connection with the database
             String query = "";
             if (st.regNum.charAt(1) == 'U') {
-                query = "UPDATE undergraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";
+                query = "UPDATE undergraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";  // query
             } else if (st.regNum.charAt(1) == 'P') {
-                query = "UPDATE postgraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";
+                query = "UPDATE postgraduate_student SET full_name = '" + st.getFullName() + "', address = '" + st.getAddress() + "', phone_number = '" + st.getPhoneNumber() + "', dob = '" + st.getDob() + "', email = '" + st.getEmail() + "', password ='" + st.getPassword() + "' WHERE reg_number ='" + st.getRegNum() + "'";   // query
             }
 
-            pst = (PreparedStatement) con.prepareStatement(query);
-            pst.executeUpdate();
+            pst = (PreparedStatement) con.prepareStatement(query);  // preaparing the query to execute
+            pst.executeUpdate();  // execute the query
             return true;
-        } catch (Exception e) {
+        } catch (Exception e) {                          // exception handling
             System.out.println(e);
             return false;
         } finally {
             try {
                 if (con != null) {
-                    con.close();
+                    con.close();   // closing the connection with the database
                 }
 
                 if (pst != null) {
-                    pst.close();
+                    pst.close();  // closing the prepared statement for reusing
                 }
             } catch (Exception e) {
 
@@ -99,31 +105,34 @@ public class AdminDBOperations {
         }
     }
     
+    /**
+     * method to delete student details
+     **/
     boolean deleteStudent(String regNumber){
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection)DriverManager.getConnection(url, username, password);   // establishing connection with the database
             String query = "";
             if (regNumber.charAt(1) == 'U') {
-                query = "DELETE FROM undergraduate_student WHERE reg_number ='" + regNumber + "';";
+                query = "DELETE FROM undergraduate_student WHERE reg_number ='" + regNumber + "';";  // query
             } else if (regNumber.charAt(1) == 'P') {
-                query = "DELETE FROM postgraduate_student WHERE reg_number ='" + regNumber + "';";
+                query = "DELETE FROM postgraduate_student WHERE reg_number ='" + regNumber + "';";  // query
             }
 
-            pst = (PreparedStatement) con.prepareStatement(query);
-            pst.executeUpdate();
+            pst = (PreparedStatement) con.prepareStatement(query);  // preaparing the query to execute
+            pst.executeUpdate();  // execute the query
             
             return true;
-        } catch (Exception e) {
+        } catch (Exception e) {                         // exception handling
             System.out.println(e);
             return false;
         } finally {
             try {
                 if (con != null) {
-                    con.close();
+                    con.close();   // closing the connection with the database
                 }
 
                 if (pst != null) {
-                    pst.close();
+                    pst.close();   // closing the prepared statement for reusing
                 }
             } catch (Exception e) {
 
@@ -131,6 +140,9 @@ public class AdminDBOperations {
         }
     }
     
+    /**
+     * method to add a new instructor
+     **/
     boolean addInstructor(Instructor inst){
         try{
             con = (Connection)DriverManager.getConnection(url, username, password);
@@ -353,6 +365,46 @@ public class AdminDBOperations {
                 plst.add(pay);
             }
             return plst;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+    
+    ArrayList<FourthYears> getFourthYears(){
+        
+        ArrayList<FourthYears> fyrs = new ArrayList<FourthYears>();
+        
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM ranking WHERE yos='2 nd Year'";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            int count=0;
+
+            while (rs.next() && count<40) {
+                FourthYears fyr = new FourthYears();
+
+                fyr.setRegNumber(rs.getString(1));
+                fyr.setGpa(rs.getString(2));
+                fyr.setYos(rs.getString(3));
+                
+                fyrs.add(fyr);
+                count++;
+            }
+            return fyrs;
         } catch (Exception e) {
             return null;
         } finally {
