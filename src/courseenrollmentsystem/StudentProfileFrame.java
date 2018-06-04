@@ -5,8 +5,8 @@
  */
 package courseenrollmentsystem;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;                                                                             // import java labraries
+import javax.swing.JOptionPane;                                                                         // import java labraries
 
 /**
  *
@@ -17,16 +17,16 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     /**
      * Creates new form StudentProfile
      */
-    ArrayList<Assignment> assingnmentList; // Array list for holding student instances
-    StudentDBOperations stdOps = new StudentDBOperations(); // object creation for backend access
-    String regNumber; // to identify the user
-    String facultyName; // to stoer faculty name
-    int semester; // to store semester 
-    ArrayList<LabSession> labSessions; // use to store the data of the lab sessions
-    ArrayList<Subject> subjects; // use to store subject result set
-    ArrayList<Payment> payList; // use to store payment details
-    ArrayList<Results> resultDetails; // use to store Results details
-    
+    ArrayList<Assignment> assingnmentList;                                                              // Array list for holding student instances
+    StudentDBOperations stdOps = new StudentDBOperations();                                             // object creation for backend access
+    String regNumber;                                                                                   // to identify the user
+    String facultyName;                                                                                 // to stoer faculty name
+    int semester;                                                                                       // to store semester 
+    ArrayList<LabSession> labSessions;                                                                  // use to store the data of the lab sessions
+    ArrayList<Subject> subjects;                                                                        // use to store subject result set
+    ArrayList<Payment> payList;                                                                         // use to store payment details
+    ArrayList<Results> resultDetails;                                                                   // use to store Results details
+
     public StudentProfileFrame() {
         initComponents();
         loadResultsTable();
@@ -375,7 +375,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32))
@@ -494,7 +494,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -526,7 +526,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -904,7 +904,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(txtStudentFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tpdStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tpdStudentProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -928,10 +928,18 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * method to logout
+     *
+     */
     private void btnStudentLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentLogoutActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnStudentLogoutActionPerformed
 
+    /**
+     * method to confirm picked subjects
+     *
+     */
     private void btnConfirmSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmSubjectsActionPerformed
 
         String subjects[] = new String[8];
@@ -943,82 +951,149 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         subjects[5] = txtSSecondSubject.getText();
         subjects[6] = txtSThirdSubject.getText();
         subjects[7] = txtSFourthSubject.getText();
-        
+
         String yos = txtYoS.getText();
-        stdOps.insertSemesterSubjects(subjects, regNumber, yos);
+        if (stdOps.insertSemesterSubjects(subjects, regNumber, yos)) {
+            JOptionPane.showMessageDialog(this, "Subject inserted Successfully");
+            txtFFirstSubject.setText("");
+            txtFFourthSubject.setText("");
+            txtFSecondSubject.setText("");
+            txtFThirdSubject.setText("");
+            txtSFirstSubject.setText("");
+            txtSFourthSubject.setText("");
+            txtSSecondSubject.setText("");
+            txtSThirdSubject.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "You can't Insert this details now. Please contact Administrator for further information");
+            txtFFirstSubject.setText("");
+            txtFFourthSubject.setText("");
+            txtFSecondSubject.setText("");
+            txtFThirdSubject.setText("");
+            txtSFirstSubject.setText("");
+            txtSFourthSubject.setText("");
+            txtSSecondSubject.setText("");
+            txtSThirdSubject.setText("");
+        }
     }//GEN-LAST:event_btnConfirmSubjectsActionPerformed
 
+    /**
+     * method to handle payment processes
+     *
+     */
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        
+
         Payment pay = new Payment();
         pay.setPayID(0);
         pay.setAmount(txtAmountToPay.getText());
         pay.setRegNumber(txtStudentRegNumber.getText());
         pay.setCourse(facultyName);
-        pay.setSemester(tblPayments.getRowCount()+1);
-        
+        pay.setSemester(tblPayments.getRowCount() + 1);
+
         CardDetails crdFrame = new CardDetails();
         crdFrame.setVisible(true);
         crdFrame.setCardDetails(pay);
-        
+        crdFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        crdFrame.setResizable(false);
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void txtStudentRegNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentRegNumberActionPerformed
-   
+
     }//GEN-LAST:event_txtStudentRegNumberActionPerformed
 
     private void txtStudentFacultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentFacultyActionPerformed
 
     }//GEN-LAST:event_txtStudentFacultyActionPerformed
 
+    /**
+     * method to calculate first semester payment
+     *
+     */
     private void btnCheckFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckFirstActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber)+20000)); 
+        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber) + 20000));
     }//GEN-LAST:event_btnCheckFirstActionPerformed
 
+    /**
+     * method to calculate second semester payment
+     *
+     */
     private void btnCheckSecondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckSecondActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber)+20000));
+        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber) + 20000));
     }//GEN-LAST:event_btnCheckSecondActionPerformed
 
+    /**
+     * method to update picked subjects
+     *
+     */
     private void btnUpdateFirstSemesterSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFirstSemesterSubjectsActionPerformed
-        String sbjDetails [] = new String[5];
-        
+        String sbjDetails[] = new String[5];
+
         sbjDetails[0] = regNumber;
-        int semester  = tblPayments.getRowCount();
+        int semester = tblPayments.getRowCount();
         sbjDetails[1] = txtUpFFir.getText();
         sbjDetails[2] = txtUpFSec.getText();
         sbjDetails[3] = txtUpFThi.getText();
         sbjDetails[4] = txtUpFou.getText();
-        
-        if(stdOps.updateFirstSemesterSubjects(sbjDetails, semester)){
+
+        if (stdOps.updateFirstSemesterSubjects(sbjDetails, semester)) {
             JOptionPane.showMessageDialog(this, "Updated Successfully");
-        }else{
-            JOptionPane.showMessageDialog(this, "Sorry, You cant update those subjects now");
+            txtUpFFir.setText("");
+            txtUpFou.setText("");
+            txtUpFThi.setText("");
+            txtUpFSec.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry, You cant update those subjects now. Contact administrator for further details");
+            txtUpFFir.setText("");
+            txtUpFou.setText("");
+            txtUpFThi.setText("");
+            txtUpFSec.setText("");
         }
     }//GEN-LAST:event_btnUpdateFirstSemesterSubjectsActionPerformed
 
+    /**
+     * method to update selected subjects
+     *
+     */
     private void btnUpdateSecondSemesterSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSecondSemesterSubjectsActionPerformed
-        String sbjDetails [] = new String[5];
-        
+        String sbjDetails[] = new String[5];
+
         sbjDetails[0] = regNumber;
-        int semester  = tblPayments.getRowCount();
-        sbjDetails[1] = txtUpFFir.getText();
-        sbjDetails[2] = txtUpFSec.getText();
-        sbjDetails[3] = txtUpFThi.getText();
-        sbjDetails[4] = txtUpFou.getText();
-        
-        if(stdOps.updateSecondSemesterSubjects(sbjDetails, semester)){
+        int semester = tblPayments.getRowCount();
+        sbjDetails[1] = txtUpSFir.getText();
+        sbjDetails[2] = txtUpSSec.getText();
+        sbjDetails[3] = txtUpSThi.getText();
+        sbjDetails[4] = txtUpSFou.getText();
+
+        if (stdOps.updateSecondSemesterSubjects(sbjDetails, semester)) {
             JOptionPane.showMessageDialog(this, "Updated Successfully");
-        }else{
-            JOptionPane.showMessageDialog(this, "Sorry, You cant update those subjects now");
+            txtUpSFir.setText("");
+            txtUpSFou.setText("");
+            txtUpSThi.setText("");
+            txtUpSSec.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry, You cant update those subjects now. Contact administrator for further details");
+            txtUpSFir.setText("");
+            txtUpSFou.setText("");
+            txtUpSThi.setText("");
+            txtUpSSec.setText("");
         }
     }//GEN-LAST:event_btnUpdateSecondSemesterSubjectsActionPerformed
 
+    /**
+     * method to download results
+     *
+     */
     private void btnDownloadResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadResultsActionPerformed
         DownloadResults down = new DownloadResults();
         down.setVisible(true);
         down.setFields(resultDetails.get(tblResultSet.getSelectedRow()));
+        down.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        down.setResizable(false);
     }//GEN-LAST:event_btnDownloadResultsActionPerformed
 
+    /**
+     * method to request semester results
+     *
+     */
     private void btnRequestResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestResultsActionPerformed
         FourthYears f = stdOps.getCurrentGPA(regNumber, semester);
 
@@ -1038,74 +1113,126 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtRe6.setText(f.getRes6());
         txtRe7.setText(f.getRes7());
         txtRe8.setText(f.getRes8());
-        
+
         txtStudentGPA.setText(f.getGpa());
-        
+
     }//GEN-LAST:event_btnRequestResultsActionPerformed
 
     /**
-     * @param args the command line arguments
+     * method to set student register number
+     *
      */
-    void setRegNumber(String regNumber){
+    void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
-    
-    void setFacultyName(String regNum){
+
+    /**
+     * method to set student faculty name
+     *
+     */
+    void setFacultyName(String regNum) {
         facultyName = (stdOps.getFacultyName(regNum).getFacultyName());
         txtStudentFaculty.setText(facultyName);
     }
-    void loadAssignments(){
+
+    /**
+     * method to load assignment details
+     *
+     */
+    void loadAssignments() {
         assingnmentList = stdOps.getAssignmentList(facultyName); // assign the returning array list to the assignment list
         AssignmentDetails assgDetails = new AssignmentDetails(assingnmentList);
         tblAssignmentTable.setModel(assgDetails);
     }
-    
-    void loadLabSessions(){
+
+    /**
+     * method to load lab session details
+     *
+     */
+    void loadLabSessions() {
         labSessions = stdOps.getLabSessionDetails(facultyName);
         LabSessionDetails lbsd = new LabSessionDetails(labSessions);
         tblStudentLabSessions.setModel(lbsd);
     }
-    
-    void loadSubjectDetails(){
+
+    /**
+     * method to load subject details
+     *
+     */
+    void loadSubjectDetails() {
         semester = tblPayments.getRowCount();
-        subjects = stdOps.getSubjectDetails(facultyName,semester);
+        subjects = stdOps.getSubjectDetails(facultyName, semester);
         SubjectDetails sbjDetails = new SubjectDetails(subjects);
         tblCourseSubjects.setModel(sbjDetails);
     }
-    
-    void loadPaymentDetails(){
+
+    /**
+     * method to load payment details
+     *
+     */
+    void loadPaymentDetails() {
         payList = stdOps.getPaymentDetails(regNumber);
         PaymentDetails plst = new PaymentDetails(payList);
         tblPayments.setModel(plst);
-        
+
         txtStudentRegNumber.setText(regNumber);
         setYearOfStudy();
     }
-    
-    void setYearOfStudy(){
+
+    /**
+     * method to calculate year of study
+     *
+     */
+    void setYearOfStudy() {
         int year = tblPayments.getRowCount();
-       
-        switch(year){
-            case 0: txtYoS.setText("1 st Year");break;
-            case 1: txtYoS.setText("1 st Year");break;
-            case 2: txtYoS.setText("1 st Year");break;
-            case 3: txtYoS.setText("2 nd Year");break;
-            case 4: txtYoS.setText("2 nd Year");break;
-            case 5: txtYoS.setText("3 rd Year");break;
-            case 6: txtYoS.setText("3 rd Year");break;
-            case 7: txtYoS.setText("4 th Year");break;
-            case 8: txtYoS.setText("4 th Year");break;
-            default: txtYoS.setText("Out of the Faculty");
+
+        switch (year) {
+            case 0:
+                txtYoS.setText("1 st Year");
+                break;
+            case 1:
+                txtYoS.setText("1 st Year");
+                break;
+            case 2:
+                txtYoS.setText("1 st Year");
+                break;
+            case 3:
+                txtYoS.setText("2 nd Year");
+                break;
+            case 4:
+                txtYoS.setText("2 nd Year");
+                break;
+            case 5:
+                txtYoS.setText("3 rd Year");
+                break;
+            case 6:
+                txtYoS.setText("3 rd Year");
+                break;
+            case 7:
+                txtYoS.setText("4 th Year");
+                break;
+            case 8:
+                txtYoS.setText("4 th Year");
+                break;
+            default:
+                txtYoS.setText("Out of the Faculty");
         }
-        
+
     }
-    
-    void loadResultsTable(){
+
+    /**
+     * method to load results details
+     *
+     */
+    void loadResultsTable() {
         resultDetails = stdOps.getResultDetails();
         ResultDetails resDet = new ResultDetails(resultDetails);
         tblResultSet.setModel(resDet);
     }
-  
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

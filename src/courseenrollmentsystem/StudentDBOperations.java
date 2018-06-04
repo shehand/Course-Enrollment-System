@@ -5,16 +5,14 @@
  */
 package courseenrollmentsystem;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Blob;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.io.FileOutputStream;                                                                                // importing java libraries
+import java.io.OutputStream;                                                                                    // importing java libraries
+import java.sql.Connection;                                                                                     // importing java libraries
+import java.sql.DriverManager;                                                                                  // importing java libraries
+import java.sql.PreparedStatement;                                                                              // importing java libraries
+import java.sql.ResultSet;                                                                                      // importing java libraries
+import java.util.ArrayList;                                                                                     // importing java libraries
+import java.util.Calendar;                                                                                      // importing java libraries
 
 /**
  *
@@ -22,34 +20,43 @@ import java.util.Calendar;
  */
 public class StudentDBOperations {
 
-    String url = "jdbc:mysql://localhost:3306/nsbm_database";
-    String username = "root";
-    String password = "";
-    Connection con = null;
-    PreparedStatement pst = null;
+    String url = "jdbc:mysql://localhost:3306/nsbm_database";                                                   // url to connect database
+    String username = "root";                                                                                   // username to access database
+    String password = "";                                                                                       // password to access database
+    Connection con = null;                                                                                      // connection variable to create connection
+    PreparedStatement pst = null;                                                                               // variable to store preapared query
 
+    /**
+     * method to add undergraduate student
+     *
+     */
     boolean addUndergraduate(Undergraduate und) {
 
         try {
-            con = (Connection) DriverManager.getConnection(url, username, password); // trying to connect with the database
-            String query = "INSERT INTO undergraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; // sql query to access mydql
-            pst = (PreparedStatement) con.prepareStatement(query); //make query as a statement
+            con = (Connection) DriverManager.getConnection(url, username, password);                            // trying to connect with the database
+            String query = "INSERT INTO undergraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";              // sql query to access mydql
+            String queryEx = "INSERT INTO students VALUES (?,?)";                                               // query two
+            pst = (PreparedStatement) con.prepareStatement(query);                                              //make query as a statement
+            PreparedStatement pstEx = con.prepareStatement(queryEx);
 
-            pst.setString(1, und.getRegNum()); // configer frontend data with the query statement
-            pst.setString(2, und.getFullName()); // configer frontend data with the query statement
-            pst.setString(3, und.getNic()); // configer frontend data with the query statement
-            pst.setString(4, und.getAddress()); // configer frontend data with the query statement
-            pst.setInt(5, und.getPhoneNumber()); // configer frontend data with the query statement
-            pst.setString(6, und.getDob()); // configer frontend data with the query statement
-            pst.setString(7, und.getEmail()); // configer frontend data with the query statement
-            pst.setString(8, und.getPassword()); // configer frontend data with the query statement
-            pst.setInt(9, und.getIndexNumber()); // configer frontend data with the query statement
-            pst.setString(10, und.getStream()); // configer frontend data with the query statement
-            pst.setString(11, und.getStream()); // configer frontend data with the query statement
-            pst.setInt(12, und.getIslandRank()); // configer frontend data with the query statement
-            pst.setString(13, und.getFacultyName()); // configer frontend data with the query statement
+            pst.setString(1, und.getRegNum());                                                                  // configer frontend data with the query statement
+            pst.setString(2, und.getFullName());                                                                // configer frontend data with the query statement
+            pst.setString(3, und.getNic());                                                                     // configer frontend data with the query statement
+            pst.setString(4, und.getAddress());                                                                 // configer frontend data with the query statement
+            pst.setInt(5, und.getPhoneNumber());                                                                // configer frontend data with the query statement
+            pst.setString(6, und.getDob());                                                                     // configer frontend data with the query statement
+            pst.setString(7, und.getEmail());                                                                   // configer frontend data with the query statement
+            pst.setString(8, und.getPassword());                                                                // configer frontend data with the query statement
+            pst.setInt(9, und.getIndexNumber());                                                                // configer frontend data with the query statement
+            pst.setString(10, und.getStream());                                                                 // configer frontend data with the query statement
+            pst.setString(11, und.getStream());                                                                 // configer frontend data with the query statement
+            pst.setInt(12, und.getIslandRank());                                                                // configer frontend data with the query statement
+            pst.setString(13, und.getFacultyName());                                                            // configer frontend data with the query statement
+            pstEx.setString(1, und.getRegNum());
+            pstEx.setString(2, und.getFacultyName());
 
-            pst.executeUpdate();  //execute the query and insert the data into the database
+            pst.executeUpdate();                                                                                //execute the query and insert the data into the database
+            pstEx.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         } finally {
@@ -69,28 +76,37 @@ public class StudentDBOperations {
         return true;
     }
 
+    /**
+     * method to add postgraduate student
+     *
+     */
     boolean addPostgrasuate(Postgraduate pgs) {
 
         try {
-            con = (Connection) DriverManager.getConnection(url, username, password); // trying to connect with the database
-            String query = "INSERT INTO postgraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; // sql query to access mydql
-            pst = (PreparedStatement) con.prepareStatement(query); //make the query as a statement
+            con = (Connection) DriverManager.getConnection(url, username, password);                            // trying to connect with the database
+            String query = "INSERT INTO postgraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";               // sql query to access mydql
+            String queryEx = "INSERT INTO students VALUES (?,?)";
+            pst = (PreparedStatement) con.prepareStatement(query);                                              //make the query as a statement
+            PreparedStatement pstEx = con.prepareStatement(queryEx);
 
-            pst.setString(1, pgs.getRegNum()); // configer frontend data with the query statement
-            pst.setString(2, pgs.getFullName()); // configer frontend data with the query statement
-            pst.setString(3, pgs.getNic()); // configer frontend data with the query statement
-            pst.setString(4, pgs.getAddress()); // configer frontend data with the query statement
-            pst.setInt(5, pgs.getPhoneNumber()); // configer frontend data with the query statement
-            pst.setString(6, pgs.getDob()); // configer frontend data with the query statement
-            pst.setString(7, pgs.getEmail()); // configer frontend data with the query statement
-            pst.setString(8, pgs.getPassword()); // configer frontend data with the query statement
-            pst.setString(9, pgs.getInstitute()); // configer frontend data with the query statement
-            pst.setInt(10, pgs.getYoc()); // configer frontend data with the query statement
-            pst.setString(11, pgs.getQualification()); // configer frontend data with the query statement
-            pst.setString(12, pgs.getFacultyName()); // configer frontend data with the query statement
-            pst.setString(13, pgs.getDegreeType()); // configer frontend data with the query statement
+            pst.setString(1, pgs.getRegNum());                                                                  // configer frontend data with the query statement
+            pst.setString(2, pgs.getFullName());                                                                // configer frontend data with the query statement
+            pst.setString(3, pgs.getNic());                                                                     // configer frontend data with the query statement
+            pst.setString(4, pgs.getAddress());                                                                 // configer frontend data with the query statement
+            pst.setInt(5, pgs.getPhoneNumber());                                                                // configer frontend data with the query statement
+            pst.setString(6, pgs.getDob());                                                                     // configer frontend data with the query statement
+            pst.setString(7, pgs.getEmail());                                                                   // configer frontend data with the query statement
+            pst.setString(8, pgs.getPassword());                                                                // configer frontend data with the query statement
+            pst.setString(9, pgs.getInstitute());                                                               // configer frontend data with the query statement
+            pst.setInt(10, pgs.getYoc());                                                                       // configer frontend data with the query statement
+            pst.setString(11, pgs.getQualification());                                                          // configer frontend data with the query statement
+            pst.setString(12, pgs.getFacultyName());                                                            // configer frontend data with the query statement
+            pst.setString(13, pgs.getDegreeType());                                                             // configer frontend data with the query statement
+            pstEx.setString(1, pgs.getRegNum());
+            pstEx.setString(2, pgs.getFacultyName());
 
             pst.executeUpdate();  // execute the query
+            pstEx.executeUpdate();
 
         } catch (Exception e) {
         }
@@ -98,6 +114,10 @@ public class StudentDBOperations {
         return true;
     }
 
+    /**
+     * method to get assignment details
+     *
+     */
     ArrayList<Assignment> getAssignmentList(String facultyName) {
 
         ArrayList<Assignment> lst = new ArrayList<Assignment>();
@@ -138,6 +158,10 @@ public class StudentDBOperations {
 
     }
 
+    /**
+     * method to get lab session details
+     *
+     */
     ArrayList<LabSession> getLabSessionDetails(String facultyName) {
 
         ArrayList<LabSession> lbSessions = new ArrayList<LabSession>();
@@ -179,6 +203,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to insert semester details
+     *
+     */
     boolean insertSemesterSubjects(String[] subjects, String regNumber, String yos) {
 
         try {
@@ -227,6 +255,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get subject details
+     *
+     */
     ArrayList<Subject> getSubjectDetails(String facultyName, int semester) {
 
         ArrayList<Subject> sbjList = new ArrayList<Subject>();
@@ -267,6 +299,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to authenticate undergraduate login
+     *
+     */
     boolean undergraduateStudentVerification(Undergraduate und) {
 
         try {
@@ -307,6 +343,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to authenticate postgraduate login
+     *
+     */
     boolean postgraduateStudentVerification(Postgraduate pgs) {
 
         try {
@@ -345,6 +385,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get payment details
+     *
+     */
     ArrayList<Payment> getPaymentDetails(String regNumber) {
 
         ArrayList<Payment> plst = new ArrayList<>();
@@ -384,6 +428,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to insert payment details
+     *
+     */
     boolean insertPayments(Payment pay) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -416,6 +464,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get first semester payment details
+     *
+     */
     int getFirstSemesterAmountToPay(String regNumber) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -442,6 +494,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get second semester payment details
+     *
+     */
     int getSecondSemesterAmountToPay(String regNumber) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -468,6 +524,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get faculty details
+     *
+     */
     Student getFacultyName(String regNumber) {
         Student st = new Student();
         try {
@@ -504,6 +564,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get first semester subject details
+     *
+     */
     boolean updateFirstSemesterSubjects(String sjdet[], int sem) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -538,6 +602,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get second semester subject details
+     *
+     */
     boolean updateSecondSemesterSubjects(String sjdet[], int sem) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -572,6 +640,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get current gpa details
+     *
+     */
     FourthYears getCurrentGPA(String regNumber, int sem) {
 
         FourthYears f = new FourthYears();
@@ -621,6 +693,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to get result details
+     *
+     */
     ArrayList<Results> getResultDetails() {
 
         ArrayList<Results> res = new ArrayList<Results>();
@@ -662,6 +738,10 @@ public class StudentDBOperations {
         }
     }
 
+    /**
+     * method to download exam pdf files
+     *
+     */
     boolean donwloadFile(String fileName) {
         byte[] fileBytes;
 

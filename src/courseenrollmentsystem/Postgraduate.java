@@ -9,7 +9,8 @@ package courseenrollmentsystem;
  *
  * @author Sono
  */
-public class Postgraduate extends Student{
+public class Postgraduate extends Student {
+
     protected String institute;
     protected int yoc;
     protected String qualification;

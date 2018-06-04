@@ -10,7 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class Student {
-    
+
     /**
      * details that should collected from the student
      */
@@ -164,6 +164,5 @@ public class Student {
     public void setDegreeType(String degreeType) {
         this.degreeType = degreeType;
     }
-    
-    
+
 }

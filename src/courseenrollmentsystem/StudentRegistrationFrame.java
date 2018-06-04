@@ -5,7 +5,7 @@
  */
 package courseenrollmentsystem;
 
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;                                                                                                     // importing java libraries
 
 /**
  *
@@ -20,8 +20,8 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    StudentDBOperations sdbOps = new StudentDBOperations();  // created an instance of student db operation class to connect backend with frontend
-    
+    StudentDBOperations sdbOps = new StudentDBOperations();                                                                         // created an instance of student db operation class to connect backend with frontend
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -534,55 +534,84 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailPostActionPerformed
 
     private void btnRegisterUndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterUndActionPerformed
-        Undergraduate und = new Undergraduate(); // created undergraduate instance to take user input data on registration
-        
-        und.setRegNum(txtUndRegNumber.getText());  // take data from text fields
-        und.setFullName(txtFullNameUnd.getText()); // take data from text fields
-        und.setNic(txtNICUnd.getText());  // take data from text fields
-        und.setAddress(txtAddressUnd.getText());  // take data from text fields
-        und.setDob(txtDoBUnd.getText());  // take data from text fields
-        und.setFacultyName(cmboUndergraduate.getSelectedItem().toString());  // take data from text fields
-        und.setEmail(txtEmailUnd.getText()); // take data from text fields
-        und.setPassword(txtPasswordUnd.getText()); // take data from text fields
-        und.setPhoneNumber(Integer.parseInt(txtPhoneNumberUnd.getText())); // take data from text fields
-        und.setIndexNumber(Integer.parseInt(txtIndexNumberUnd.getText())); // take data from text fields
-        und.setStream(txtStreamUnd.getText()); // take data from text fields
-        und.setIslandRank(Integer.parseInt(txtIslandRankUnd.getText())); // take data from text fields
-        und.setzScore(txtZScoreUnd.getText()); // take data from text fields
-        
-        if(sdbOps.addUndergraduate(und)){ //pass the data to student db operation class to handle backend queries
-            JOptionPane.showMessageDialog(this, "Inserted");
-        }else{
-            JOptionPane.showMessageDialog(this, "Error");
-        } 
+        Undergraduate und = new Undergraduate();                                                                                    // created undergraduate instance to take user input data on registration
+
+        und.setRegNum(txtUndRegNumber.getText());                                                                                   // take data from text fields
+        und.setFullName(txtFullNameUnd.getText());                                                                                  // take data from text fields
+        und.setNic(txtNICUnd.getText());                                                                                            // take data from text fields
+        und.setAddress(txtAddressUnd.getText());                                                                                    // take data from text fields
+        und.setDob(txtDoBUnd.getText());                                                                                            // take data from text fields
+        und.setFacultyName(cmboUndergraduate.getSelectedItem().toString());                                                         // take data from text fields
+        und.setEmail(txtEmailUnd.getText());                                                                                        // take data from text fields
+        und.setPassword(txtPasswordUnd.getText());                                                                                  // take data from text fields
+        und.setPhoneNumber(Integer.parseInt(txtPhoneNumberUnd.getText()));                                                          // take data from text fields
+        und.setIndexNumber(Integer.parseInt(txtIndexNumberUnd.getText()));                                                          // take data from text fields
+        und.setStream(txtStreamUnd.getText());                                                                                      // take data from text fields
+        und.setIslandRank(Integer.parseInt(txtIslandRankUnd.getText()));                                                            // take data from text fields
+        und.setzScore(txtZScoreUnd.getText());                                                                                      // take data from text fields
+
+        if (sdbOps.addUndergraduate(und)) {                                                                                           // pass the data to student db operation class to handle backend queries
+            JOptionPane.showMessageDialog(this, "Inserted successfully");                                                           // message box
+            txtUndRegNumber.setText("");                                                                                            // setting values
+            txtAddressUnd.setText("");                                                                                              // setting values
+            txtDoBUnd.setText("");                                                                                                  // setting values
+            txtEmailUnd.setText("");                                                                                                // setting values
+            txtFullNameUnd.setText("");                                                                                             // setting values 
+            txtNICUnd.setText("");                                                                                                  // setting values
+            txtDoBUnd.setText("");                                                                                                  // setting values
+            txtPasswordUnd.setText("");                                                                                             // setting values
+            txtStreamUnd.setText("");                                                                                               // setting values
+            txtPhoneNumberUnd.setText("");                                                                                          // setting values 
+            txtIslandRankUnd.setText("");                                                                                           // setting values
+            txtZScoreUnd.setText("");                                                                                               // setting values
+            txtDoBUnd.setText("");                                                                                                  // setting values
+        } else {
+            JOptionPane.showMessageDialog(this, "Error");                                                                           // message box
+        }
     }//GEN-LAST:event_btnRegisterUndActionPerformed
 
     private void btnRegisterPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterPostActionPerformed
-        Postgraduate pst = new Postgraduate(); // created postgraduate instance to take user input data registration
-        
-        pst.setRegNum(txtPostRegNumber.getText());
-        pst.setFullName(txtFullNamePost.getText());
-        pst.setAddress(txtAddressPost.getText());
-        pst.setDob(txtdoBPost.getText());
-        pst.setEmail(txtEmailPost.getText());
-        pst.setFacultyName(cmboPostgraduate.getSelectedItem().toString());
-        pst.setInstitute(txtInstitutePost.getText());
-        pst.setQualification(txtQualificationPost.getText());
-        pst.setPhoneNumber(Integer.parseInt(txtPhoneNumberPost.getText()));
-        pst.setPassword(txtPasswordPost.getText());
-        pst.setNic(txtNICPost.getText());
-        pst.setYoc(Integer.parseInt(txtYoCPost.getText()));
-        pst.setDegreeType(cmboDegreeType.getSelectedItem().toString());
-        
-        sdbOps.addPostgrasuate(pst);
+        Postgraduate pst = new Postgraduate();                                                                                      // created postgraduate instance to take user input data registration
+
+        pst.setRegNum(txtPostRegNumber.getText());                                                                                  // setting values
+        pst.setFullName(txtFullNamePost.getText());                                                                                 // setting values
+        pst.setAddress(txtAddressPost.getText());                                                                                   // setting values
+        pst.setDob(txtdoBPost.getText());                                                                                           // setting values
+        pst.setEmail(txtEmailPost.getText());                                                                                       // setting values
+        pst.setFacultyName(cmboPostgraduate.getSelectedItem().toString());                                                          // setting values
+        pst.setInstitute(txtInstitutePost.getText());                                                                               // setting values
+        pst.setQualification(txtQualificationPost.getText());                                                                       // setting values
+        pst.setPhoneNumber(Integer.parseInt(txtPhoneNumberPost.getText()));                                                         // setting values
+        pst.setPassword(txtPasswordPost.getText());                                                                                 // setting values 
+        pst.setNic(txtNICPost.getText());                                                                                           // setting values
+        pst.setYoc(Integer.parseInt(txtYoCPost.getText()));                                                                         // setting values
+        pst.setDegreeType(cmboDegreeType.getSelectedItem().toString());                                                             // setting values
+
+        if (sdbOps.addPostgrasuate(pst)) {
+            JOptionPane.showMessageDialog(this, "Inserted Successfully");                                                           // message box
+            txtAddressPost.setText("");                                                                                             // setting values
+            txtPostRegNumber.setText("");                                                                                           // setting values
+            txtAddressPost.setText("");                                                                                             // setting values
+            txtFullNamePost.setText("");                                                                                            // setting values
+            txtdoBPost.setText("");                                                                                                 // setting values
+            txtEmailPost.setText("");                                                                                               // setting values
+            txtInstitutePost.setText("");                                                                                           // setting values
+            txtQualificationPost.setText("");                                                                                       // setting values 
+            txtPhoneNumberPost.setText("");                                                                                         // setting values
+            txtPasswordPost.setText("");                                                                                            // setting values
+            txtNICPost.setText("");                                                                                                 // setting values
+            txtYoCPost.setText("");                                                                                                 // setting values
+        } else {
+            JOptionPane.showMessageDialog(this, "Error");                                                                           // message box
+        }
     }//GEN-LAST:event_btnRegisterPostActionPerformed
 
     private void btnCancelUndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUndActionPerformed
-        this.dispose();
+        this.dispose(); // cancel registration
     }//GEN-LAST:event_btnCancelUndActionPerformed
 
     private void btnCancelPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPostActionPerformed
-        this.dispose();
+        this.dispose(); // cancel registration
     }//GEN-LAST:event_btnCancelPostActionPerformed
 
     /**

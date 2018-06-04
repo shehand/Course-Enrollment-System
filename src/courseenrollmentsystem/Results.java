@@ -12,6 +12,7 @@ import java.io.File;
  * @author Sono
  */
 public class Results {
+
     private String subjectName;
     private File fileName;
     private String name;

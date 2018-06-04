@@ -5,9 +5,10 @@
  */
 package courseenrollmentsystem;
 
-import java.util.Calendar;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.util.Calendar;                                                                              // importing java libraries
+import javax.swing.JFrame;                                                                              // importing java libraries
+import javax.swing.JOptionPane;                                                                         // importing java libraries
+
 /**
  *
  * @author Sono
@@ -17,13 +18,12 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-    
     public MainFrame() {
-        initComponents();   
+        initComponents();
     }
-    
-    StudentDBOperations stdOps = new StudentDBOperations();   // instance to access student db operations in StudentDBOperation class
-    InstructorDBOperations instOps = new InstructorDBOperations();  // instance to access instructor db operations in InstructorDBOperation class
+
+    StudentDBOperations stdOps = new StudentDBOperations();                                             // instance to access student db operations in StudentDBOperation class
+    InstructorDBOperations instOps = new InstructorDBOperations();                                      // instance to access instructor db operations in InstructorDBOperation class
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +49,10 @@ public class MainFrame extends javax.swing.JFrame {
         btnRegisterStudent = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,13 +171,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Special Notices");
 
+        jLabel7.setText("Thi application is a Stand - Alone application");
+
+        jLabel9.setText("Use mysql and apache server to run the application");
+
+        jLabel10.setText("Mysql should be run on 3306 port and database should be migrated manually");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -181,8 +195,16 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,24 +213,31 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,8 +253,7 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,105 +264,122 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginUserNameActionPerformed
     /**
      * method to auth the user (login forum)
-     **/
+     *
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String temp = txtLoginUserName.getText();   // assign username to verify user
-        
+        String temp = txtLoginUserName.getText();                                                       // assign username to verify user
+
         /**
          * algorithm to verify deferent user levels
-         **/
-        if(temp.charAt(0) == 'S'){
-            if(temp.charAt(1) == 'U'){
-                Undergraduate und = new Undergraduate();
-                und.setRegNum(txtLoginUserName.getText());
-                und.setPassword(txtLoginPassword.getText());
+         *
+         */
+        if (temp.charAt(0) == 'S') {
+            if (temp.charAt(1) == 'U') {
+                Undergraduate und = new Undergraduate();                                                // instance to store undergraduate student details
+                und.setRegNum(txtLoginUserName.getText());                                              // setting values
+                und.setPassword(txtLoginPassword.getText());                                            // setting values
                 /**
                  * load student profile if the user is a undergraduate student
-                 **/
-                if(stdOps.undergraduateStudentVerification(und)){
-                    txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
-                    StudentProfileFrame stdProfile = new StudentProfileFrame();
-                    stdProfile.setVisible(true);
-                    stdProfile.setRegNumber(temp);
-                    stdProfile.loadAssignments();
-                    stdProfile.loadLabSessions();
-                    stdProfile.loadPaymentDetails();
-                    stdProfile.loadSubjectDetails();
-                    stdProfile.setFacultyName(temp);
+                 *
+                 */
+                if (stdOps.undergraduateStudentVerification(und)) {                                     // if undergraduate
+                    txtLoginPassword.setText("");                                                       // setting values
+                    txtLoginUserName.setText("");                                                       // setting values
+                    StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
+                    stdProfile.setVisible(true);                                                        // set visible
+                    stdProfile.setRegNumber(temp);                                                      // setting values
+                    stdProfile.loadAssignments();                                                       // setting values
+                    stdProfile.loadLabSessions();                                                       // setting values
+                    stdProfile.loadPaymentDetails();                                                    // setting values
+                    stdProfile.loadSubjectDetails();                                                    // setting values
+                    stdProfile.setFacultyName(temp);                                                    // setting values
                     stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    stdProfile.setResizable(false);
-                    this.dispose();
-                }else{
+                    stdProfile.setResizable(false);                                                     // set resizable false
+                    this.dispose();                                                                     // dispose the logging frame
+                } else {
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
-                    txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
+                    txtLoginPassword.setText("");                                                       // setting values
+                    txtLoginUserName.setText("");                                                       // setting values
                 }
-            }else if(temp.charAt(1) == 'P'){
+            } else if (temp.charAt(1) == 'P') {                                                         // if postgraduate
                 Postgraduate pst = new Postgraduate();
-                pst.setRegNum(txtLoginUserName.getText());
-                pst.setPassword(txtLoginPassword.getText());
+                pst.setRegNum(txtLoginUserName.getText());                                              // setting values
+                pst.setPassword(txtLoginPassword.getText());                                            // setting values
                 /**
-                 * load instructor profile if the user is postgraduate student
-                 **/
-                if(stdOps.postgraduateStudentVerification(pst)){
-                     txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
-                    StudentProfileFrame stdProfile = new StudentProfileFrame();
-                    stdProfile.setVisible(true);
-                    stdProfile.setRegNumber(temp);
-                    stdProfile.loadAssignments();
-                    stdProfile.loadLabSessions();
-                    stdProfile.loadPaymentDetails();
-                    stdProfile.loadSubjectDetails();
-                    stdProfile.setFacultyName(temp);
+                 * load postgraduate profile if the user is postgraduate student
+                 *
+                 */
+                if (stdOps.postgraduateStudentVerification(pst)) {
+                    txtLoginPassword.setText("");                                                       // setting values
+                    txtLoginUserName.setText("");                                                       // setting values
+                    StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
+                    stdProfile.setVisible(true);                                                        // set visible
+                    stdProfile.setRegNumber(temp);                                                      // setting values
+                    stdProfile.loadAssignments();                                                       // setting values
+                    stdProfile.loadLabSessions();                                                       // setting values
+                    stdProfile.loadPaymentDetails();                                                    // setting values
+                    stdProfile.loadSubjectDetails();                                                    // setting values
+                    stdProfile.setFacultyName(temp);                                                    // setting values
                     stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    stdProfile.setResizable(false);
-                    this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
-                    txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
+                    stdProfile.setResizable(false);                                                     // set reziable false
+                    this.dispose();                                                                     // dispose the logging frame
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");       // message box
+                    txtLoginPassword.setText("");                                                       // setting values
+                    txtLoginUserName.setText("");                                                       // setting values
                 }
-            }else{
-                
+            } else {
+
             }
-        }else if(temp.charAt(0) == 'I'){
+        } else if (temp.charAt(0) == 'I') {                                                             // if instructor
             Instructor inst = new Instructor();
-            inst.setInstructorID(txtLoginUserName.getText());
-            inst.setPassword(txtLoginPassword.getText());
-            
-            if(instOps.instructorAuthentication(inst)){
-                txtLoginPassword.setText("");
-                txtLoginUserName.setText("");
+            inst.setInstructorID(txtLoginUserName.getText());                                           // setting values
+            inst.setPassword(txtLoginPassword.getText());                                               // setting values
+
+            if (instOps.instructorAuthentication(inst)) {
+                txtLoginPassword.setText("");                                                           // setting values
+                txtLoginUserName.setText("");                                                           // setting values
                 InstructorProfile instProfile = new InstructorProfile();
-                instProfile.setVisible(true);
+                instProfile.setVisible(true);                                                           // set visible
                 instProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                instProfile.setResizable(false);                                                        // resizable is false
+                this.dispose();                                                                         // dispose the logging frame
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
+                txtLoginPassword.setText("");                                                           // setting values
+                txtLoginUserName.setText("");                                                           // setting values
             }
-        }else if(temp.equals("Admin")){
-            if(txtLoginPassword.getText().equals("admin")){
-                 txtLoginPassword.setText("");
-                    txtLoginUserName.setText("");
-                AdminFrame adProfil = new AdminFrame();
-                adProfil.setVisible(true);
+        } else if (temp.equals("Admin")) {                                                              // if admin
+            if (txtLoginPassword.getText().equals("admin")) {
+                txtLoginPassword.setText("");                                                           // setting values
+                txtLoginUserName.setText("");                                                           // setting values
+                AdminFrame adProfil = new AdminFrame();                                                 // instance to load admin profile view
+                adProfil.setVisible(true);                                                              // set visible
                 adProfil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            }else{
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                adProfil.setResizable(false);                                                           // set resizable false
+                this.dispose();                                                                         // dispose the logging frame
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");               //message box
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    /**
+     * method to register a student
+     *
+     */
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
-        
-        int month = Calendar.getInstance().get(Calendar.MONTH)+1;
-        
-        if(month==2 || month==7){
-            StudentRegistrationFrame strf = new StudentRegistrationFrame();
-            strf.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details");
+
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;                                     // taking the current month
+
+        if (month == 2 || month == 7) {
+            StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
+            strf.setVisible(true);                                                                      // set vsisble
+            strf.setResizable(false);                                                                   // set resiazable false
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details"); //message box
         }
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
 
@@ -377,12 +422,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisterStudent;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

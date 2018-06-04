@@ -10,6 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class Assignment {
+
     private String subjetcName;
     private String date;
     private String posterID;

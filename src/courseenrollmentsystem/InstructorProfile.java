@@ -5,11 +5,10 @@
  */
 package courseenrollmentsystem;
 
-import java.io.File;
-import java.util.ArrayList;
-import javafx.stage.FileChooser;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
+import java.io.File;                                                                    // importing java libraries
+import java.util.ArrayList;                                                             // importing java libraries
+import javax.swing.JFileChooser;                                                        // importing java libraries
+import javax.swing.JOptionPane;                                                         // importing java libraries
 
 /**
  *
@@ -22,53 +21,83 @@ public class InstructorProfile extends javax.swing.JFrame {
      */
     public InstructorProfile() {
         initComponents();
-        loadAssigmnetDetails();
-        loadLabSessions();
-        loadResultTable();
+        loadAssigmnetDetails();                                                         //loading assignment details table
+        loadLabSessions();                                                              //loading lab session details table
+        loadResultTable();                                                              //loading result details table
     }
-    
-    InstructorDBOperations instOps = new InstructorDBOperations();
-    ArrayList<Assignment> asgList;
-    ArrayList<LabSession> lbSessions;
-    ArrayList<Results> resultDetails;
-    ArrayList<StudentSubjects> subDetails;
-    
-    void loadAssigmnetDetails(){
-        asgList = instOps.loadAssigmnetDetails();
-        AssignmentDetails asgDetail = new AssignmentDetails(asgList);
-        tblAvalableAssignmnets.setModel(asgDetail);
+
+    InstructorDBOperations instOps = new InstructorDBOperations();                      // instance to handle back end
+    ArrayList<Assignment> asgList;                                                      // array list to hold assignment details
+    ArrayList<LabSession> lbSessions;                                                   // array list to hold lab session details
+    ArrayList<Results> resultDetails;                                                   // array list to hold result details
+    ArrayList<StudentSubjects> subDetails;                                              // array list to hold student's subject details
+
+    /**
+     * method to load assignment details
+     *
+     */
+    void loadAssigmnetDetails() {
+        asgList = instOps.loadAssigmnetDetails();                                       // take the array list
+        AssignmentDetails asgDetail = new AssignmentDetails(asgList);                   // instance of abstract table model
+        tblAvalableAssignmnets.setModel(asgDetail);                                     //load the table
     }
-    
-    void loadLabSessions(){
-        lbSessions = instOps.getLabSessionDetails();
-        LabSessionDetails lbDetails = new LabSessionDetails(lbSessions);
-        tblAvalableLabSessions.setModel(lbDetails);
+
+    /**
+     * method to load lab session details
+     *
+     */
+    void loadLabSessions() {
+        lbSessions = instOps.getLabSessionDetails();                                    // take the array list
+        LabSessionDetails lbDetails = new LabSessionDetails(lbSessions);                // instance of abstract table model
+        tblAvalableLabSessions.setModel(lbDetails);                                     //load the table
     }
-    
-    double calGPV(String grade){
-    
-        switch(grade){
-            case "A+": return 4.25;
-            case "A" : return 4.00;
-            case "A-": return 3.75;
-            case "B+": return 3.50;
-            case "B" : return 3.25;
-            case "B-": return 3.00;
-            case "C+": return 2.75;
-            case "C" : return 2.50;
-            case "C-": return 2.25;
-            case "D+": return 2.00;
-            case "D" : return 1.75;
-            case "D-": return 1.50;
-            default : return 0;
+
+    /**
+     * method to calculate gpv
+     *
+     */
+    double calGPV(String grade) {
+
+        switch (grade) {
+            case "A+":
+                return 4.25;
+            case "A":
+                return 4.00;
+            case "A-":
+                return 3.75;
+            case "B+":
+                return 3.50;
+            case "B":
+                return 3.25;
+            case "B-":
+                return 3.00;
+            case "C+":
+                return 2.75;
+            case "C":
+                return 2.50;
+            case "C-":
+                return 2.25;
+            case "D+":
+                return 2.00;
+            case "D":
+                return 1.75;
+            case "D-":
+                return 1.50;
+            default:
+                return 0;
         }
     }
-    
-    void loadResultTable(){
-        resultDetails = instOps.getResultDetails();
-        ResultDetails resDet = new ResultDetails(resultDetails);
-        tblResultsSet.setModel(resDet);
+
+    /**
+     * method to load result details
+     *
+     */
+    void loadResultTable() {
+        resultDetails = instOps.getResultDetails();                                     // take the array list
+        ResultDetails resDet = new ResultDetails(resultDetails);                        // instance of abstract table model
+        tblResultsSet.setModel(resDet);                                                 //load the table
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +110,6 @@ public class InstructorProfile extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnInstructorLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtInstructorName = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -147,6 +175,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         btnAddResults = new javax.swing.JButton();
         cmboSemester = new javax.swing.JComboBox<>();
         bntLoadTable = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,14 +186,7 @@ public class InstructorProfile extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Instructor Name :");
-
-        txtInstructorName.setEditable(false);
-        txtInstructorName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInstructorNameActionPerformed(evt);
-            }
-        });
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -347,7 +369,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
+                .addContainerGap(196, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(116, 116, 116))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,7 +580,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -732,7 +754,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addComponent(jLabel27)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -748,28 +770,30 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bntLoadTable))
-                            .addGap(25, 25, 25)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel10Layout.createSequentialGroup()
-                                    .addGap(199, 199, 199)
-                                    .addComponent(jLabel27))
-                                .addGroup(jPanel10Layout.createSequentialGroup()
-                                    .addGap(140, 140, 140)
-                                    .addComponent(jLabel28))
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                            .addGap(70, 70, 70)
-                            .addComponent(btnAddResults, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bntLoadTable))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(199, 199, 199)
+                                .addComponent(jLabel27))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addComponent(jLabel28))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnAddResults, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Result Management", jPanel10);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel20.setText("Instructor Profile");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -781,21 +805,27 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addComponent(jTabbedPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtInstructorName, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInstructorLogout)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 784, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInstructorLogout, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInstructorLogout)
-                    .addComponent(jLabel1)
-                    .addComponent(txtInstructorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInstructorLogout)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(31, 31, 31)))
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -820,115 +850,185 @@ public class InstructorProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtInstructorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInstructorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInstructorNameActionPerformed
-
-    private void cmbAssignmnetChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAssignmnetChoiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbAssignmnetChoiceActionPerformed
-
-    private void btnPostAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostAssignmentActionPerformed
-        Assignment asg = new Assignment();
-        
-        asg.setAssignmentID(0);
-        asg.setSubjetcName(txtSubjectName.getText());
-        asg.setPlace(txtAssignmentPalce.getText());
-        asg.setDate(txtAssignmentDate.getText());
-        asg.setPosterID(txtPosterID.getText());
-        
-        if(instOps.insertAssignment(asg)){
-            JOptionPane.showMessageDialog(this, "Inserted");
-        }else{
-            JOptionPane.showMessageDialog(this, "Error");
+    /**
+     * method to load subject details details
+     *
+     */
+    private void bntLoadTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLoadTableActionPerformed
+        String tmpSem = cmboSemester.getSelectedItem().toString();                      // setting values
+        if (tmpSem.equalsIgnoreCase("First Semester")) {
+            subDetails = instOps.getFirstSemesterSubjects();                            // take the array list
+            StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);          // instance of abstract table model
+            tblStudentDetails.setModel(sbj);                                            //load the table
+        } else {
+            subDetails = instOps.getSecondSemesterSubjects();                           // take the array list
+            StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);          // instance of abstract table model
+            tblStudentDetails.setModel(sbj);                                            //load the table
         }
-    }//GEN-LAST:event_btnPostAssignmentActionPerformed
+    }//GEN-LAST:event_bntLoadTableActionPerformed
 
-    private void btnUpdateAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAssignmentActionPerformed
-        Assignment asg = new Assignment();
-        
-        asg.setAssignmentID(Integer.parseInt(txtAssignmnetIDUp.getText()));
-        if(cmbAssignmnetChoice.getSelectedItem().equals("Date")){
-            asg.setDate(txtNewValue.getText());
-        }else{
-            asg.setPlace(txtNewValue.getText());
-        }
-        
-        instOps.updateAssignment(asg);
-        
-        loadAssigmnetDetails();
-    }//GEN-LAST:event_btnUpdateAssignmentActionPerformed
-
-    private void btnDeleteAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAssignmentActionPerformed
-        Assignment asg = new Assignment();
-        
-        asg.setAssignmentID(Integer.parseInt(txtDeleteAssignment.getText()));
-        instOps.deleteAssignment(asg);
-    }//GEN-LAST:event_btnDeleteAssignmentActionPerformed
-
-    private void btnPlaceLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceLabActionPerformed
-        LabSession lbs = new LabSession();
-        
-        lbs.setDate(txtLabDate.getText());
-        lbs.setSubjectName(txtLabSubjectName.getText());
-        lbs.setPlace(txtLabPlace.getText());
-        lbs.setPosterID(txtLabPosterID.getText());
-        
-        instOps.insertNewLabSession(lbs);
-        
-        loadLabSessions();
-    }//GEN-LAST:event_btnPlaceLabActionPerformed
-
-    private void btnInstructorLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructorLogoutActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnInstructorLogoutActionPerformed
-
+    /**
+     * method to load adding results frame
+     *
+     */
     private void btnAddResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddResultsActionPerformed
-          AddResults add = new AddResults();
-          add.setVisible(true);
-          
-          add.setChoosed(subDetails.get(tblStudentDetails.getSelectedRow()));
-          add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum())));
+        AddResults add = new AddResults();                                              // instance of adding results frame
+        add.setVisible(true);                                                           // setting visible
+
+        add.setChoosed(subDetails.get(tblStudentDetails.getSelectedRow()));             // setting fields
+        add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum())));// setting fields
     }//GEN-LAST:event_btnAddResultsActionPerformed
 
+    /**
+     * method to save pdf file
+     *
+     */
     private void btnSaveINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveINActionPerformed
-        String subCode = txtSubjectCode.getText();
-        File file = new File(txtyos.getText());
+        String subCode = txtSubjectCode.getText();                                      // setting values
+        File file = new File(txtyos.getText());                                         // setting valuse
 
-        instOps.insertExamResults(file, subCode);
-        loadResultTable();
+        if (instOps.insertExamResults(file, subCode)) {
+            JOptionPane.showMessageDialog(this, "File Uploaded successfully");          // message box
+            loadResultTable();                                                          // loading results table
+            txtSubjectCode.setText("");                                                 // setting values
+            txtyos.setText("");                                                         // setting values
+        } else {
+            JOptionPane.showMessageDialog(this, "Hmm, Something went wrong. Try again"); // message box
+            txtyos.setText("");                                                         // setting values
+        }
+
     }//GEN-LAST:event_btnSaveINActionPerformed
 
     private void txtyosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtyosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtyosActionPerformed
 
+    /**
+     * method to pick the file
+     *
+     */
     private void btnUploadPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadPDFActionPerformed
-        JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();                                           // instance of the file chooser to choose file
 
-        int returnValue = fc.showOpenDialog(jPanel1);
-        if(returnValue == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
-            try{
-                txtyos.setText(file.getAbsolutePath());
-            }catch(Exception e){
+        int returnValue = fc.showOpenDialog(jPanel1);                                   // setting values
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();                                           // choose the file
+            try {
+                txtyos.setText(file.getAbsolutePath());                                 // setting values
+            } catch (Exception e) {                                                        // exception handling
                 System.out.println(e);
             }
         }
     }//GEN-LAST:event_btnUploadPDFActionPerformed
 
-    private void bntLoadTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLoadTableActionPerformed
-        String tmpSem = cmboSemester.getSelectedItem().toString();
-        if(tmpSem.equalsIgnoreCase("First Semester")){
-            subDetails = instOps.getFirstSemesterSubjects();
-            StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);
-            tblStudentDetails.setModel(sbj);
-        }else{
-            subDetails = instOps.getSecondSemesterSubjects();
-            StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);
-            tblStudentDetails.setModel(sbj);
+    /**
+     * method to insert Lab sessions
+     *
+     */
+    private void btnPlaceLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceLabActionPerformed
+        LabSession lbs = new LabSession();                                              // instance to store lab session details
+
+        lbs.setDate(txtLabDate.getText());                                              // setting values
+        lbs.setSubjectName(txtLabSubjectName.getText());                                // setting values
+        lbs.setPlace(txtLabPlace.getText());                                            // setting values
+        lbs.setPosterID(txtLabPosterID.getText());                                      // setting values
+
+        if (instOps.insertNewLabSession(lbs)) {
+            JOptionPane.showMessageDialog(this, "Inserted Successfully");               // message box
+            loadLabSessions();                                                          //loading lab session details
+            txtLabDate.setText("");                                                     // setting values
+            txtLabPlace.setText("");                                                    // setting values
+            txtLabPosterID.setText("");                                                 // setting values
+            txtLabSubjectName.setText("");                                              // setting values
+        } else {
+            JOptionPane.showMessageDialog(this, "Please try again. Somethig went wrong");// message box
+            txtLabSubjectName.setText("");                                              // setting values
+            txtLabDate.setText("");                                                     // setting values
+            txtLabPlace.setText("");                                                    // setting values
         }
-    }//GEN-LAST:event_bntLoadTableActionPerformed
+    }//GEN-LAST:event_btnPlaceLabActionPerformed
+
+    /**
+     * method to delete assignment details
+     *
+     */
+    private void btnDeleteAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAssignmentActionPerformed
+        Assignment asg = new Assignment();                                              // instane to take lab session details
+
+        asg.setAssignmentID(Integer.parseInt(txtDeleteAssignment.getText()));           // setting values
+        if (instOps.deleteAssignment(asg)) {
+            JOptionPane.showMessageDialog(this, "Deleted Successfully");                // message box
+            txtDeleteAssignment.setText("");                                            // setting values
+            loadAssigmnetDetails();                                                     // laoding assignment details
+        } else {
+            JOptionPane.showMessageDialog(this, "Oops ! Can;t delete. Try again");      // message box
+            txtDeleteAssignment.setText("");                                            // setting values
+        }
+    }//GEN-LAST:event_btnDeleteAssignmentActionPerformed
+
+    private void cmbAssignmnetChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAssignmnetChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAssignmnetChoiceActionPerformed
+
+    /**
+     * method to update assignment details
+     *
+     */
+    private void btnUpdateAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAssignmentActionPerformed
+        Assignment asg = new Assignment();                                              // instane to take lab session details
+
+        asg.setAssignmentID(Integer.parseInt(txtAssignmnetIDUp.getText()));             // setting values
+        if (cmbAssignmnetChoice.getSelectedItem().equals("Date")) {
+            asg.setDate(txtNewValue.getText());                                         // setting values
+        } else {
+            asg.setPlace(txtNewValue.getText());                                        // setting values
+        }
+
+        if (instOps.updateAssignment(asg)) {
+            JOptionPane.showMessageDialog(this, "Updated successfully");                // message box
+            loadAssigmnetDetails();                                                     // load assignment details table
+            txtAssignmnetIDUp.setText("");                                              // setting values
+            txtNewValue.setText("");                                                    // setting values
+        } else {
+            JOptionPane.showMessageDialog(this, "Hmm, Details must be wrong. Check them again"); // message box
+            txtNewValue.setText("");                                                    // setting values
+        }
+    }//GEN-LAST:event_btnUpdateAssignmentActionPerformed
+
+    /**
+     * method to insert assignment details
+     *
+     */
+    private void btnPostAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostAssignmentActionPerformed
+        Assignment asg = new Assignment();                                              // instane to take lab session details
+
+        asg.setAssignmentID(0);                                                         // setting values
+        asg.setSubjetcName(txtSubjectName.getText());                                   // setting values
+        asg.setPlace(txtAssignmentPalce.getText());                                     // setting values
+        asg.setDate(txtAssignmentDate.getText());                                       // setting values
+        asg.setPosterID(txtPosterID.getText());                                         // setting values
+
+        if (instOps.insertAssignment(asg)) {
+            JOptionPane.showMessageDialog(this, "Inserted Successfully");               // message box
+            txtSubjectName.setText("");                                                 // setting values
+            txtAssignmentDate.setText("");                                              // setting values
+            txtAssignmentPalce.setText("");                                             // setting values
+            txtPosterID.setText("");                                                    // setting values
+            loadAssigmnetDetails();                                                     // laoding assignment details
+        } else {
+            JOptionPane.showMessageDialog(this, "Error occures. Try again");            // message box
+            txtAssignmentDate.setText("");                                              // setting values
+            txtAssignmentPalce.setText("");                                             // setting values
+        }
+    }//GEN-LAST:event_btnPostAssignmentActionPerformed
+
+    /**
+     * method to logout
+     *
+     */
+    private void btnInstructorLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructorLogoutActionPerformed
+        this.dispose();                                                                 // logging out
+    }//GEN-LAST:event_btnInstructorLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -989,6 +1089,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
@@ -1025,7 +1126,6 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JTextField txtAssignmentPalce;
     private javax.swing.JTextField txtAssignmnetIDUp;
     private javax.swing.JTextField txtDeleteAssignment;
-    private javax.swing.JTextField txtInstructorName;
     private javax.swing.JTextField txtLabDate;
     private javax.swing.JTextField txtLabPlace;
     private javax.swing.JTextField txtLabPosterID;

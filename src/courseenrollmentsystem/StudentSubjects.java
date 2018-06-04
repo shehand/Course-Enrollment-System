@@ -10,6 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class StudentSubjects {
+
     private String regNum;
     private String semester;
     private String first;

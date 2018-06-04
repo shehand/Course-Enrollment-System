@@ -5,8 +5,7 @@
  */
 package courseenrollmentsystem;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;                                                                                                                 // imporing java libraries
 
 /**
  *
@@ -20,14 +19,19 @@ public class DownloadResults extends javax.swing.JFrame {
     public DownloadResults() {
         initComponents();
     }
-    
-    StudentDBOperations sdOps = new StudentDBOperations();
-    
-    void setFields(Results results){
-        txtFileName.setText(results.getName());
-        txtLocation.setText("C:\\Users\\Public\\Documents");
-        
+
+    StudentDBOperations sdOps = new StudentDBOperations();                                                                                      // creating student db operation instance handle backend processes
+
+    /**
+     * method to set fields with values
+     *
+     */
+    void setFields(Results results) {
+        txtFileName.setText(results.getName());                                                                                                 // assigning values
+        txtLocation.setText("C:\\Users\\Public\\Documents");                                                                                    // assigning values -> default saving documet will be public Documents
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -120,13 +124,17 @@ public class DownloadResults extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * method to download psdf file to documents
+     *
+     */
     private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
-        String fileName = txtFileName.getText();
-        
-        if(sdOps.donwloadFile(fileName)){
-            JOptionPane.showMessageDialog(this, "Your file downloaded to public Documents successfully");
-        }else{
-            JOptionPane.showMessageDialog(this, "Oops ! Something went wrong. Please try again.");
+        String fileName = txtFileName.getText();                                                                                                // assigning values
+
+        if (sdOps.donwloadFile(fileName)) {                                                                                                       // backend handling
+            JOptionPane.showMessageDialog(this, "Your file downloaded to public Documents successfully");                                       // message box
+        } else {
+            JOptionPane.showMessageDialog(this, "Oops ! Something went wrong. Please try again.");                                              // message box
         }
     }//GEN-LAST:event_btnDownloadActionPerformed
 
@@ -175,5 +183,4 @@ public class DownloadResults extends javax.swing.JFrame {
     private javax.swing.JTextField txtLocation;
     // End of variables declaration//GEN-END:variables
 
-    
 }

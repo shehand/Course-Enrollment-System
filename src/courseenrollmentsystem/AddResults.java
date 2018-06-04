@@ -282,79 +282,114 @@ public class AddResults extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * method to set the values and insert data to the database
+     *
+     */
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        FourthYears f = new FourthYears();
-        
-        f.setSub1(txtCom1.getText());
-        f.setSub2(txtCom2.getText());
-        f.setSub3(txtCom3.getText());
-        f.setSub4(txtCom4.getText());
-        f.setSub5(txtChoose1.getText());
-        f.setSub6(txtChoose2.getText());
-        f.setSub7(txtChoose3.getText());
-        f.setSub8(txtChoose4.getText());
-        f.setRes1(txtRe1.getText());
-        f.setRes2(txtRe2.getText());
-        f.setRes3(txtRe3.getText());
-        f.setRes4(txtRe4.getText());
-        f.setRes5(txtRe5.getText());
-        f.setRes6(txtRe6.getText());
-        f.setRes7(txtRe7.getText());
-        f.setRes8(txtRe8.getText());
-        f.setRegNumber(txtRegNumber.getText());
-        f.setYos(txtYos.getText());
-        f.setGpa(Double.toString(calculateGPA()));
-        f.setSemester(txtSemester.getText());
-        
-        InstructorDBOperations inst = new InstructorDBOperations();
-        if(inst.insertResults(f)){
-            JOptionPane.showMessageDialog(this, "Submission successfull");
-        }else{
-            JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");
+        FourthYears f = new FourthYears();  // instance to store exam details
+
+        f.setSub1(txtCom1.getText());       // setting values
+        f.setSub2(txtCom2.getText());       // setting values
+        f.setSub3(txtCom3.getText());       // setting values
+        f.setSub4(txtCom4.getText());       // setting values
+        f.setSub5(txtChoose1.getText());    // setting values
+        f.setSub6(txtChoose2.getText());    // setting values
+        f.setSub7(txtChoose3.getText());    // setting values
+        f.setSub8(txtChoose4.getText());    // setting values
+        f.setRes1(txtRe1.getText());        // setting values
+        f.setRes2(txtRe2.getText());        // setting values
+        f.setRes3(txtRe3.getText());        // setting values
+        f.setRes4(txtRe4.getText());        // setting values
+        f.setRes5(txtRe5.getText());        // setting values
+        f.setRes6(txtRe6.getText());        // setting values
+        f.setRes7(txtRe7.getText());        // setting values
+        f.setRes8(txtRe8.getText());        // setting values
+        f.setRegNumber(txtRegNumber.getText()); // setting values
+        f.setYos(txtYos.getText());         // setting values
+        f.setGpa(Double.toString(calculateGPA())); // setting values
+        f.setSemester(txtSemester.getText());   // setting values
+
+        InstructorDBOperations inst = new InstructorDBOperations();                             // create a instructor db operation instance to handle backend 
+        if (inst.insertResults(f)) {
+            JOptionPane.showMessageDialog(this, "Submission successfull");                      // message box
+            this.dispose();                                                                     // closing frame
+        } else {
+            JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");      // message box
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
-    
-    void setCompulsory(String sub[]){
-        txtCom1.setText(sub[0]);
-        txtCom2.setText(sub[1]);
-        txtCom3.setText(sub[2]);
-        txtCom4.setText(sub[3]);
+
+    /**
+     * method to set values to text fields
+     *
+     */
+    void setCompulsory(String sub[]) {
+        txtCom1.setText(sub[0]);        // setting values
+        txtCom2.setText(sub[1]);        // setting values
+        txtCom3.setText(sub[2]);        // setting values
+        txtCom4.setText(sub[3]);        // setting values
     }
-    
-    void setChoosed(StudentSubjects sbj){
-        txtRegNumber.setText(sbj.getRegNum());
-        txtChoose1.setText(sbj.getFirst());
-        txtChoose2.setText(sbj.getSecond());
-        txtChoose3.setText(sbj.getThird());
-        txtChoose4.setText(sbj.getFourth());
-        txtYos.setText(sbj.getYos());
-        txtSemester.setText(sbj.getSemester());
+
+    /**
+     * method to set values to text fields
+     *
+     */
+    void setChoosed(StudentSubjects sbj) {
+        txtRegNumber.setText(sbj.getRegNum());  // setting values
+        txtChoose1.setText(sbj.getFirst());     // setting values
+        txtChoose2.setText(sbj.getSecond());    // setting values
+        txtChoose3.setText(sbj.getThird());     // setting values
+        txtChoose4.setText(sbj.getFourth());    // setting values
+        txtYos.setText(sbj.getYos());           // setting values
+        txtSemester.setText(sbj.getSemester()); // setting values
     }
-    
-    double calculateGPA(){
+
+    /**
+     * method to calculate student's gpa
+     *
+     */
+    double calculateGPA() {
         double gpa = 0;
-        gpa = getGPV(txtRe1.getText())*Integer.parseInt(txtCr1.getText()) + getGPV(txtRe2.getText())*Integer.parseInt(txtCr2.getText()) + getGPV(txtRe3.getText())*Integer.parseInt(txtCr3.getText()) + getGPV(txtRe4.getText())*Integer.parseInt(txtCr4.getText()) + getGPV(txtRe5.getText())*Integer.parseInt(txtCr5.getText()) + getGPV(txtRe6.getText())*Integer.parseInt(txtCr6.getText()) + getGPV(txtRe7.getText())*Integer.parseInt(txtCr7.getText()) + getGPV(txtRe8.getText())*Integer.parseInt(txtCr8.getText()) ;
-        int tot = Integer.parseInt(txtCr1.getText())+Integer.parseInt(txtCr2.getText())+Integer.parseInt(txtCr3.getText())+Integer.parseInt(txtCr4.getText())+Integer.parseInt(txtCr5.getText())+Integer.parseInt(txtCr6.getText())+Integer.parseInt(txtCr7.getText())+Integer.parseInt(txtCr8.getText());
-        return (gpa/tot);
+        gpa = getGPV(txtRe1.getText()) * Integer.parseInt(txtCr1.getText()) + getGPV(txtRe2.getText()) * Integer.parseInt(txtCr2.getText()) + getGPV(txtRe3.getText()) * Integer.parseInt(txtCr3.getText()) + getGPV(txtRe4.getText()) * Integer.parseInt(txtCr4.getText()) + getGPV(txtRe5.getText()) * Integer.parseInt(txtCr5.getText()) + getGPV(txtRe6.getText()) * Integer.parseInt(txtCr6.getText()) + getGPV(txtRe7.getText()) * Integer.parseInt(txtCr7.getText()) + getGPV(txtRe8.getText()) * Integer.parseInt(txtCr8.getText());
+        int tot = Integer.parseInt(txtCr1.getText()) + Integer.parseInt(txtCr2.getText()) + Integer.parseInt(txtCr3.getText()) + Integer.parseInt(txtCr4.getText()) + Integer.parseInt(txtCr5.getText()) + Integer.parseInt(txtCr6.getText()) + Integer.parseInt(txtCr7.getText()) + Integer.parseInt(txtCr8.getText());
+        return (gpa / tot);
     }
-    
-    double getGPV(String grade){
-        switch(grade){
-            case "A+": return 4.25;
-            case "A" : return 4.00;
-            case "A-": return 3.75;
-            case "B+": return 3.50;
-            case "B" : return 3.25;
-            case "B-": return 3.00;
-            case "C+": return 2.75;
-            case "C" : return 2.50;
-            case "C-": return 2.25;
-            case "D+": return 2.00;
-            case "D" : return 1.75;
-            case "D-": return 1.50;
-            default : return 0;
-        } 
+
+    /**
+     * method to find gpv
+     *
+     */
+    double getGPV(String grade) {
+        switch (grade) {
+            case "A+":
+                return 4.25;
+            case "A":
+                return 4.00;
+            case "A-":
+                return 3.75;
+            case "B+":
+                return 3.50;
+            case "B":
+                return 3.25;
+            case "B-":
+                return 3.00;
+            case "C+":
+                return 2.75;
+            case "C":
+                return 2.50;
+            case "C-":
+                return 2.25;
+            case "D+":
+                return 2.00;
+            case "D":
+                return 1.75;
+            case "D-":
+                return 1.50;
+            default:
+                return 0;
+        }
     }
+
     /**
      * @param args the command line arguments
      */

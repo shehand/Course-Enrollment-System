@@ -10,6 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class Subject {
+
     private String name;
     private String subCode;
     private int credits;
@@ -119,7 +120,4 @@ public class Subject {
     /**
      * @return the courseFee
      */
-  
-
-  
 }

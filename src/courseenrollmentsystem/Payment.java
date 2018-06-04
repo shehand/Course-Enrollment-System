@@ -10,6 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class Payment {
+
     private int payID;
     private String regNumber;
     private String amount;
@@ -85,5 +86,5 @@ public class Payment {
     public void setCourse(String course) {
         this.course = course;
     }
-    
+
 }

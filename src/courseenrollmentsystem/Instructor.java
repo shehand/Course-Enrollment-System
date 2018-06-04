@@ -10,7 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class Instructor {
-    
+
     private String instructorID;
     private String name;
     private String dob;
@@ -101,5 +101,5 @@ public class Instructor {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }

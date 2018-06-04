@@ -10,6 +10,7 @@ package courseenrollmentsystem;
  * @author Sono
  */
 public class FourthYears {
+
     private String regNumber;
     private String gpa;
     private String yos;
@@ -30,7 +31,7 @@ public class FourthYears {
     private String res7;
     private String res8;
     private String semester;
-    
+
     /**
      * @return the regNumber
      */

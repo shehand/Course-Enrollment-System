@@ -9,7 +9,8 @@ package courseenrollmentsystem;
  *
  * @author Sono
  */
-public class Undergraduate extends Student{
+public class Undergraduate extends Student {
+
     protected int indexNumber;
     protected String stream;
     protected String zScore;
