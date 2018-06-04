@@ -31,13 +31,14 @@ public class InstructorProfile extends javax.swing.JFrame {
     ArrayList<LabSession> lbSessions;                                                   // array list to hold lab session details
     ArrayList<Results> resultDetails;                                                   // array list to hold result details
     ArrayList<StudentSubjects> subDetails;                                              // array list to hold student's subject details
+    String facName;                                                                     // String to hold the faculty name
 
     /**
      * method to load assignment details
      *
      */
     void loadAssigmnetDetails() {
-        asgList = instOps.loadAssigmnetDetails();                                       // take the array list
+        asgList = instOps.loadAssigmnetDetails(facName);                                // take the array list
         AssignmentDetails asgDetail = new AssignmentDetails(asgList);                   // instance of abstract table model
         tblAvalableAssignmnets.setModel(asgDetail);                                     //load the table
     }
@@ -47,7 +48,7 @@ public class InstructorProfile extends javax.swing.JFrame {
      *
      */
     void loadLabSessions() {
-        lbSessions = instOps.getLabSessionDetails();                                    // take the array list
+        lbSessions = instOps.getLabSessionDetails(facName);                             // take the array list
         LabSessionDetails lbDetails = new LabSessionDetails(lbSessions);                // instance of abstract table model
         tblAvalableLabSessions.setModel(lbDetails);                                     //load the table
     }
@@ -93,7 +94,7 @@ public class InstructorProfile extends javax.swing.JFrame {
      *
      */
     void loadResultTable() {
-        resultDetails = instOps.getResultDetails();                                     // take the array list
+        resultDetails = instOps.getResultDetails(facName);                              // take the array list
         ResultDetails resDet = new ResultDetails(resultDetails);                        // instance of abstract table model
         tblResultsSet.setModel(resDet);                                                 //load the table
     }

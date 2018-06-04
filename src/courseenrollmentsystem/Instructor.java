@@ -17,6 +17,7 @@ public class Instructor {
     private String nic;
     private String email;
     private String password;
+    private String facultyName;
 
     /**
      * @return the instructorID
@@ -100,6 +101,20 @@ public class Instructor {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the facultyName
+     */
+    public String getFacultyName() {
+        return facultyName;
+    }
+
+    /**
+     * @param facultyName the facultyName to set
+     */
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
 
 }

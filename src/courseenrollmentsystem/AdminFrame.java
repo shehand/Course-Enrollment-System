@@ -138,6 +138,8 @@ public class AdminFrame extends javax.swing.JFrame {
         btnAddInstructor = new javax.swing.JButton();
         txtInstDoB = new javax.swing.JTextField();
         txtInstPassword = new javax.swing.JPasswordField();
+        jLabel32 = new javax.swing.JLabel();
+        cmboFacultName = new javax.swing.JComboBox<>();
         txtDeleteInstID = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -540,6 +542,10 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel32.setText("Faculty :");
+
+        cmboFacultName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School of Business", "School of Computing", "School of Engineering" }));
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -547,6 +553,9 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAddInstructor))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -555,7 +564,8 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel17)
                             .addComponent(jLabel18)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel32))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtInstRegNumber)
@@ -563,10 +573,8 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(txtInstNIC)
                             .addComponent(txtInstEmail)
                             .addComponent(txtInstDoB)
-                            .addComponent(txtInstPassword)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAddInstructor)))
+                            .addComponent(txtInstPassword)
+                            .addComponent(cmboFacultName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -599,8 +607,12 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(txtInstPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(cmboFacultName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(btnAddInstructor)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel25.setText("Instructor ID");
@@ -954,6 +966,7 @@ public class AdminFrame extends javax.swing.JFrame {
         inst.setEmail(txtInstEmail.getText());                                                  // assignning values
         inst.setDob(txtInstDoB.getText());                                                      // assignning values
         inst.setNic(txtInstNIC.getText());                                                      // assignning values
+        inst.setFacultyName(cmboFacultName.getSelectedItem().toString());                       // assignning values
 
         if (adminOps.addInstructor(inst)) {                                                       // pass to do backend queries
             loadInstructorDetails();                                                            // refresh table
@@ -1110,6 +1123,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveSubject;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JComboBox<String> cmboCompusoryTag;
+    private javax.swing.JComboBox<String> cmboFacultName;
     private javax.swing.JComboBox<String> cmboFacultyFourth;
     private javax.swing.JComboBox<String> cmboSourseName;
     private javax.swing.JLabel jLabel1;
@@ -1137,6 +1151,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

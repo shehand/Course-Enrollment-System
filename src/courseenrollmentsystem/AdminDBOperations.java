@@ -150,7 +150,7 @@ public class AdminDBOperations {
     boolean addInstructor(Instructor inst) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                // establishing connection with the database
-            String query = "INSERT INTO instrucor_details VALUES (?,?,?,?,?,?)";                    // query
+            String query = "INSERT INTO instrucor_details VALUES (?,?,?,?,?,?,?)";                    // query
             pst = (PreparedStatement) con.prepareStatement(query);                                  // preaparing the query to execute
 
             pst.setString(1, inst.getInstructorID());                                               // setting instructor details
@@ -159,6 +159,7 @@ public class AdminDBOperations {
             pst.setString(4, inst.getEmail());                                                      // setting instructor details
             pst.setString(5, inst.getNic());                                                        // setting instructor details
             pst.setString(6, inst.getPassword());                                                   // setting instructor details
+            pst.setString(7, inst.getFacultyName());                                                // setting instructor details
 
             pst.executeUpdate();                                                                    // execute the query
             return true;

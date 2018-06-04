@@ -30,13 +30,13 @@ public class InstructorDBOperations {
      * method to load assignment details
      *
      */
-    ArrayList<Assignment> loadAssigmnetDetails() {
+    ArrayList<Assignment> loadAssigmnetDetails(String facName) {
 
         ArrayList<Assignment> asgList = new ArrayList<Assignment>();            // array list to hold assignment detaila
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password); // extablishing the connection
-            String query = "SELECT * FROM assignments";                         // query
+            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facName + "')"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             rs = pst.executeQuery();                                            // execute the query
@@ -73,13 +73,13 @@ public class InstructorDBOperations {
      * method to load lab session details
      *
      */
-    ArrayList<LabSession> getLabSessionDetails() {
+    ArrayList<LabSession> getLabSessionDetails(String facName) {
 
         ArrayList<LabSession> lbSessions = new ArrayList<LabSession>();         // array list to hold lab sessing detaila
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password); // extablishing the connection
-            String query = "SELECT * FROM lab_sessions";                        // query
+            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facName + "')"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -342,13 +342,13 @@ public class InstructorDBOperations {
      * method to get result details
      *
      */
-    ArrayList<Results> getResultDetails() {
+    ArrayList<Results> getResultDetails(String facName) {
 
         ArrayList<Results> res = new ArrayList<Results>();                      // array list to store result details
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT * FROM results";                             // query
+            String query = "SELECT * FROM results WHERE subject_code IN (SELECT subject_code FROM subjects WHERE course ='" + facName + "')"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -599,4 +599,35 @@ public class InstructorDBOperations {
         }
     }
 
+    String getFacultyName(String instID) {
+        String name = "";
+        try {
+
+            con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
+            String query = "SELECT faculty FROM instrucor_details WHERE reg_number ='" + instID + "'";// query
+            pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
+
+            ResultSet rs = pst.executeQuery();                                  // execute the query
+
+            while (rs.next()) {
+                name = rs.getString(1);                                         // setting values
+            }
+            return name;                                                        // return value
+
+        } catch (Exception e) {                                                 // exception handling
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                // closing the connection
+                }
+
+                if (pst != null) {
+                    pst.close();                                                // closing the prepared statement
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 }

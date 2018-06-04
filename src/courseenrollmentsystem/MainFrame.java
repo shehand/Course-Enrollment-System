@@ -341,6 +341,7 @@ public class MainFrame extends javax.swing.JFrame {
                 txtLoginUserName.setText("");                                                           // setting values
                 InstructorProfile instProfile = new InstructorProfile();
                 instProfile.setVisible(true);                                                           // set visible
+                instProfile.facName = instOps.getFacultyName(inst.getInstructorID());                   // set faculty name
                 instProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 instProfile.setResizable(false);                                                        // resizable is false
                 this.dispose();                                                                         // dispose the logging frame
