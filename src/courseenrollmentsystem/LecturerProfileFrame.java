@@ -5,6 +5,9 @@
  */
 package courseenrollmentsystem;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Sono
@@ -17,7 +20,8 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
     public LecturerProfileFrame() {
         initComponents();
     }
-
+    
+    String facultyName;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,8 +78,18 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtDescription);
 
         btnOpen.setText("Choose");
+        btnOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenActionPerformed(evt);
+            }
+        });
 
         btnUpload.setText("Upload");
+        btnUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUploadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -297,6 +311,33 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
+        LecturerNotes lecNote = new LecturerNotes();
+        File file = new File(txtLocation.getText());
+        
+        lecNote.setNoteID(0);
+        lecNote.setFaculty(facultyName);
+        lecNote.setFile(file);
+        lecNote.setFileName(file.getName());
+        lecNote.setSubjectID(txtSubjectCode.getText());
+    }//GEN-LAST:event_btnUploadActionPerformed
+
+    private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
+        JFileChooser fc = new JFileChooser();
+        
+        int returnVal = fc.showOpenDialog(jPanel1);
+        if(returnVal == JFileChooser.APPROVE_OPTION){
+            File file = fc.getSelectedFile();                                           // choose the file
+            try {
+                txtLocation.setText(file.getAbsolutePath());                            // setting values
+            } catch (Exception e) {                                                     // exception handling
+                System.out.println(e);
+            }
+        }else{
+        
+        }
+    }//GEN-LAST:event_btnOpenActionPerformed
 
     /**
      * @param args the command line arguments

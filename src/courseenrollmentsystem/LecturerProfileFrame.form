@@ -243,11 +243,17 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Choose"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnUpload">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Upload"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUploadActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
