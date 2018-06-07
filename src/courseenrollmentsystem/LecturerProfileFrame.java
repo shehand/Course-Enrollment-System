@@ -6,7 +6,9 @@
 package courseenrollmentsystem;
 
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,9 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
     }
     
     String facultyName;
+    ArrayList<LecturerNotes> lecNoteList;
+    
+    LecturerDBOperations lecDBOps = new LecturerDBOperations();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +56,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLecNotes = new javax.swing.JTable();
+        tbnRefresh = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -58,6 +64,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         btnDeleteLecNote = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,6 +169,13 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblLecNotes);
 
+        tbnRefresh.setText("Refresh Table");
+        tbnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -172,7 +186,10 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(tbnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -180,8 +197,10 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tbnRefresh)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -192,6 +211,11 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         jLabel8.setText("Lecture ID :");
 
         btnDeleteLecNote.setText("Delete");
+        btnDeleteLecNote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteLecNoteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -223,7 +247,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
                     .addComponent(txtLecID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnDeleteLecNote)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -268,6 +292,13 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         jTabbedPane1.addTab("Time Table", jPanel3);
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,7 +309,8 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLogout)))
                 .addContainerGap())
         );
@@ -286,8 +318,10 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnLogout)
-                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogout)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -321,6 +355,20 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         lecNote.setFile(file);
         lecNote.setFileName(file.getName());
         lecNote.setSubjectID(txtSubjectCode.getText());
+        
+        if(lecDBOps.uploadPDF(lecNote, facultyName)){
+            JOptionPane.showMessageDialog(this, "Data inserted successfully");
+            txtDate.setText("");
+            txtDescription.setText("");
+            txtLocation.setText("");
+            txtSubjectCode.setText(facultyName);
+            loadLecturerNotesTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Can't upload this file at this moment. Try later");
+            txtDate.setText("");
+            txtDescription.setText("");
+            txtLocation.setText("");
+        }
     }//GEN-LAST:event_btnUploadActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
@@ -339,6 +387,32 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOpenActionPerformed
 
+    private void btnDeleteLecNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLecNoteActionPerformed
+        String id = txtLecID.getText();
+        
+        if(lecDBOps.deleteLectureNote(id)){
+            JOptionPane.showMessageDialog(this, "Lecturer details deleted successfully");
+            txtLecID.setText("");
+            loadLecturerNotesTable();
+        }else{
+            JOptionPane.showMessageDialog(this, "Can't delete Lectirer Note. Try again.");
+            txtLecID.setText("");
+        }
+    }//GEN-LAST:event_btnDeleteLecNoteActionPerformed
+
+    private void tbnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnRefreshActionPerformed
+        loadLecturerNotesTable();
+    }//GEN-LAST:event_tbnRefreshActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
+    
+    void loadLecturerNotesTable(){
+        lecNoteList = lecDBOps.loadNotesTable();
+        LecturerNotesDetails lecDet = new LecturerNotesDetails(lecNoteList);
+        tblLecNotes.setModel(lecDet);
+    }
     /**
      * @param args the command line arguments
      */
@@ -387,6 +461,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -397,6 +472,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblLecNotes;
+    private javax.swing.JButton tbnRefresh;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtLecID;

@@ -4,13 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LecturerDBOperations.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LecturerProfileFrame.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/InstructorProfile.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LecturerNotes.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/Lecturers.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LecturrerDetails.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/LecturerNotesDetails.java</file>
-            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/InstructorDBOperations.java</file>
+            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/StudentDBOperations.java</file>
+            <file>file:/C:/Users/Sono/Documents/NetBeansProjects/CourseEnrollmentSystem/src/courseenrollmentsystem/StudentProfileFrame.java</file>
         </group>
     </open-files>
 </project-private>

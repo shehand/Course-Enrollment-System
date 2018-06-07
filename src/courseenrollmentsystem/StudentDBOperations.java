@@ -776,4 +776,74 @@ public class StudentDBOperations {
             }
         }
     }
+
+    ArrayList<LecturerNotes> getLecturerNotes() {
+        ArrayList<LecturerNotes> lecNotes = new ArrayList<LecturerNotes>();
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM lec_notes";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                LecturerNotes note = new LecturerNotes();
+
+                note.setNoteID(rs.getInt(1));
+                note.setFileName(rs.getString(2));
+                note.setSubjectID(rs.getString(6));
+
+                lecNotes.add(note);
+            }
+            return lecNotes;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    boolean downloadLecturerNotes(LecturerNotes ln) {
+        byte[] fileBytes;
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM lec_notes WHERE file_name='" + ln.getFileName() + "'";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                fileBytes = rs.getBytes(4);
+                OutputStream targetFile = new FileOutputStream("C:\\Users\\Public\\Documents\\" + rs.getString(2));
+                targetFile.write(fileBytes);
+                targetFile.close();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 }

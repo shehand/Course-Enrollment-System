@@ -24,7 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     StudentDBOperations stdOps = new StudentDBOperations();                                             // instance to access student db operations in StudentDBOperation class
     InstructorDBOperations instOps = new InstructorDBOperations();                                      // instance to access instructor db operations in InstructorDBOperation class
-
+    LecturerDBOperations lecOps = new LecturerDBOperations();                                           // instance to access lecturer db operations in LecturerDBOperation class
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -360,6 +360,23 @@ public class MainFrame extends javax.swing.JFrame {
                 adProfil.setResizable(false);                                                           // set resizable false
                 this.dispose();                                                                         // dispose the logging frame
             } else {
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
+            }
+        }else if(temp.charAt(0) == 'L'){
+            Lecturers lec = new Lecturers();
+            lec.setLecID(txtLoginUserName.getText());
+            lec.setPassword(txtLoginPassword.getText());
+            
+            if(lecOps.authenticateLecturer(lec)){
+                LecturerProfileFrame lecProfile = new LecturerProfileFrame();
+                lecProfile.setVisible(true);
+                lecProfile.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                lecProfile.facultyName = lecOps.getFacultyName(temp);
+                lecProfile.setResizable(false);
+                txtLoginPassword.setText("");                                                           // setting values
+                txtLoginUserName.setText("");                                                           // setting values
+                this.dispose();
+            }else{
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
             }
         } else {

@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class LecturerNotesDetails extends AbstractTableModel {
 
-    private static final String COLUMN_NAMES[] = {"Note ID", "File Name", "Date of Upload"};
+    private static final String COLUMN_NAMES[] = {"Note ID", "File Name", "Subject Code"};
     private static ArrayList<LecturerNotes> list;
 
     public LecturerNotesDetails(ArrayList<LecturerNotes> list) {
@@ -43,7 +43,7 @@ public class LecturerNotesDetails extends AbstractTableModel {
             case 1:
                 return list.get(rowIndex).getFileName();
             case 2:
-                return list.get(rowIndex).getDate();
+                return list.get(rowIndex).getSubjectID();
             default:
                 return "ERROR";
         }

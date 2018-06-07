@@ -421,13 +421,13 @@ public class AdminDBOperations {
      *
      * @return
      */
-    ArrayList<FourthYears> getFourthYears(String facultyName) {
+    ArrayList<FourthYears> getFourthYears(String facultyName, String yos) {
 
         ArrayList<FourthYears> fyrs = new ArrayList<FourthYears>();                                                                             // array list to store student details
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                                                            // establishing connection with the database
-            String query = "SELECT * FROM ranking WHERE reg_number IN (SELECT reg_number FROM students WHERE faculty ='" + facultyName + "')";  // query
+            String query = "SELECT * FROM ranking WHERE reg_number IN (SELECT reg_number FROM students WHERE faculty ='" + facultyName + "') AND yos = '" + yos + "'";  // query
             pst = (PreparedStatement) con.prepareStatement(query);                                                                              // preaparing the query to execute     
 
             ResultSet rs = pst.executeQuery();                                                                                                  // execute the query
@@ -444,6 +444,72 @@ public class AdminDBOperations {
             return fyrs;
         } catch (Exception e) {                                                                                                                 // exception handling
             return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                                                                                // closing the connection with the database
+                }
+
+                if (pst != null) {
+                    pst.close();                                                                                                                // closing the prepared statement for reusing
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    ArrayList<Lecturers> getLecturerDetails() {
+
+        ArrayList<Lecturers> lec = new ArrayList<Lecturers>();                                                                                  // array list to store student details
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);                                                            // establishing connection with the database
+            String query = "SELECT * FROM lecturer";                                                                                            // query
+            pst = (PreparedStatement) con.prepareStatement(query);                                                                              // preaparing the query to execute     
+
+            ResultSet rs = pst.executeQuery();                                                                                                  // execute the query
+
+            while (rs.next()) {
+                Lecturers l = new Lecturers();
+
+                l.setLecID(rs.getString(1));
+                l.setName(rs.getString(2));
+                l.setEmail(rs.getString(3));
+                l.setPhoneNumber(rs.getInt(4));
+                l.setPosition(rs.getString(5));
+                l.setFaculty(rs.getString(6));
+
+                lec.add(l);
+            }
+            return lec;
+        } catch (Exception e) {                                                                                                                 // exception handling
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                                                                                // closing the connection with the database
+                }
+
+                if (pst != null) {
+                    pst.close();                                                                                                                // closing the prepared statement for reusing
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    boolean deleteLecturer(String lecID) {
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);                                                            // establishing connection with the database
+            String query = "DELETE FROM lecturer WHERE lec_id = '" + lecID + "'";                                                                                            // query
+            pst = (PreparedStatement) con.prepareStatement(query);                                                                              // preaparing the query to execute     
+
+            pst.executeUpdate();
+            return true;
+        } catch (Exception e) {                                                                                                                 // exception handling
+            return false;
         } finally {
             try {
                 if (con != null) {

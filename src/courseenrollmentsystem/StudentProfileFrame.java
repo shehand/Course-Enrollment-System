@@ -26,10 +26,12 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     ArrayList<Subject> subjects;                                                                        // use to store subject result set
     ArrayList<Payment> payList;                                                                         // use to store payment details
     ArrayList<Results> resultDetails;                                                                   // use to store Results details
+    ArrayList<LecturerNotes> lecNotes;
 
     public StudentProfileFrame() {
         initComponents();
         loadResultsTable();
+        loadLecturerNotes();
     }
 
     /**
@@ -138,6 +140,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtRe6 = new javax.swing.JTextField();
         txtRe7 = new javax.swing.JTextField();
         txtRe8 = new javax.swing.JTextField();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblLectureNotes = new javax.swing.JTable();
+        btnDownloadLecNotes = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtStudentGPA = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -838,6 +844,51 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         tpdStudentProfile.addTab("Results", jPanel6);
 
+        tblLectureNotes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tblLectureNotes);
+
+        btnDownloadLecNotes.setText("Download");
+        btnDownloadLecNotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDownloadLecNotesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnDownloadLecNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(btnDownloadLecNotes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        tpdStudentProfile.addTab("Lecture Notes", jPanel11);
+
         jLabel15.setText("Current GPA :");
 
         txtStudentGPA.setEditable(false);
@@ -1118,6 +1169,16 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRequestResultsActionPerformed
 
+    private void btnDownloadLecNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadLecNotesActionPerformed
+        LecturerNotes ln = lecNotes.get(tblLectureNotes.getSelectedRow());
+        
+        if(stdOps.downloadLecturerNotes(ln)){
+            JOptionPane.showMessageDialog(this, "File Download to Public Documents");
+        }else{
+            JOptionPane.showMessageDialog(this, "Sorry, You can't download this at this moment");
+        }
+    }//GEN-LAST:event_btnDownloadLecNotesActionPerformed
+
     /**
      * method to set student register number
      *
@@ -1178,7 +1239,12 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtStudentRegNumber.setText(regNumber);
         setYearOfStudy();
     }
-
+    
+    void loadLecturerNotes(){
+        lecNotes = stdOps.getLecturerNotes();
+        LecturerNotesDetails det = new LecturerNotesDetails(lecNotes);
+        tblLectureNotes.setModel(det);
+    }
     /**
      * method to calculate year of study
      *
@@ -1270,6 +1336,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckFirst;
     private javax.swing.JButton btnCheckSecond;
     private javax.swing.JButton btnConfirmSubjects;
+    private javax.swing.JButton btnDownloadLecNotes;
     private javax.swing.JButton btnDownloadResults;
     private javax.swing.JButton btnPay;
     private javax.swing.JButton btnRequestResults;
@@ -1314,6 +1381,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1327,8 +1395,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable tblAssignmentTable;
     private javax.swing.JTable tblCourseSubjects;
+    private javax.swing.JTable tblLectureNotes;
     private javax.swing.JTable tblPayments;
     private javax.swing.JTable tblResultSet;
     private javax.swing.JTable tblStudentLabSessions;

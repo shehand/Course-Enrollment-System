@@ -23,14 +23,16 @@ public class AdminFrame extends javax.swing.JFrame {
         loadSubjectDetails();                   // load table at the very first of profile loading
         loadTransactionDetails();               // load table at the very first of profile loading
         loadFourthYearStudents();               // load table at the very first of profile loading
-    }
+        loadLecturerDetails();                  // load table at the very first of profile loading
+    }   
 
     AdminDBOperations adminOps = new AdminDBOperations();               // instance for do back end operations belong to administrator
     ArrayList<Instructor> instDetails;                                  // array list for hosling instructor details when instructor details loading to the instructor details table
     ArrayList<Subject> sbjDetails;                                      // array list for holding subject details when subject details table loading
     ArrayList<Payment> payDetails;                                      // array list to store payment details for table details loading
     ArrayList<FourthYears> fourthYears;                                 // array list to store fourth year details for table fourth year details loading
-
+    ArrayList<Lecturers> lecDetails;                                    // array list to store lecturer details for table lecturer details loading
+    
     /**
      * method to load the instructor details table
      *
@@ -66,11 +68,16 @@ public class AdminFrame extends javax.swing.JFrame {
      *
      */
     void loadFourthYearStudents() {
-        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString());  // retrieving the array list from the backend
+        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString(), cmboYear.getSelectedItem().toString());  // retrieving the array list from the backend
         FourthYearDetails frDetails = new FourthYearDetails(fourthYears);                       // create an instance of table loading class
         tblFourthYears.setModel(frDetails);                                                     // loading the table
     }
-
+    
+    void loadLecturerDetails(){
+        lecDetails = adminOps.getLecturerDetails();
+        LecturrerDetails lecDet = new LecturrerDetails(lecDetails);
+        tblLecturerDetails.setModel(lecDet);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +117,7 @@ public class AdminFrame extends javax.swing.JFrame {
         tblFourthYears = new javax.swing.JTable();
         cmboFacultyFourth = new javax.swing.JComboBox<>();
         btnFacultyFourthYears = new javax.swing.JButton();
+        cmboYear = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -168,6 +176,14 @@ public class AdminFrame extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblTransactionDetails = new javax.swing.JTable();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblLecturerDetails = new javax.swing.JTable();
+        btnInsertLecturer = new javax.swing.JButton();
+        btnUpdateLecturer = new javax.swing.JButton();
+        btnDeleteLecturer = new javax.swing.JButton();
+        btnRefreshLec = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
 
@@ -337,6 +353,8 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        cmboYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 st Year", "2 nd Year", "3 nd Year", "4 nd Year" }));
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -350,6 +368,8 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmboYear, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmboFacultyFourth, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFacultyFourthYears)
@@ -367,7 +387,8 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmboFacultyFourth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFacultyFourthYears))
+                            .addComponent(btnFacultyFourthYears)
+                            .addComponent(cmboYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -839,6 +860,94 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Payment Details", jPanel13);
 
+        tblLecturerDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tblLecturerDetails);
+
+        btnInsertLecturer.setText("Insert New Lecturer");
+        btnInsertLecturer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertLecturerActionPerformed(evt);
+            }
+        });
+
+        btnUpdateLecturer.setText("Update Lecturer");
+        btnUpdateLecturer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateLecturerActionPerformed(evt);
+            }
+        });
+
+        btnDeleteLecturer.setText("Delete Lecturer");
+        btnDeleteLecturer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteLecturerActionPerformed(evt);
+            }
+        });
+
+        btnRefreshLec.setText("Refresh Table");
+        btnRefreshLec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshLecActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnInsertLecturer)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdateLecturer)
+                .addGap(18, 18, 18)
+                .addComponent(btnDeleteLecturer)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 677, Short.MAX_VALUE)
+                .addComponent(btnRefreshLec))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsertLecturer)
+                    .addComponent(btnUpdateLecturer)
+                    .addComponent(btnDeleteLecturer)
+                    .addComponent(btnRefreshLec))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Lecturer Management", jPanel14);
+
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -1065,7 +1174,7 @@ public class AdminFrame extends javax.swing.JFrame {
      *
      */
     private void btnFacultyFourthYearsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacultyFourthYearsActionPerformed
-        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString());                          // retrieving the array list from the backend
+        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString(),cmboYear.getSelectedItem().toString());// retrieving the array list from the backend
         FourthYearDetails frDetails = new FourthYearDetails(fourthYears);                                               // create an instance of table loading class
         tblFourthYears.setModel(frDetails);                                                                             // loading the table
     }//GEN-LAST:event_btnFacultyFourthYearsActionPerformed
@@ -1075,6 +1184,38 @@ public class AdminFrame extends javax.swing.JFrame {
         strf.setVisible(true);                                                                      // set vsisble
         strf.setResizable(false);                                                                   // set resiazable false
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
+
+    private void btnInsertLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertLecturerActionPerformed
+        InsertLecturerFrame isnt = new InsertLecturerFrame();
+        isnt.setVisible(true);
+        isnt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        isnt.setResizable(false);
+        loadLecturerDetails();
+    }//GEN-LAST:event_btnInsertLecturerActionPerformed
+
+    private void btnUpdateLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLecturerActionPerformed
+        UpdateLecturerFrame uplec = new UpdateLecturerFrame();
+        uplec.setVisible(true);
+        uplec.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        uplec.setResizable(false);
+        uplec.setFields(lecDetails.get(tblLecturerDetails.getSelectedRow()));
+        loadLecturerDetails();
+    }//GEN-LAST:event_btnUpdateLecturerActionPerformed
+
+    private void btnDeleteLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLecturerActionPerformed
+        String id  = lecDetails.get(tblLecturerDetails.getSelectedRow()).getLecID();
+        
+        if(adminOps.deleteLecturer(id)){
+            JOptionPane.showMessageDialog(this, "Row deleted successfully");
+            loadLecturerDetails();
+        }else{
+            JOptionPane.showMessageDialog(this, "Oops, Something went wrong");
+        }
+    }//GEN-LAST:event_btnDeleteLecturerActionPerformed
+
+    private void btnRefreshLecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshLecActionPerformed
+        loadLecturerDetails();
+    }//GEN-LAST:event_btnRefreshLecActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1115,17 +1256,22 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnAddInstructor;
     private javax.swing.JButton btnAdminLogout;
     private javax.swing.JButton btnCheckAvailability;
+    private javax.swing.JButton btnDeleteLecturer;
     private javax.swing.JButton btnDeleteStudent;
     private javax.swing.JButton btnFacultyFourthYears;
+    private javax.swing.JButton btnInsertLecturer;
     private javax.swing.JButton btnInsertSubject;
+    private javax.swing.JButton btnRefreshLec;
     private javax.swing.JButton btnRegisterStudent;
     private javax.swing.JButton btnRemoveInstructor;
     private javax.swing.JButton btnRemoveSubject;
+    private javax.swing.JButton btnUpdateLecturer;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JComboBox<String> cmboCompusoryTag;
     private javax.swing.JComboBox<String> cmboFacultName;
     private javax.swing.JComboBox<String> cmboFacultyFourth;
     private javax.swing.JComboBox<String> cmboSourseName;
+    private javax.swing.JComboBox<String> cmboYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1163,6 +1309,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1175,9 +1323,11 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblFourthYears;
     private javax.swing.JTable tblInstructorDetails;
+    private javax.swing.JTable tblLecturerDetails;
     private javax.swing.JTable tblSubjectDetails;
     private javax.swing.JTable tblTransactionDetails;
     private javax.swing.JTextField txtCourseFee;
