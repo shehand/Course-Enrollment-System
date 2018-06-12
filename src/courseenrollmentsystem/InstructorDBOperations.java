@@ -388,7 +388,7 @@ public class InstructorDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT * FROM semester_1_subjects";                 // query
+            String query = "SELECT * FROM semester_1_subjects WHERE reg_number NOT IN (SELECT reg_number FROM ranking)";                 // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -436,7 +436,7 @@ public class InstructorDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT * FROM semester_2_subjects";                 // query
+            String query = "SELECT * FROM semester_2_subjects WHERE reg_number NOT IN (SELECT reg_number FROM ranking)";                 // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -531,6 +531,7 @@ public class InstructorDBOperations {
             return sub;                                                         // return value
 
         } catch (Exception e) {                                                 // exception handling
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -583,6 +584,7 @@ public class InstructorDBOperations {
             return true;
 
         } catch (Exception e) {                                                 // exception handling
+            System.out.println(e);
             return false;
         } finally {
             try {
@@ -615,6 +617,7 @@ public class InstructorDBOperations {
             return name;                                                        // return value
 
         } catch (Exception e) {                                                 // exception handling
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -647,6 +650,7 @@ public class InstructorDBOperations {
             return Integer.toString(credit);                                    // return value
 
         } catch (Exception e) {                                                 // exception handling
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -662,4 +666,37 @@ public class InstructorDBOperations {
             }
         }
     }
+
+    String getStudentEmail(String regNumber) {
+        String email ="";
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
+            String query = "SELECT email FROM students WHERE I  reg_number ='" + regNumber + "'";// query
+            pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
+
+            ResultSet rs = pst.executeQuery();                                  // execute the query
+
+            while (rs.next()) {
+                email = rs.getString(1);                                           // setting values
+            }
+            return email;                                                       // return value
+
+        } catch (Exception e) {                                                 // exception handling
+            System.out.println(e);
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                // closing the connection
+                }
+
+                if (pst != null) {
+                    pst.close();                                                // closing the prepared statement
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
 }

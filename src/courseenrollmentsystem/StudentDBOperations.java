@@ -35,7 +35,7 @@ public class StudentDBOperations {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                            // trying to connect with the database
             String query = "INSERT INTO undergraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";              // sql query to access mydql
-            String queryEx = "INSERT INTO students VALUES (?,?)";                                               // query two
+            String queryEx = "INSERT INTO students VALUES (?,?,?)";                                             // query two
             pst = (PreparedStatement) con.prepareStatement(query);                                              //make query as a statement
             PreparedStatement pstEx = con.prepareStatement(queryEx);
 
@@ -54,6 +54,7 @@ public class StudentDBOperations {
             pst.setString(13, und.getFacultyName());                                                            // configer frontend data with the query statement
             pstEx.setString(1, und.getRegNum());
             pstEx.setString(2, und.getFacultyName());
+            pstEx.setString(3, und.getEmail());
 
             pst.executeUpdate();                                                                                //execute the query and insert the data into the database
             pstEx.executeUpdate();
@@ -85,7 +86,7 @@ public class StudentDBOperations {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                            // trying to connect with the database
             String query = "INSERT INTO postgraduate_student VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";               // sql query to access mydql
-            String queryEx = "INSERT INTO students VALUES (?,?)";
+            String queryEx = "INSERT INTO students VALUES (?,?,?)";
             pst = (PreparedStatement) con.prepareStatement(query);                                              //make the query as a statement
             PreparedStatement pstEx = con.prepareStatement(queryEx);
 
@@ -104,7 +105,8 @@ public class StudentDBOperations {
             pst.setString(13, pgs.getDegreeType());                                                             // configer frontend data with the query statement
             pstEx.setString(1, pgs.getRegNum());
             pstEx.setString(2, pgs.getFacultyName());
-
+            pstEx.setString(3, pgs.getEmail());
+            
             pst.executeUpdate();  // execute the query
             pstEx.executeUpdate();
 
@@ -753,7 +755,7 @@ public class StudentDBOperations {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                fileBytes = rs.getBytes(4);
+                fileBytes = rs.getBytes(3);
                 OutputStream targetFile = new FileOutputStream("C:\\Users\\Public\\Documents\\" + rs.getString(4));
                 targetFile.write(fileBytes);
                 targetFile.close();

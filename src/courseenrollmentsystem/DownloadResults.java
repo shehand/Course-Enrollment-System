@@ -133,8 +133,10 @@ public class DownloadResults extends javax.swing.JFrame {
 
         if (sdOps.donwloadFile(fileName)) {                                                                                                       // backend handling
             JOptionPane.showMessageDialog(this, "Your file downloaded to public Documents successfully");                                       // message box
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Oops ! Something went wrong. Please try again.");                                              // message box
+            
         }
     }//GEN-LAST:event_btnDownloadActionPerformed
 

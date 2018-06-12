@@ -5,6 +5,14 @@
  */
 package courseenrollmentsystem;
 
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +27,9 @@ public class AddResults extends javax.swing.JFrame {
     public AddResults() {
         initComponents();
     }
-    
+
     InstructorDBOperations inst = new InstructorDBOperations();                 // instance to access instructor db operation class
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -399,9 +407,56 @@ public class AddResults extends javax.swing.JFrame {
         f.setGpa(Double.toString(calculateGPA())); // setting values
         f.setSemester(txtSemester.getText());   // setting values
 
-                                     // create a instructor db operation instance to handle backend 
+        // create a instructor db operation instance to handle backend 
         if (inst.insertResults(f)) {
-            JOptionPane.showMessageDialog(this, "Submission successfull");                      // message box
+            JOptionPane.showMessageDialog(this, "Submission successfull. Email will be sent shortly.");                      // message box
+            
+            // sending email to student mail
+            String to = inst.getStudentEmail(f.getRegNumber());                             // email address to send
+            
+            final String email = "nsbmresultcenter@gmail.com";                              // mail for sending mails
+            final String password = "nsbm@123";                                             // password for the email
+
+            // configuring properties with the smtp server
+            Properties prop = System.getProperties();
+            prop.put("mail.smtp.starttls.enable", true);
+            prop.put("mail.smtp.host", "smtp.gmail.com");
+            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.auth", true);
+
+            // authenticate given email
+            Session ses = Session.getInstance(prop, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(email, password);
+                }
+            });
+
+            // semdng email
+            try {
+                Message msg = new MimeMessage(ses);                                                                 // creating email message
+
+                msg.setFrom(new InternetAddress(email));                                                            // from
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));                             // to
+
+                msg.setSubject("Examination Results for " + f.getRegNumber() + " - NSBM Result Center");            // mail subject
+                msg.setText("Dear Student, \n"
+                        + "These are the results for your past examination. Please note that these results are calculated with your Assignmnet marks.\n" // body
+                        + f.getSub1() + " ->\t" + f.getRes1() + "\n"
+                        + f.getSub2() + " ->\t" + f.getRes2() + "\n"
+                        + f.getSub3() + " ->\t" + f.getRes3() + "\n"
+                        + f.getSub4() + " ->\t" + f.getRes4() + "\n"
+                        + f.getSub5() + " ->\t" + f.getRes5() + "\n"
+                        + f.getSub6() + " ->\t" + f.getRes6() + "\n"
+                        + f.getSub7() + " ->\t" + f.getRes7() + "\n"
+                        + f.getSub8() + " ->\t" + f.getRes8() + "\n"
+                        + "Your GPA Value for this semster : " + f.getGpa() + ""
+                        + "\n\n NSBM Result Center");
+                Transport.send(msg);                                                            // sending mail
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            
             this.dispose();                                                                     // closing frame
         } else {
             JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");      // message box
