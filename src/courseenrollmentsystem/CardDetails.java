@@ -187,11 +187,15 @@ public class CardDetails extends javax.swing.JFrame {
     private void btnProceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedActionPerformed
 
         txtAmount.setText(payDetails.getAmount());                                                                      // assigning values
-        if (stdOps.insertPayments(payDetails)) {                                                                          // handling backend processes
-            JOptionPane.showMessageDialog(this, "Transaction complete, Table will be updated soon");                    // message box
-            this.dispose();
+        if (!jTextField2.getText().isEmpty()) {
+            if (stdOps.insertPayments(payDetails)) {                                                                          // handling backend processes
+                JOptionPane.showMessageDialog(this, "Transaction complete, Table will be updated soon");                    // message box
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Transaction is not complete. Please try again later");                 // message box
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Transaction is not complete. Please try again later");                 // message box
+            JOptionPane.showMessageDialog(this, "Fields are empty");                 // message box
         }
     }//GEN-LAST:event_btnProceedActionPerformed
 

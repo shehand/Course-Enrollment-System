@@ -106,7 +106,7 @@ public class StudentDBOperations {
             pstEx.setString(1, pgs.getRegNum());
             pstEx.setString(2, pgs.getFacultyName());
             pstEx.setString(3, pgs.getEmail());
-            
+
             pst.executeUpdate();  // execute the query
             pstEx.executeUpdate();
 
@@ -120,12 +120,12 @@ public class StudentDBOperations {
      * method to get assignment details
      *
      */
-    ArrayList<Assignment> getAssignmentList(String facultyName) {
+    ArrayList<Assignment> getAssignmentList(String facultyName, String year) {
 
         ArrayList<Assignment> lst = new ArrayList<Assignment>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "')";
+            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "' AND yos = '" + year + "')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -164,13 +164,13 @@ public class StudentDBOperations {
      * method to get lab session details
      *
      */
-    ArrayList<LabSession> getLabSessionDetails(String facultyName) {
+    ArrayList<LabSession> getLabSessionDetails(String facultyName, String year) {
 
         ArrayList<LabSession> lbSessions = new ArrayList<LabSession>();
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "')";
+            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "' AND yos = '" + year + "')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -267,13 +267,12 @@ public class StudentDBOperations {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
-            if(regNum.charAt(1) == 'U'){
-                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '"+year+"' AND degree_type='BSc'";
-            }else{
-                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '"+year+"' AND degree_type='Msc'";
+            if (regNum.charAt(1) == 'U') {
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '" + year + "' AND degree_type='BSc'";
+            } else {
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '" + year + "' AND degree_type='Msc'";
             }
-            
-            
+
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -654,7 +653,7 @@ public class StudentDBOperations {
      * method to get current gpa details
      *
      */
-    FourthYears getCurrentGPA(String regNumber, int sem) {
+    FourthYears getSemesterGPA(String regNumber, int sem) {
 
         FourthYears f = new FourthYears();
         try {
@@ -842,6 +841,44 @@ public class StudentDBOperations {
         } catch (Exception e) {
             System.out.println(e);
             return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    String getCurrentGPA(String regNumber) {
+        String gpa = "";
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT gpa FROM ranking WHERE reg_number='" + regNumber + "'";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            double tmp = 0;
+            int count = 1;
+
+            while (rs.next()) {
+                tmp += rs.getDouble(1);
+                count++;
+            }
+
+            if (tmp > 0) {
+                gpa = Double.toString(tmp / count);
+            }
+            return gpa;
+
+        } catch (Exception e) {
+            return null;
         } finally {
             try {
                 if (con != null) {

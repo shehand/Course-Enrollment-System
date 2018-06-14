@@ -868,6 +868,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -898,6 +899,37 @@ public class InstructorProfile extends javax.swing.JFrame {
         add.setChoosed(subDetails.get(tblStudentDetails.getSelectedRow()));             // setting fields
         add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum()), cmboSemester.getSelectedItem().toString(), cmboYearOfStudy.getSelectedItem().toString()));// setting fields
         add.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        add.setResizable(false);
+        add.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                loadResultTable();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
     }//GEN-LAST:event_btnAddResultsActionPerformed
 
     /**

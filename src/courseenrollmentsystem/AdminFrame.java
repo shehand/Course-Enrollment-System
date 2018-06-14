@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;         // importing libraries
 import javax.swing.JOptionPane;     // importing libraries
 
@@ -1054,6 +1056,7 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLogoutActionPerformed
@@ -1232,30 +1235,104 @@ public class AdminFrame extends javax.swing.JFrame {
         FourthYearDetails frDetails = new FourthYearDetails(fourthYears);                                               // create an instance of table loading class
         tblFourthYears.setModel(frDetails);                                                                             // loading the table
     }//GEN-LAST:event_btnFacultyFourthYearsActionPerformed
-
+    
+    /**
+     * method to register student
+     **/
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
         StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
         strf.setVisible(true);                                                                      // set vsisble
         strf.setResizable(false);                                                                   // set resiazable false
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
-
+    
+    /**
+     * method to insert lecturer
+     **/
     private void btnInsertLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertLecturerActionPerformed
         InsertLecturerFrame isnt = new InsertLecturerFrame();
         isnt.setVisible(true);
         isnt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         isnt.setResizable(false);
-        loadLecturerDetails();
-    }//GEN-LAST:event_btnInsertLecturerActionPerformed
+        
+        // listner to update table
+        isnt.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
 
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                loadLecturerDetails();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+        
+    }//GEN-LAST:event_btnInsertLecturerActionPerformed
+    
+    /**
+     * method to update lecturer
+     **/
     private void btnUpdateLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLecturerActionPerformed
         UpdateLecturerFrame uplec = new UpdateLecturerFrame();
         uplec.setVisible(true);
         uplec.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         uplec.setResizable(false);
         uplec.setFields(lecDetails.get(tblLecturerDetails.getSelectedRow()));
-        loadLecturerDetails();
-    }//GEN-LAST:event_btnUpdateLecturerActionPerformed
+        // listner to update table
+        uplec.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
 
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                loadLecturerDetails();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+        
+    }//GEN-LAST:event_btnUpdateLecturerActionPerformed
+    /**
+     * method to delete lecturer
+     **/
     private void btnDeleteLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLecturerActionPerformed
         String id  = lecDetails.get(tblLecturerDetails.getSelectedRow()).getLecID();
         
@@ -1266,7 +1343,10 @@ public class AdminFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Oops, Something went wrong");
         }
     }//GEN-LAST:event_btnDeleteLecturerActionPerformed
-
+    
+    /**
+     * method to refresh table
+     **/
     private void btnRefreshLecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshLecActionPerformed
         loadLecturerDetails();
     }//GEN-LAST:event_btnRefreshLecActionPerformed

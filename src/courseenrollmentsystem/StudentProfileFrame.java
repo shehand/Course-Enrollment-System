@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;                                                                             // import java labraries
 import javax.swing.JOptionPane;                                                                         // import java labraries
 
@@ -980,6 +982,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -1052,6 +1055,37 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         crdFrame.setCardDetails(pay);
         crdFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         crdFrame.setResizable(false);
+        // listner to load table
+        crdFrame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                loadResultsTable();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void txtStudentRegNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentRegNumberActionPerformed
@@ -1153,7 +1187,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      *
      */
     private void btnRequestResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRequestResultsActionPerformed
-        FourthYears f = stdOps.getCurrentGPA(regNumber, semester);
+        FourthYears f = stdOps.getSemesterGPA(regNumber, semester);
+        String currentGPA = stdOps.getCurrentGPA(regNumber);
 
         txtCom1.setText(f.getSub1());
         txtCom2.setText(f.getSub2());
@@ -1172,8 +1207,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtRe7.setText(f.getRes7());
         txtRe8.setText(f.getRes8());
 
-        txtStudentGPA.setText(f.getGpa());
-
+        txtStudentGPA.setText(currentGPA);
     }//GEN-LAST:event_btnRequestResultsActionPerformed
 
     private void btnDownloadLecNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadLecNotesActionPerformed
@@ -1208,7 +1242,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      *
      */
     void loadAssignments() {
-        assingnmentList = stdOps.getAssignmentList(facultyName); // assign the returning array list to the assignment list
+        assingnmentList = stdOps.getAssignmentList(facultyName, txtYoS.getText()); // assign the returning array list to the assignment list
         AssignmentDetails assgDetails = new AssignmentDetails(assingnmentList);
         tblAssignmentTable.setModel(assgDetails);
     }
@@ -1218,7 +1252,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      *
      */
     void loadLabSessions() {
-        labSessions = stdOps.getLabSessionDetails(facultyName);
+        labSessions = stdOps.getLabSessionDetails(facultyName, txtYoS.getText());
         LabSessionDetails lbsd = new LabSessionDetails(labSessions);
         tblStudentLabSessions.setModel(lbsd);
     }
