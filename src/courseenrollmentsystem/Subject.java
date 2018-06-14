@@ -18,6 +18,8 @@ public class Subject {
     private String course;
     private int courseFee;
     private String compulsoraTag;
+    private String year;
+    private String degreeType;
 
     /**
      * @return the name
@@ -115,6 +117,34 @@ public class Subject {
      */
     public void setCompulsoraTag(String compulsoraTag) {
         this.compulsoraTag = compulsoraTag;
+    }
+
+    /**
+     * @return the year
+     */
+    public String getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    /**
+     * @return the degreeType
+     */
+    public String getDegreeType() {
+        return degreeType;
+    }
+
+    /**
+     * @param degreeType the degreeType to set
+     */
+    public void setDegreeType(String degreeType) {
+        this.degreeType = degreeType;
     }
 
     /**

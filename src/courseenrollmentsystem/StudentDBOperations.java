@@ -261,12 +261,19 @@ public class StudentDBOperations {
      * method to get subject details
      *
      */
-    ArrayList<Subject> getSubjectDetails(String facultyName, int semester) {
+    ArrayList<Subject> getSubjectDetails(String regNum, String facultyName, int semester, String year) {
 
         ArrayList<Subject> sbjList = new ArrayList<Subject>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "'";
+            String query = "";
+            if(regNum.charAt(1) == 'U'){
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '"+year+"' AND degree_type='BSc'";
+            }else{
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '"+year+"' AND degree_type='Msc'";
+            }
+            
+            
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -280,6 +287,7 @@ public class StudentDBOperations {
                 sbj.setCredits(rs.getInt(4));
                 sbj.setCourseFee(rs.getInt(6));
                 sbj.setCompulsoraTag(rs.getString(7));
+                sbj.setYear(rs.getString(8));
 
                 sbjList.add(sbj);
             }

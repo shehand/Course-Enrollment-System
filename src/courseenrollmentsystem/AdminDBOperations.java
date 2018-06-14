@@ -277,6 +277,8 @@ public class AdminDBOperations {
                 sbj.setSemester(rs.getInt(3));                                                      // setting subject details
                 sbj.setCredits(rs.getInt(4));                                                       // setting subject details
                 sbj.setCourseFee(rs.getInt(6));                                                     // setting subject details
+                sbj.setCompulsoraTag(rs.getString(7));
+                sbj.setYear(rs.getString(8));
 
                 sbjList.add(sbj);                                                                   // add subject details to the array list
             }
@@ -308,7 +310,7 @@ public class AdminDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                // establishing connection with the database
-            String query = "INSERT INTO subjects VALUES (?,?,?,?,?,?,?)";                           // query 
+            String query = "INSERT INTO subjects VALUES (?,?,?,?,?,?,?,?,?)";                           // query 
             pst = (PreparedStatement) con.prepareStatement(query);                                  // preaparing the query to execute       
 
             pst.setString(1, sbj.getSubCode());                                                     //setting subject details
@@ -318,6 +320,8 @@ public class AdminDBOperations {
             pst.setString(5, sbj.getCourse());                                                      //setting subject details
             pst.setInt(6, sbj.getCourseFee());                                                      //setting subject details
             pst.setString(7, sbj.getCompulsoraTag());                                               //setting subject details
+            pst.setString(8, sbj.getYear());
+            pst.setString(9, sbj.getDegreeType());
 
             pst.executeUpdate();                                                                    // execute the query
             return true;

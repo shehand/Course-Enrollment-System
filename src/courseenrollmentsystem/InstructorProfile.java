@@ -178,6 +178,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         btnAddResults = new javax.swing.JButton();
         cmboSemester = new javax.swing.JComboBox<>();
         bntLoadTable = new javax.swing.JButton();
+        cmboYearOfStudy = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
 
@@ -747,6 +748,8 @@ public class InstructorProfile extends javax.swing.JFrame {
             }
         });
 
+        cmboYearOfStudy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 st Year", "2 nd Year", "3 nd Year", "4 nd Year" }));
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -763,6 +766,8 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmboYearOfStudy, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(bntLoadTable, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -780,7 +785,8 @@ public class InstructorProfile extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntLoadTable))
+                            .addComponent(bntLoadTable)
+                            .addComponent(cmboYearOfStudy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
@@ -870,12 +876,12 @@ public class InstructorProfile extends javax.swing.JFrame {
      */
     private void bntLoadTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLoadTableActionPerformed
         String tmpSem = cmboSemester.getSelectedItem().toString();                      // setting values
-        if (tmpSem.equalsIgnoreCase("First Semester")) {
-            subDetails = instOps.getFirstSemesterSubjects();                            // take the array list
+        if (tmpSem.equals("First Semester")) {
+            subDetails = instOps.getFirstSemesterSubjects(cmboYearOfStudy.getSelectedItem().toString());                            // take the array list
             StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);          // instance of abstract table model
             tblStudentDetails.setModel(sbj);                                            //load the table
         } else {
-            subDetails = instOps.getSecondSemesterSubjects();                           // take the array list
+            subDetails = instOps.getSecondSemesterSubjects(cmboYearOfStudy.getSelectedItem().toString());                           // take the array list
             StudentSubjectDetails sbj = new StudentSubjectDetails(subDetails);          // instance of abstract table model
             tblStudentDetails.setModel(sbj);                                            //load the table
         }
@@ -890,7 +896,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         add.setVisible(true);                                                           // setting visible
 
         add.setChoosed(subDetails.get(tblStudentDetails.getSelectedRow()));             // setting fields
-        add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum())));// setting fields
+        add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum()), cmboSemester.getSelectedItem().toString(), cmboYearOfStudy.getSelectedItem().toString()));// setting fields
         add.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnAddResultsActionPerformed
 
@@ -1096,6 +1102,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnUploadPDF;
     private javax.swing.JComboBox<String> cmbAssignmnetChoice;
     private javax.swing.JComboBox<String> cmboSemester;
+    private javax.swing.JComboBox<String> cmboYearOfStudy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

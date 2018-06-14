@@ -876,6 +876,8 @@
                               <Component id="jScrollPane5" pref="667" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="cmboSemester" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cmboYearOfStudy" min="-2" pref="104" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="bntLoadTable" min="-2" pref="111" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -898,6 +900,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cmboSemester" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="bntLoadTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmboYearOfStudy" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1168,6 +1171,21 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntLoadTableActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cmboYearOfStudy">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="4">
+                        <StringItem index="0" value="1 st Year"/>
+                        <StringItem index="1" value="2 nd Year"/>
+                        <StringItem index="2" value="3 nd Year"/>
+                        <StringItem index="3" value="4 nd Year"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

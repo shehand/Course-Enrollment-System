@@ -88,7 +88,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnAdminLogout = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -171,6 +170,11 @@ public class AdminFrame extends javax.swing.JFrame {
         txtCourseFee = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         cmboCompusoryTag = new javax.swing.JComboBox<>();
+        cmboSemesterNumber = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        cmboYoS = new javax.swing.JComboBox<>();
+        jLabel35 = new javax.swing.JLabel();
+        cmboDegreeType = new javax.swing.JComboBox<>();
         txtDeleteSubjectCode = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -184,19 +188,12 @@ public class AdminFrame extends javax.swing.JFrame {
         btnUpdateLecturer = new javax.swing.JButton();
         btnDeleteLecturer = new javax.swing.JButton();
         btnRefreshLec = new javax.swing.JButton();
+        btnAdminLogout = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnAdminLogout.setForeground(new java.awt.Color(0, 51, 153));
-        btnAdminLogout.setText("Logout");
-        btnAdminLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminLogoutActionPerformed(evt);
-            }
-        });
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -727,6 +724,16 @@ public class AdminFrame extends javax.swing.JFrame {
 
         cmboCompusoryTag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C", "NC" }));
 
+        cmboSemesterNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+
+        jLabel34.setText("Year to teach");
+
+        cmboYoS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 st Year", "2 nd Year", "3 nd Year", "4 nd Year" }));
+
+        jLabel35.setText("Degree Type:");
+
+        cmboDegreeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSc", "Msc" }));
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -735,7 +742,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
                         .addComponent(btnInsertSubject))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -749,13 +757,23 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(jLabel29))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCredit, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(txtCredit)
                             .addComponent(txtSubjectName)
                             .addComponent(txtSubjectCode)
-                            .addComponent(txtSemesterNumber)
                             .addComponent(cmboSourseName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCourseFee)
-                            .addComponent(cmboCompusoryTag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                .addComponent(cmboSemesterNumber, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmboYoS, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                                .addComponent(cmboCompusoryTag, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmboDegreeType, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -778,7 +796,9 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmboSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34)
+                    .addComponent(cmboYoS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -790,10 +810,18 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(cmboCompusoryTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnInsertSubject)
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(cmboCompusoryTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35)
+                    .addComponent(cmboDegreeType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnInsertSubject)
+                        .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jLabel26.setText("Subject Code");
@@ -813,8 +841,8 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addComponent(btnRemoveSubject))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -953,6 +981,14 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Lecturer Management", jPanel14);
+
+        btnAdminLogout.setForeground(new java.awt.Color(0, 51, 153));
+        btnAdminLogout.setText("Logout");
+        btnAdminLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminLogoutActionPerformed(evt);
+            }
+        });
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
@@ -1134,11 +1170,13 @@ public class AdminFrame extends javax.swing.JFrame {
 
         sbj.setSubCode(txtSubjectCode.getText());                                               // assignning values
         sbj.setName(txtSubjectName.getText());                                                  // assignning values
-        sbj.setSemester(Integer.parseInt(txtSemesterNumber.getText()));                         // assignning values
+        sbj.setSemester(Integer.parseInt(cmboSemesterNumber.getSelectedItem().toString()));                         // assignning values
         sbj.setCredits(Integer.parseInt(txtCredit.getText()));                                  // assignning values
         sbj.setCourse(cmboSourseName.getSelectedItem().toString());                             // assignning values
         sbj.setCourseFee(Integer.parseInt(txtCourseFee.getText()));                             // assignning values
         sbj.setCompulsoraTag(cmboCompusoryTag.getSelectedItem().toString());                    // assignning values
+        sbj.setYear(cmboYoS.getSelectedItem().toString());
+        sbj.setDegreeType(cmboDegreeType.getSelectedItem().toString());
 
         if (adminOps.insetNewSubject(sbj)) {
             loadSubjectDetails();                                                               // refresh table
@@ -1284,10 +1322,13 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdateLecturer;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JComboBox<String> cmboCompusoryTag;
+    private javax.swing.JComboBox<String> cmboDegreeType;
     private javax.swing.JComboBox<String> cmboFacultName;
     private javax.swing.JComboBox<String> cmboFacultyFourth;
+    private javax.swing.JComboBox<String> cmboSemesterNumber;
     private javax.swing.JComboBox<String> cmboSourseName;
     private javax.swing.JComboBox<String> cmboYear;
+    private javax.swing.JComboBox<String> cmboYoS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1315,6 +1356,8 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

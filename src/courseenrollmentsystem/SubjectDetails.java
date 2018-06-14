@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;                                    
  */
 public class SubjectDetails extends AbstractTableModel {
 
-    private static final String COLUMN_NAMES[] = {"Subject Code", "Subject Name", "Semester", "Number of Credits", "Course Fee", "Compulsory or Not"};      // column names
+    private static final String COLUMN_NAMES[] = {"Subject Code", "Subject Name", "Semester", "Number of Credits", "Course Fee", "Compulsory or Not", "Year"};      // column names
     private static ArrayList<Subject> list;                                                                                                                 // array list to store subject details
 
     /**
@@ -71,6 +71,8 @@ public class SubjectDetails extends AbstractTableModel {
                 return list.get(rowIndex).getCourseFee();
             case 5:
                 return list.get(rowIndex).getCompulsoraTag();
+            case 6:
+                return list.get(rowIndex).getYear();
             default:
                 return "Error";
         }

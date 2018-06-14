@@ -382,13 +382,13 @@ public class InstructorDBOperations {
      * method to get first semester subjects of a students
      *
      */
-    ArrayList<StudentSubjects> getFirstSemesterSubjects() {
+    ArrayList<StudentSubjects> getFirstSemesterSubjects(String yos) {
 
         ArrayList<StudentSubjects> sdSub = new ArrayList<>();                   // array list to store stuedent subject details
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT * FROM semester_1_subjects WHERE reg_number NOT IN (SELECT reg_number FROM ranking)";                 // query
+            String query = "SELECT * FROM semester_1_subjects WHERE yos = '" + yos + "' AND reg_number NOT IN (SELECT reg_number FROM ranking WHERE yos = '" + yos + "' AND semester = '1')";                 // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -430,13 +430,13 @@ public class InstructorDBOperations {
      * method to get second semester subjects of a students
      *
      */
-    ArrayList<StudentSubjects> getSecondSemesterSubjects() {
+    ArrayList<StudentSubjects> getSecondSemesterSubjects(String yos) {
 
         ArrayList<StudentSubjects> sdSub = new ArrayList<>();                   // array list to store student subject details
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT * FROM semester_2_subjects WHERE reg_number NOT IN (SELECT reg_number FROM ranking)";                 // query
+            String query = "SELECT * FROM semester_2_subjects WHERE yos = '" + yos + "' AND reg_number NOT IN (SELECT reg_number FROM ranking WHERE yos = '" + yos + "' AND semester = '2')";                 // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -514,13 +514,19 @@ public class InstructorDBOperations {
      * method to get compulsory subject details
      *
      */
-    String[] getCompulsorySubjectDetails(String courseName) {
+    String[] getCompulsorySubjectDetails(String courseName, String semester, String year) {
 
         String sub[] = new String[4];                                           // string to hold subject details
         try {
-
+            int sem = 0;
+            if(semester.equals("First Semester")){
+                sem = 1;
+            }else{
+                sem = 2;
+            }
+            
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT name FROM subjects WHERE course ='" + courseName + "' AND compulsory ='C'";// query
+            String query = "SELECT name FROM subjects WHERE course ='" + courseName + "' AND compulsory ='C' AND semester = '"+sem+"' AND yos = '"+year+"'";// query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -635,7 +641,7 @@ public class InstructorDBOperations {
     }
 
     String findCredit(String sub) {
-        
+
         int credit = 0;
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
@@ -668,7 +674,7 @@ public class InstructorDBOperations {
     }
 
     String getStudentEmail(String regNumber) {
-        String email ="";
+        String email = "";
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
             String query = "SELECT email FROM students WHERE I  reg_number ='" + regNumber + "'";// query

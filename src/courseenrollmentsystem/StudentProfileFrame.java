@@ -1178,10 +1178,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
     private void btnDownloadLecNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadLecNotesActionPerformed
         LecturerNotes ln = lecNotes.get(tblLectureNotes.getSelectedRow());
-        
-        if(stdOps.downloadLecturerNotes(ln)){
+
+        if (stdOps.downloadLecturerNotes(ln)) {
             JOptionPane.showMessageDialog(this, "File Download to Public Documents");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sorry, You can't download this at this moment");
         }
     }//GEN-LAST:event_btnDownloadLecNotesActionPerformed
@@ -1229,7 +1229,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      */
     void loadSubjectDetails() {
         semester = tblPayments.getRowCount();
-        subjects = stdOps.getSubjectDetails(facultyName, semester);
+        subjects = stdOps.getSubjectDetails(regNumber, facultyName, semester, txtYoS.getText());
         SubjectDetails sbjDetails = new SubjectDetails(subjects);
         tblCourseSubjects.setModel(sbjDetails);
     }
@@ -1246,12 +1246,13 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtStudentRegNumber.setText(regNumber);
         setYearOfStudy();
     }
-    
-    void loadLecturerNotes(){
+
+    void loadLecturerNotes() {
         lecNotes = stdOps.getLecturerNotes();
         LecturerNotesDetails det = new LecturerNotesDetails(lecNotes);
         tblLectureNotes.setModel(det);
     }
+
     /**
      * method to calculate year of study
      *
