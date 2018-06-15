@@ -185,7 +185,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Subject Code :"/>
+            <Property name="text" type="java.lang.String" value="Subject Name :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPhoneNumberLec">

@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -408,7 +408,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Student Details"/>
+                        <Property name="text" type="java.lang.String" value="Student Results Details"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -991,8 +991,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="txtSemesterNumber" min="-2" pref="119" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="btnInsertSubject" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -1078,18 +1077,9 @@
                                   <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmboDegreeType" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnInsertSubject" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="33" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtSemesterNumber" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnInsertSubject" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="33" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1125,8 +1115,6 @@
                     <Component class="javax.swing.JTextField" name="txtSubjectName">
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSubjectCode">
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txtSemesterNumber">
                     </Component>
                     <Component class="javax.swing.JButton" name="btnInsertSubject">
                       <Properties>

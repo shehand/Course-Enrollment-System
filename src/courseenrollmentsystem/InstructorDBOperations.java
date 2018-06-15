@@ -36,7 +36,7 @@ public class InstructorDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password); // extablishing the connection
-            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facName + "')"; // query
+            String query = "SELECT * FROM assignments WHERE fac_name ='" + facName + "'"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             rs = pst.executeQuery();                                            // execute the query
@@ -53,6 +53,7 @@ public class InstructorDBOperations {
             }
             return asgList;                                                     // return the list
         } catch (Exception e) {                                                 // exception handleing
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -79,7 +80,7 @@ public class InstructorDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password); // extablishing the connection
-            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facName + "')"; // query
+            String query = "SELECT * FROM lab_sessions WHERE fac_name ='" + facName + "'"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -118,11 +119,11 @@ public class InstructorDBOperations {
      * method to insert assignment details
      *
      */
-    boolean insertAssignment(Assignment asg) {
+    boolean insertAssignment(Assignment asg, String facName) {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "INSERT INTO assignments VALUES (?,?,?,?,?)";        // query
+            String query = "INSERT INTO assignments VALUES (?,?,?,?,?,?)";        // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             pst.setInt(1, 0);                                                   // setting values
@@ -130,7 +131,8 @@ public class InstructorDBOperations {
             pst.setString(3, asg.getDate());                                    // setting values
             pst.setString(4, asg.getPlace());                                   // setting values
             pst.setString(5, asg.getPosterID());                                // setting values
-
+            pst.setString(6, facName);
+            
             pst.executeUpdate();                                                // execute the query
 
             return true;
@@ -225,16 +227,17 @@ public class InstructorDBOperations {
      * method to insert new lab session details
      *
      */
-    boolean insertNewLabSession(LabSession lbs) {
+    boolean insertNewLabSession(LabSession lbs, String facName) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "INSERT INTO lab_sessions VALUES (?,?,?,?)";         // query
+            String query = "INSERT INTO lab_sessions VALUES (?,?,?,?,?)";         // query
 
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
             pst.setString(1, lbs.getSubjectName());                             // setting the values
             pst.setString(2, lbs.getPlace());                                   // setting the values
             pst.setString(3, lbs.getPlace());                                   // setting the values
             pst.setString(4, lbs.getPosterID());                                // setting the values
+            pst.setString(5, facName);
 
             pst.executeUpdate();                                                // execute the query
             return true;
@@ -519,14 +522,14 @@ public class InstructorDBOperations {
         String sub[] = new String[4];                                           // string to hold subject details
         try {
             int sem = 0;
-            if(semester.equals("First Semester")){
+            if (semester.equals("First Semester")) {
                 sem = 1;
-            }else{
+            } else {
                 sem = 2;
             }
-            
+
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT name FROM subjects WHERE course ='" + courseName + "' AND compulsory ='C' AND semester = '"+sem+"' AND yos = '"+year+"'";// query
+            String query = "SELECT name FROM subjects WHERE course ='" + courseName + "' AND compulsory ='C' AND semester = '" + sem + "' AND yos = '" + year + "'";// query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -698,6 +701,47 @@ public class InstructorDBOperations {
 
                 if (pst != null) {
                     pst.close();                                                // closing the prepared statement
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    ArrayList<Subject> getSubjectDetails(String facName) {
+        ArrayList<Subject> sbjList = new ArrayList<Subject>();                                      // Array list to store subject details
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);                // establishing connection with the database
+            String query = "SELECT * FROM subjects WHERE course = '" + facName + "'";                                                // query
+            pst = (PreparedStatement) con.prepareStatement(query);                                  // preaparing the query to execute        
+
+            ResultSet rs = pst.executeQuery();                                                      // execute the query
+
+            while (rs.next()) {
+                Subject sbj = new Subject();                                                        // instance to store subject details
+
+                sbj.setSubCode(rs.getString(1));                                                    // setting subject details
+                sbj.setName(rs.getString(2));                                                       // setting subject details
+                sbj.setSemester(rs.getInt(3));                                                      // setting subject details
+                sbj.setCredits(rs.getInt(4));                                                       // setting subject details
+                sbj.setCourseFee(rs.getInt(6));                                                     // setting subject details
+                sbj.setCompulsoraTag(rs.getString(7));
+                sbj.setYear(rs.getString(8));
+
+                sbjList.add(sbj);                                                                   // add subject details to the array list
+            }
+            return sbjList;
+        } catch (Exception e) {                                                                     // Exception habdling
+            System.out.println(e);
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                                    // closing the connection with the database
+                }
+
+                if (pst != null) {
+                    pst.close();                                                                    // closing the prepared statement for reusing
                 }
             } catch (Exception e) {
 

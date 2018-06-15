@@ -261,16 +261,16 @@ public class StudentDBOperations {
      * method to get subject details
      *
      */
-    ArrayList<Subject> getSubjectDetails(String regNum, String facultyName, int semester, String year) {
+    ArrayList<Subject> getSubjectDetails(String regNum, String facultyName, String year) {
 
         ArrayList<Subject> sbjList = new ArrayList<Subject>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
             if (regNum.charAt(1) == 'U') {
-                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '" + year + "' AND degree_type='BSc'";
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND yos = '" + year + "' AND degree_type='BSc'";
             } else {
-                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "' AND yos = '" + year + "' AND degree_type='Msc'";
+                query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND yos = '" + year + "' AND degree_type='Msc'";
             }
 
             pst = (PreparedStatement) con.prepareStatement(query);
@@ -292,6 +292,7 @@ public class StudentDBOperations {
             }
             return sbjList;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         } finally {
             try {
@@ -577,14 +578,14 @@ public class StudentDBOperations {
      * method to get first semester subject details
      *
      */
-    boolean updateFirstSemesterSubjects(String sjdet[], int sem) {
+    boolean updateFirstSemesterSubjects(String sjdet[], int sem, String yos) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
             int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
 
             if (month == 2) {
-                query = "UPDATE semester_1_subjects SET reg_number ='" + sjdet[0] + "', semester ='" + sem + "', first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "'";
+                query = "UPDATE semester_1_subjects SET first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "' WHERE reg_number ='" + sjdet[0] + "' AND semester ='" + sem + "' AND yos = '" + yos + "'";
             } else {
                 return false;
             }
@@ -615,14 +616,14 @@ public class StudentDBOperations {
      * method to get second semester subject details
      *
      */
-    boolean updateSecondSemesterSubjects(String sjdet[], int sem) {
+    boolean updateSecondSemesterSubjects(String sjdet[], int sem, String yos) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
             int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
 
             if (month == 7 || month == 2) {
-                query = "UPDATE semester_2_subjects SET reg_number ='" + sjdet[0] + "', semester ='" + sem + "', first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "'";
+                query = "UPDATE semester_2_subjects SET first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "' WHERE reg_number ='" + sjdet[0] + "' AND semester ='" + sem + "' AND yos = '" + yos + "'";
             } else {
                 return false;
             }

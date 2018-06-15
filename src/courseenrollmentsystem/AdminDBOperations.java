@@ -482,7 +482,7 @@ public class AdminDBOperations {
                 l.setEmail(rs.getString(3));
                 l.setPhoneNumber(rs.getInt(4));
                 l.setPosition(rs.getString(5));
-                l.setFaculty(rs.getString(6));
+                l.setFaculty(rs.getString(7));
 
                 lec.add(l);
             }

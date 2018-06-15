@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;                                    
 public class AssignmentDetails extends AbstractTableModel {                                                                      // extends abstract table model class to load table view
 
     private static ArrayList<Assignment> list;                                                                                   // array list to store assignments details
-    private static final String COLUMN_NAMES[] = {"Assignmnet ID", "Subject Name", "Taking Place", "Time", "Teacher In-Charge"}; // column names
+    private static final String COLUMN_NAMES[] = {"Assignmnet ID", "Subject Name", "Teacher In-Charge", "Time", "Taking Place"}; // column names
 
     /**
      * constructor overloaded and overriding

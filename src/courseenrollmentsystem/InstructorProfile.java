@@ -34,6 +34,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     ArrayList<Results> resultDetails;                                                   // array list to hold result details
     ArrayList<StudentSubjects> subDetails;                                              // array list to hold student's subject details
     String facName;                                                                     // String to hold the faculty name
+    ArrayList<Subject> sbjDetails;
 
     /**
      * method to load assignment details
@@ -101,6 +102,12 @@ public class InstructorProfile extends javax.swing.JFrame {
         tblResultsSet.setModel(resDet);                                                 //load the table
     }
 
+    void loadSubjectDetails() {
+        sbjDetails = instOps.getSubjectDetails(facName);
+        SubjectDetails sbDetails = new SubjectDetails(sbjDetails);
+        tblSubjectDetails.setModel(sbDetails);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,6 +146,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAvalableAssignmnets = new javax.swing.JTable();
+        btnRefAssignmnet = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -160,6 +168,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblAvalableLabSessions = new javax.swing.JTable();
+        btnLabRefresh = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
@@ -179,6 +188,9 @@ public class InstructorProfile extends javax.swing.JFrame {
         cmboSemester = new javax.swing.JComboBox<>();
         bntLoadTable = new javax.swing.JButton();
         cmboYearOfStudy = new javax.swing.JComboBox<>();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSubjectDetails = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
 
@@ -269,7 +281,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPosterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(41, 41, 41)
+                .addGap(49, 49, 49)
                 .addComponent(btnPostAssignment)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -347,7 +359,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addComponent(txtNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdateAssignment)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -370,14 +382,23 @@ public class InstructorProfile extends javax.swing.JFrame {
             tblAvalableAssignmnets.getColumnModel().getColumn(3).setHeaderValue("Place");
         }
 
+        btnRefAssignmnet.setText("Refresh");
+        btnRefAssignmnet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefAssignmnetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(196, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(116, 116, 116))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addComponent(btnRefAssignmnet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addContainerGap()
@@ -388,12 +409,14 @@ public class InstructorProfile extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(btnRefAssignmnet))
+                .addContainerGap(469, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addContainerGap(51, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
 
@@ -557,7 +580,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addComponent(txtLabPosterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(btnPlaceLab)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -577,26 +600,37 @@ public class InstructorProfile extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblAvalableLabSessions);
 
+        btnLabRefresh.setText("Refresh");
+        btnLabRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLabRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(377, 377, 377)
-                .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addGap(310, 310, 310)
+                        .addComponent(btnLabRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLabRefresh)
+                    .addComponent(jLabel15))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -804,6 +838,38 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Result Management", jPanel10);
 
+        tblSubjectDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblSubjectDetails);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1291, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Subject Details", jPanel11);
+
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/female_instructor_icon_79553__1528707653_60698.png"))); // NOI18N
         jLabel20.setText("Instructor Profile");
@@ -986,7 +1052,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         lbs.setPlace(txtLabPlace.getText());                                            // setting values
         lbs.setPosterID(txtLabPosterID.getText());                                      // setting values
 
-        if (instOps.insertNewLabSession(lbs)) {
+        if (instOps.insertNewLabSession(lbs, facName)) {
             JOptionPane.showMessageDialog(this, "Inserted Successfully");               // message box
             loadLabSessions();                                                          //loading lab session details
             txtLabDate.setText("");                                                     // setting values
@@ -1061,7 +1127,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         asg.setDate(txtAssignmentDate.getText());                                       // setting values
         asg.setPosterID(txtPosterID.getText());                                         // setting values
 
-        if (instOps.insertAssignment(asg)) {
+        if (instOps.insertAssignment(asg, facName)) {
             JOptionPane.showMessageDialog(this, "Inserted Successfully");               // message box
             txtSubjectName.setText("");                                                 // setting values
             txtAssignmentDate.setText("");                                              // setting values
@@ -1086,6 +1152,14 @@ public class InstructorProfile extends javax.swing.JFrame {
         mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mf.setResizable(false);
     }//GEN-LAST:event_btnInstructorLogoutActionPerformed
+
+    private void btnLabRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLabRefreshActionPerformed
+        loadLabSessions();
+    }//GEN-LAST:event_btnLabRefreshActionPerformed
+
+    private void btnRefAssignmnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefAssignmnetActionPerformed
+        loadAssigmnetDetails();
+    }//GEN-LAST:event_btnRefAssignmnetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1127,8 +1201,10 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JButton btnAddResults;
     private javax.swing.JButton btnDeleteAssignment;
     private javax.swing.JButton btnInstructorLogout;
+    private javax.swing.JButton btnLabRefresh;
     private javax.swing.JButton btnPlaceLab;
     private javax.swing.JButton btnPostAssignment;
+    private javax.swing.JButton btnRefAssignmnet;
     private javax.swing.JButton btnSaveIN;
     private javax.swing.JButton btnUpdateAssignment;
     private javax.swing.JButton btnUploadPDF;
@@ -1163,6 +1239,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1174,6 +1251,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1181,6 +1259,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JTable tblAvalableLabSessions;
     private javax.swing.JTable tblResultsSet;
     private javax.swing.JTable tblStudentDetails;
+    private javax.swing.JTable tblSubjectDetails;
     private javax.swing.JTextField txtAssignmentDate;
     private javax.swing.JTextField txtAssignmentPalce;
     private javax.swing.JTextField txtAssignmnetIDUp;

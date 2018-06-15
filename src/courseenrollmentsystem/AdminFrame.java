@@ -164,7 +164,6 @@ public class AdminFrame extends javax.swing.JFrame {
         txtCredit = new javax.swing.JTextField();
         txtSubjectName = new javax.swing.JTextField();
         txtSubjectCode = new javax.swing.JTextField();
-        txtSemesterNumber = new javax.swing.JTextField();
         btnInsertSubject = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
         cmboSourseName = new javax.swing.JComboBox<>();
@@ -330,7 +329,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel9.setText("Student Details");
+        jLabel9.setText("Student Results Details");
 
         tblFourthYears.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -744,8 +743,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnInsertSubject))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,15 +813,9 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(cmboCompusoryTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35)
                     .addComponent(cmboDegreeType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInsertSubject)
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtSemesterNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(18, 18, 18)
+                .addComponent(btnInsertSubject)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jLabel26.setText("Subject Code");
@@ -1186,7 +1178,6 @@ public class AdminFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Subject addedd successfully");                 // message box
             txtSubjectCode.setText("");                                                         // assignning values
             txtSubjectName.setText("");                                                         // assignning values
-            txtSemesterNumber.setText("");                                                      // assignning values
             txtCredit.setText("");                                                              // assignning values
             txtCourseFee.setText("");                                                           // assignning values
         } else {
@@ -1481,7 +1472,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtInstName;
     private javax.swing.JPasswordField txtInstPassword;
     private javax.swing.JTextField txtInstRegNumber;
-    private javax.swing.JTextField txtSemesterNumber;
     private javax.swing.JTextField txtStudentRegistrationNumber;
     private javax.swing.JTextField txtSubjectCode;
     private javax.swing.JTextField txtSubjectName;

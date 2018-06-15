@@ -67,7 +67,7 @@ public class InsertLecturerFrame extends javax.swing.JFrame {
 
         jLabel8.setText("Email :");
 
-        jLabel9.setText("Subject Code :");
+        jLabel9.setText("Subject Name :");
 
         cmboFacNameLec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School of Business", "School of Computing", "School of Engineering" }));
 

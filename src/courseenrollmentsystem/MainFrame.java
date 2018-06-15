@@ -295,11 +295,11 @@ public class MainFrame extends javax.swing.JFrame {
                         StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
                         stdProfile.setVisible(true);                                                        // set visible
                         stdProfile.setRegNumber(temp);                                                      // setting values
+                        stdProfile.setFacultyName(temp);                                                    // setting values
                         stdProfile.loadAssignments();                                                       // setting values
                         stdProfile.loadLabSessions();                                                       // setting values
                         stdProfile.loadPaymentDetails();                                                    // setting values
                         stdProfile.loadSubjectDetails();                                                    // setting values
-                        stdProfile.setFacultyName(temp);                                                    // setting values
                         stdProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         stdProfile.setResizable(false);                                                     // set resizable false
                         this.dispose();                                                                     // dispose the logging frame
@@ -350,6 +350,7 @@ public class MainFrame extends javax.swing.JFrame {
                     InstructorProfile instProfile = new InstructorProfile();
                     instProfile.setVisible(true);                                                           // set visible
                     instProfile.facName = instOps.getFacultyName(inst.getInstructorID());                   // set faculty name
+                    instProfile.loadSubjectDetails();
                     instProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     instProfile.setResizable(false);                                                        // resizable is false
                     this.dispose();                                                                         // dispose the logging frame
