@@ -1127,7 +1127,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      *
      */
     private void btnCheckFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckFirstActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber) + 20000));
+        txtAmountToPay.setText(Integer.toString(stdOps.getFirstSemesterAmountToPay(regNumber, txtYoS.getText()) + 20000));
     }//GEN-LAST:event_btnCheckFirstActionPerformed
 
     /**
@@ -1135,7 +1135,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      *
      */
     private void btnCheckSecondActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckSecondActionPerformed
-        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber) + 20000));
+        txtAmountToPay.setText(Integer.toString(stdOps.getSecondSemesterAmountToPay(regNumber, txtYoS.getText()) + 20000));
     }//GEN-LAST:event_btnCheckSecondActionPerformed
 
     /**

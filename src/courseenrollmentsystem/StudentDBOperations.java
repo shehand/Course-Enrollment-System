@@ -478,16 +478,35 @@ public class StudentDBOperations {
      * method to get first semester payment details
      *
      */
-    int getFirstSemesterAmountToPay(String regNumber) {
+    int getFirstSemesterAmountToPay(String regNumber, String yos) {
         try {
+            int total = 0;
+            
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT SUM(course_fee) FROM subjects WHERE name IN (SELECT first,second,third,fourth FROM semester_1_subjects WHERE reg_number ='" + regNumber + "')";
-            pst = (PreparedStatement) con.prepareStatement(query);
+            String query1 = "SELECT course_fee FROM subjects WHERE name IN (SELECT first FROM semester_1_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='1')";
+            String query2 = "SELECT course_fee FROM subjects WHERE name IN (SELECT second FROM semester_1_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='1')";
+            String query3 = "SELECT course_fee FROM subjects WHERE name IN (SELECT third FROM semester_1_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='1')";
+            String query4 = "SELECT course_fee FROM subjects WHERE name IN (SELECT fourth FROM semester_1_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='1')";
+            
+            pst = (PreparedStatement) con.prepareStatement(query1);
+            PreparedStatement pst2 = (PreparedStatement) con.prepareStatement(query2);
+            PreparedStatement pst3 = (PreparedStatement) con.prepareStatement(query3);
+            PreparedStatement pst4 = (PreparedStatement) con.prepareStatement(query4);
 
-            ResultSet rs = pst.executeQuery();
+            ResultSet rs1 = pst.executeQuery();
+            rs1.next();
+            ResultSet rs2 = pst2.executeQuery();
+            rs2.next();
+            ResultSet rs3 = pst3.executeQuery();
+            rs3.next();
+            ResultSet rs4 = pst4.executeQuery();
+            rs4.next();
+            
+            total = rs1.getInt(1) + rs2.getInt(1) + rs3.getInt(1) + rs4.getInt(1);
 
-            return rs.getInt(1);
+            return total;
         } catch (Exception e) {
+            System.out.println(e);
             return 0;
         } finally {
             try {
@@ -508,15 +527,33 @@ public class StudentDBOperations {
      * method to get second semester payment details
      *
      */
-    int getSecondSemesterAmountToPay(String regNumber) {
+    int getSecondSemesterAmountToPay(String regNumber, String yos) {
         try {
+            int total = 0;
+            
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT SUM(course_fee) FROM subjects WHERE name IN (SELECT first,second,third,fourth FROM semester_2_subjects WHERE reg_number ='" + regNumber + "')";
-            pst = (PreparedStatement) con.prepareStatement(query);
+            String query1 = "SELECT course_fee FROM subjects WHERE name IN (SELECT first FROM semester_2_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='2')";
+            String query2 = "SELECT course_fee FROM subjects WHERE name IN (SELECT second FROM semester_2_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='2')";
+            String query3 = "SELECT course_fee FROM subjects WHERE name IN (SELECT third FROM semester_2_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='2')";
+            String query4 = "SELECT course_fee FROM subjects WHERE name IN (SELECT fourth FROM semester_2_subjects WHERE reg_number ='" + regNumber + "' AND yos = '" + yos + "' AND semester='2')";
+            
+            pst = (PreparedStatement) con.prepareStatement(query1);
+            PreparedStatement pst2 = (PreparedStatement) con.prepareStatement(query2);
+            PreparedStatement pst3 = (PreparedStatement) con.prepareStatement(query3);
+            PreparedStatement pst4 = (PreparedStatement) con.prepareStatement(query4);
 
-            ResultSet rs = pst.executeQuery();
+            ResultSet rs1 = pst.executeQuery();
+            rs1.next();
+            ResultSet rs2 = pst2.executeQuery();
+            rs2.next();
+            ResultSet rs3 = pst3.executeQuery();
+            rs3.next();
+            ResultSet rs4 = pst4.executeQuery();
+            rs4.next();
+            
+            total = rs1.getInt(1) + rs2.getInt(1) + rs3.getInt(1) + rs4.getInt(1);
 
-            return rs.getInt(1);
+            return total;
         } catch (Exception e) {
             return 0;
         } finally {
