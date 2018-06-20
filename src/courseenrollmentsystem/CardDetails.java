@@ -54,6 +54,7 @@ public class CardDetails extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("NSBM Payment Gateway"));
 
         jLabel2.setText("Card Number");
@@ -76,6 +77,7 @@ public class CardDetails extends javax.swing.JFrame {
 
         txtAmount.setEditable(false);
 
+        btnProceed.setBackground(new java.awt.Color(0, 0, 153));
         btnProceed.setText("Proceed");
         btnProceed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

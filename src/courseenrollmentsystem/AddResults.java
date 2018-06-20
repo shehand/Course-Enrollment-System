@@ -87,6 +87,9 @@ public class AddResults extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(232, 248, 232));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
         txtCom1.setEditable(false);
 
         txtCom2.setEditable(false);
@@ -117,6 +120,7 @@ public class AddResults extends javax.swing.JFrame {
 
         jLabel6.setText("Credits For the Subject");
 
+        btnSubmit.setForeground(new java.awt.Color(0, 0, 204));
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +136,7 @@ public class AddResults extends javax.swing.JFrame {
 
         txtSemester.setEditable(false);
 
+        jButton1.setBackground(new java.awt.Color(204, 0, 0));
         jButton1.setText("?");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +144,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setText("?");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +152,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(204, 0, 0));
         jButton3.setText("?");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +160,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(204, 0, 0));
         jButton4.setText("?");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +168,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(204, 0, 0));
         jButton5.setText("?");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +176,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(204, 0, 0));
         jButton6.setText("?");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +184,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(204, 0, 0));
         jButton7.setText("?");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +192,7 @@ public class AddResults extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setBackground(new java.awt.Color(204, 0, 0));
         jButton8.setText("?");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

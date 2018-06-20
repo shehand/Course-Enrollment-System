@@ -97,6 +97,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("frmStudentReg"); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Student Registration"));
 
         jLabel1.setText("Fill following details for Student registration process");
@@ -147,6 +148,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Island Rank");
 
+        btnCancelUnd.setBackground(new java.awt.Color(204, 0, 0));
         btnCancelUnd.setForeground(new java.awt.Color(204, 0, 51));
         btnCancelUnd.setText("Cancel");
         btnCancelUnd.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +157,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRegisterUnd.setBackground(new java.awt.Color(0, 0, 153));
         btnRegisterUnd.setForeground(new java.awt.Color(0, 51, 153));
         btnRegisterUnd.setText("Register");
         btnRegisterUnd.addActionListener(new java.awt.event.ActionListener() {
@@ -331,6 +334,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel27.setText("Qualification Type :");
 
+        btnCancelPost.setBackground(new java.awt.Color(204, 0, 0));
         btnCancelPost.setForeground(new java.awt.Color(204, 0, 51));
         btnCancelPost.setText("Cancel");
         btnCancelPost.addActionListener(new java.awt.event.ActionListener() {
@@ -339,6 +343,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRegisterPost.setBackground(new java.awt.Color(0, 0, 153));
         btnRegisterPost.setForeground(new java.awt.Color(0, 51, 153));
         btnRegisterPost.setText("Register");
         btnRegisterPost.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +360,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel32.setText("Degree Type :");
 
-        cmboDegreeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSc", "Msc" }));
+        cmboDegreeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSc", "MSc" }));
 
         javax.swing.GroupLayout jpnlPostgaduateLayout = new javax.swing.GroupLayout(jpnlPostgaduate);
         jpnlPostgaduate.setLayout(jpnlPostgaduateLayout);

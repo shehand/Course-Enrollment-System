@@ -70,6 +70,9 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
+        jPanel4.setBackground(new java.awt.Color(232, 248, 232));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setText("Upload Lecture Notes");
@@ -86,6 +89,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         txtDescription.setRows(5);
         jScrollPane2.setViewportView(txtDescription);
 
+        btnOpen.setBackground(new java.awt.Color(153, 0, 153));
         btnOpen.setText("Choose");
         btnOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +97,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
             }
         });
 
+        btnUpload.setBackground(new java.awt.Color(0, 0, 153));
         btnUpload.setText("Upload");
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +163,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Lec Notes & Details");
 
+        tblLecNotes.setBackground(new java.awt.Color(232, 248, 232));
         tblLecNotes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -171,6 +177,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblLecNotes);
 
+        tbnRefresh.setBackground(new java.awt.Color(0, 0, 153));
         tbnRefresh.setText("Refresh Table");
         tbnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,12 +213,14 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel6.setBackground(new java.awt.Color(232, 248, 232));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel7.setText("Delete Lecture Notes ");
 
         jLabel8.setText("Lecture ID :");
 
+        btnDeleteLecNote.setBackground(new java.awt.Color(204, 0, 51));
         btnDeleteLecNote.setForeground(new java.awt.Color(204, 0, 51));
         btnDeleteLecNote.setText("Delete");
         btnDeleteLecNote.addActionListener(new java.awt.event.ActionListener() {
@@ -281,6 +290,7 @@ public class LecturerProfileFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lecture Management", jPanel2);
 
+        btnLogout.setBackground(new java.awt.Color(0, 0, 153));
         btnLogout.setForeground(new java.awt.Color(0, 0, 153));
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {

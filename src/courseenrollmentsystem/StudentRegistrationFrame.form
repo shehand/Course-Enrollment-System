@@ -44,6 +44,9 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e8" green="f8" red="e8" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Student Registration"/>
@@ -361,6 +364,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelUnd">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="cc" type="rgb"/>
                     </Property>
@@ -372,6 +378,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnRegisterUnd">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="33" red="0" type="rgb"/>
                     </Property>
@@ -675,6 +684,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelPost">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="cc" type="rgb"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="cc" type="rgb"/>
                     </Property>
@@ -686,6 +698,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnRegisterPost">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="33" red="0" type="rgb"/>
                     </Property>
@@ -731,7 +746,7 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="2">
                         <StringItem index="0" value="BSc"/>
-                        <StringItem index="1" value="Msc"/>
+                        <StringItem index="1" value="MSc"/>
                       </StringArray>
                     </Property>
                   </Properties>

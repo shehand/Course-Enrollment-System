@@ -51,6 +51,8 @@ public class UpdateLecturerFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
         jLabel1.setText("Update Lecturer Details");
 
         jLabel2.setText("Lecturer ID :");
@@ -77,6 +79,7 @@ public class UpdateLecturerFrame extends javax.swing.JFrame {
 
         cmboPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Senior Lecturer", "Assistant Lecturer" }));
 
+        btnUpdateLecturer.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateLecturer.setText("Update");
         btnUpdateLecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

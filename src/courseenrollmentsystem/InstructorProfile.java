@@ -196,6 +196,9 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
+        btnInstructorLogout.setBackground(new java.awt.Color(0, 0, 153));
         btnInstructorLogout.setForeground(new java.awt.Color(0, 0, 204));
         btnInstructorLogout.setText("Logout");
         btnInstructorLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +209,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
+        jPanel4.setBackground(new java.awt.Color(232, 248, 232));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Insert New Assignment");
@@ -218,6 +222,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel9.setText("Poster ID :");
 
+        btnPostAssignment.setBackground(new java.awt.Color(0, 0, 153));
         btnPostAssignment.setText("Post Assignment");
         btnPostAssignment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,12 +291,14 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(232, 248, 232));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setText("Update an exiting Assignment");
 
         jLabel10.setText("Assignnment ID :");
 
+        btnUpdateAssignment.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateAssignment.setText("Update");
         btnUpdateAssignment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,6 +373,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel5.setText("View Available Assignments");
 
+        tblAvalableAssignmnets.setBackground(new java.awt.Color(232, 248, 232));
         tblAvalableAssignmnets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -382,6 +390,7 @@ public class InstructorProfile extends javax.swing.JFrame {
             tblAvalableAssignmnets.getColumnModel().getColumn(3).setHeaderValue("Place");
         }
 
+        btnRefAssignmnet.setBackground(new java.awt.Color(0, 0, 153));
         btnRefAssignmnet.setText("Refresh");
         btnRefAssignmnet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,12 +429,14 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        jPanel7.setBackground(new java.awt.Color(232, 248, 232));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setText("Delete Assignment");
 
         jLabel13.setText("Assignment ID :");
 
+        btnDeleteAssignment.setBackground(new java.awt.Color(204, 0, 51));
         btnDeleteAssignment.setForeground(new java.awt.Color(204, 0, 0));
         btnDeleteAssignment.setText("Delete");
         btnDeleteAssignment.addActionListener(new java.awt.event.ActionListener() {
@@ -501,6 +512,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Assignment Handling", jPanel2);
 
+        jPanel8.setBackground(new java.awt.Color(232, 248, 232));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel8.setInheritsPopupMenu(true);
 
@@ -512,6 +524,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel18.setText("Place :");
 
+        btnPlaceLab.setBackground(new java.awt.Color(0, 0, 153));
         btnPlaceLab.setText("Place Lab Session");
         btnPlaceLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,6 +600,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel15.setText("Lab Schedule");
 
+        tblAvalableLabSessions.setBackground(new java.awt.Color(232, 248, 232));
         tblAvalableLabSessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -600,6 +614,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblAvalableLabSessions);
 
+        btnLabRefresh.setBackground(new java.awt.Color(0, 0, 153));
         btnLabRefresh.setText("Refresh");
         btnLabRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -665,6 +680,8 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel32.setText("File :");
 
+        btnUploadPDF.setBackground(new java.awt.Color(153, 0, 153));
+        btnUploadPDF.setForeground(new java.awt.Color(153, 0, 153));
         btnUploadPDF.setText("Find");
         btnUploadPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -678,6 +695,7 @@ public class InstructorProfile extends javax.swing.JFrame {
             }
         });
 
+        btnSaveIN.setBackground(new java.awt.Color(0, 0, 153));
         btnSaveIN.setText("Upload");
         btnSaveIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,6 +703,7 @@ public class InstructorProfile extends javax.swing.JFrame {
             }
         });
 
+        tblResultsSet.setBackground(new java.awt.Color(232, 248, 232));
         tblResultsSet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -753,6 +772,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tblStudentDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblStudentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -766,6 +786,7 @@ public class InstructorProfile extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tblStudentDetails);
 
+        btnAddResults.setBackground(new java.awt.Color(0, 0, 153));
         btnAddResults.setText("Add Results");
         btnAddResults.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -775,6 +796,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         cmboSemester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Semester", "Second Semester" }));
 
+        bntLoadTable.setBackground(new java.awt.Color(0, 0, 153));
         bntLoadTable.setText("Load Table");
         bntLoadTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -816,7 +838,7 @@ public class InstructorProfile extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 61, Short.MAX_VALUE)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bntLoadTable)
@@ -838,6 +860,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Result Management", jPanel10);
 
+        tblSubjectDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblSubjectDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

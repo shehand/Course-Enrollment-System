@@ -48,19 +48,16 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnRegisterStudent = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
         jLabel1.setText("NSBM University Course Management System");
 
+        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Login");
@@ -103,7 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(btnLogin)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -125,6 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel5.setText("Student Registration");
@@ -146,18 +144,17 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel6)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addGap(0, 290, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnRegisterStudent)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,77 +168,38 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel8.setText("Special Notices");
-
-        jLabel7.setText("Thi application is a Stand - Alone application");
-
-        jLabel9.setText("Use mysql and apache server to run the application");
-
-        jLabel10.setText("Mysql should be run on 3306 port and database should be migrated manually");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))))
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,16 +215,32 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtLoginUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginUserNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoginUserNameActionPerformed
+    /**
+     * method to register a student
+     *
+     */
+    private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
+
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;                                     // taking the current month
+
+        if (month == 2 || month == 7) {
+            StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
+            strf.setVisible(true);                                                                      // set vsisble
+            strf.setResizable(false);                                                                   // set resiazable false
+            strf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details"); //message box
+        }
+    }//GEN-LAST:event_btnRegisterStudentActionPerformed
+
     /**
      * method to auth the user (login forum)
      *
@@ -275,9 +249,9 @@ public class MainFrame extends javax.swing.JFrame {
         String temp = txtLoginUserName.getText();                                                       // assign username to verify user
 
         /**
-         * algorithm to verify deferent user levels
-         *
-         */
+        * algorithm to verify deferent user levels
+        *
+        */
         if (!txtLoginUserName.getText().isEmpty()) {
             if (temp.charAt(0) == 'S') {
                 if (temp.charAt(1) == 'U') {
@@ -285,10 +259,10 @@ public class MainFrame extends javax.swing.JFrame {
                     und.setRegNum(txtLoginUserName.getText());                                              // setting values
                     und.setPassword(txtLoginPassword.getText());                                            // setting values
                     /**
-                     * load student profile if the user is a undergraduate
-                     * student
-                     *
-                     */
+                    * load student profile if the user is a undergraduate
+                    * student
+                    *
+                    */
                     if (stdOps.undergraduateStudentVerification(und)) {                                     // if undergraduate
                         txtLoginPassword.setText("");                                                       // setting values
                         txtLoginUserName.setText("");                                                       // setting values
@@ -313,10 +287,10 @@ public class MainFrame extends javax.swing.JFrame {
                     pst.setRegNum(txtLoginUserName.getText());                                              // setting values
                     pst.setPassword(txtLoginPassword.getText());                                            // setting values
                     /**
-                     * load postgraduate profile if the user is postgraduate
-                     * student
-                     *
-                     */
+                    * load postgraduate profile if the user is postgraduate
+                    * student
+                    *
+                    */
                     if (stdOps.postgraduateStudentVerification(pst)) {
                         txtLoginPassword.setText("");                                                       // setting values
                         txtLoginUserName.setText("");                                                       // setting values
@@ -351,6 +325,7 @@ public class MainFrame extends javax.swing.JFrame {
                     instProfile.setVisible(true);                                                           // set visible
                     instProfile.facName = instOps.getFacultyName(inst.getInstructorID());                   // set faculty name
                     instProfile.loadSubjectDetails();
+                    instProfile.loadAssigmnetDetails();
                     instProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     instProfile.setResizable(false);                                                        // resizable is false
                     this.dispose();                                                                         // dispose the logging frame
@@ -396,23 +371,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /**
-     * method to register a student
-     *
-     */
-    private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
-
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;                                     // taking the current month
-
-        if (month == 2 || month == 7) {
-            StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
-            strf.setVisible(true);                                                                      // set vsisble
-            strf.setResizable(false);                                                                   // set resiazable false
-            strf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details"); //message box
-        }
-    }//GEN-LAST:event_btnRegisterStudentActionPerformed
+    private void txtLoginUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginUserNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginUserNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,20 +414,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisterStudent;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField txtLoginPassword;
     private javax.swing.JTextField txtLoginUserName;
     // End of variables declaration//GEN-END:variables

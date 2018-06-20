@@ -51,6 +51,8 @@ public class DownloadResults extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
         jLabel1.setText("Download Selected file");
 
         jLabel2.setText("File Name :");
@@ -59,6 +61,7 @@ public class DownloadResults extends javax.swing.JFrame {
 
         txtLocation.setEditable(false);
 
+        btnDownload.setBackground(new java.awt.Color(0, 0, 153));
         btnDownload.setText("Dowload");
         btnDownload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

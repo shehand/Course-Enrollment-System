@@ -42,6 +42,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e8" green="f8" red="e8" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -95,6 +100,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnInstructorLogout">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="0" red="0" type="rgb"/>
             </Property>
@@ -162,6 +170,9 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="jPanel4">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
@@ -280,6 +291,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnPostAssignment">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Post Assignment"/>
                       </Properties>
                       <Events>
@@ -290,6 +304,9 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel5">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
@@ -376,6 +393,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnUpdateAssignment">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Update"/>
                       </Properties>
                       <Events>
@@ -475,6 +495,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="tblAvalableAssignmnets">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="4">
                                 <Column editable="true" title="Assignment ID" type="java.lang.Object"/>
@@ -516,6 +539,9 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="btnRefAssignmnet">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
                       <Events>
@@ -526,6 +552,9 @@
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel7">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
@@ -594,6 +623,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnDeleteAssignment">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="0" red="cc" type="rgb"/>
+                        </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="cc" type="rgb"/>
                         </Property>
@@ -644,6 +676,9 @@
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="jPanel8">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
@@ -762,6 +797,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnPlaceLab">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Place Lab Session"/>
                       </Properties>
                       <Events>
@@ -834,6 +872,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="tblAvalableLabSessions">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="4">
                                 <Column editable="true" title="Subject" type="java.lang.Object"/>
@@ -869,6 +910,9 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="btnLabRefresh">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
                       <Events>
@@ -900,8 +944,8 @@
                           <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane5" pref="667" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Component id="jScrollPane5" alignment="0" pref="667" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="cmboSemester" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="cmboYearOfStudy" min="-2" pref="104" max="-2" attributes="0"/>
@@ -923,7 +967,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel12" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="61" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cmboSemester" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="bntLoadTable" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1051,6 +1095,12 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnUploadPDF">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="99" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Find"/>
                       </Properties>
                       <Events>
@@ -1064,6 +1114,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSaveIN">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="0" red="0" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Upload"/>
                       </Properties>
                       <Events>
@@ -1079,6 +1132,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="tblResultsSet">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="4">
                                 <Column editable="true" title="Assignment ID" type="java.lang.Object"/>
@@ -1131,6 +1187,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblStudentDetails">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                        </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
                             <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -1172,6 +1231,9 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnAddResults">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Add Results"/>
                   </Properties>
                   <Events>
@@ -1193,6 +1255,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="bntLoadTable">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="0" red="0" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Load Table"/>
                   </Properties>
                   <Events>
@@ -1255,6 +1320,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblSubjectDetails">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e8" green="f8" red="e8" type="rgb"/>
+                        </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
                             <Column editable="true" title="Title 1" type="java.lang.Object"/>

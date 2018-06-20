@@ -485,7 +485,7 @@ public class InstructorDBOperations {
         try {
             String result = "";                                                 // string to hold results
             con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
-            String query = "SELECT course FROM payments WHERE reg_number ='" + regNum + "'"; // query
+            String query = "SELECT faculty FROM students WHERE reg_number ='" + regNum + "'"; // query
             pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
 
             ResultSet rs = pst.executeQuery();                                  // execute the query
@@ -493,7 +493,6 @@ public class InstructorDBOperations {
             while (rs.next()) {
                 result = rs.getString(1);                                       // setting values
             }
-
             return result;                                                      // return value
 
         } catch (Exception e) {                                                 // exception handling
@@ -519,7 +518,7 @@ public class InstructorDBOperations {
      */
     String[] getCompulsorySubjectDetails(String courseName, String semester, String year) {
 
-        String sub[] = new String[4];                                           // string to hold subject details
+        String sub[] = new String[20];                                           // string to hold subject details
         try {
             int sem = 0;
             if (semester.equals("First Semester")) {

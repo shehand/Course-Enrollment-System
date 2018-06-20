@@ -156,6 +156,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
         jLabel1.setText("User :");
 
         txtStudentRegNumber.setEditable(false);
@@ -173,6 +175,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             }
         });
 
+        tblAssignmentTable.setBackground(new java.awt.Color(232, 248, 232));
         tblAssignmentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -205,6 +208,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         tpdStudentProfile.addTab("Assignments", jPanel3);
 
+        tblStudentLabSessions.setBackground(new java.awt.Color(232, 248, 232));
         tblStudentLabSessions.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -241,6 +245,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         jLabel19.setText("Payments ");
 
+        tblPayments.setBackground(new java.awt.Color(232, 248, 232));
         tblPayments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -262,6 +267,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             }
         });
 
+        btnPay.setBackground(new java.awt.Color(0, 0, 153));
         btnPay.setText("Pay");
         btnPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,6 +551,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         tpdStudentProfile.addTab("Results", jPanel6);
 
+        tblLectureNotes.setBackground(new java.awt.Color(232, 248, 232));
         tblLectureNotes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -629,6 +636,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         txtFFourthSubject.setToolTipText("");
 
+        btnConfirmSubjects.setBackground(new java.awt.Color(0, 0, 153));
         btnConfirmSubjects.setText("Confirm");
         btnConfirmSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -682,6 +690,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        btnUpdateFirstSemesterSubjects.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateFirstSemesterSubjects.setText("1st Update");
         btnUpdateFirstSemesterSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -689,6 +698,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateSecondSemesterSubjects.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateSecondSemesterSubjects.setText("2nd Update");
         btnUpdateSecondSemesterSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1074,7 +1084,12 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         pay.setAmount(txtAmountToPay.getText());
         pay.setRegNumber(txtStudentRegNumber.getText());
         pay.setCourse(facultyName);
-        pay.setSemester(tblPayments.getRowCount() + 1);
+        if (tblPayments.getRowCount() % 2 == 0) {
+            pay.setSemester(1);
+        } else {
+            pay.setSemester(2);
+        }
+        pay.setYear(txtYoS.getText());
 
         CardDetails crdFrame = new CardDetails();
         crdFrame.setVisible(true);
@@ -1093,7 +1108,8 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
             @Override
             public void windowClosed(WindowEvent e) {
-                loadResultsTable();
+                loadPaymentDetails();
+                txtAmountToPay.setText("");
             }
 
             @Override
@@ -1183,7 +1199,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         sbjDetails[4] = txtUpSFou.getText();
         String yos = txtYoS.getText();
 
-        if (stdOps.updateSecondSemesterSubjects(sbjDetails, semester ,yos)) {
+        if (stdOps.updateSecondSemesterSubjects(sbjDetails, semester, yos)) {
             JOptionPane.showMessageDialog(this, "Updated Successfully");
             txtUpSFir.setText("");
             txtUpSFou.setText("");
@@ -1236,8 +1252,12 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         txtRe8.setText(f.getRes8());
 
         txtStudentGPA.setText(currentGPA);
+        
+        if(txtStudentGPA.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Sorry, Your GPA haven't calculated Yet. Please try again.");
+        }
     }//GEN-LAST:event_btnRequestResultsActionPerformed
-    
+
     /**
      * method to download lecturer notes
      *

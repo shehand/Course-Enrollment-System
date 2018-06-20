@@ -463,6 +463,11 @@ public class AdminDBOperations {
         }
     }
 
+    /**
+     * method to get lecturer details
+     *
+     * @return
+     */
     ArrayList<Lecturers> getLecturerDetails() {
 
         ArrayList<Lecturers> lec = new ArrayList<Lecturers>();                                                                                  // array list to store student details
@@ -504,6 +509,11 @@ public class AdminDBOperations {
         }
     }
 
+    /**
+     * method to delete lecturer details
+     *
+     * @return
+     */
     boolean deleteLecturer(String lecID) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);                                                            // establishing connection with the database
@@ -525,6 +535,57 @@ public class AdminDBOperations {
                 }
             } catch (Exception e) {
 
+            }
+        }
+    }
+
+    /**
+     * method to get student details
+     *
+     * @return
+     */
+    ArrayList<Student> getStudentDetails(String underOrPost, String bscOrMsc) {
+        ArrayList<Student> std = new ArrayList<Student>();
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "";                                                                                            // query
+            if (underOrPost.equals("Undergraduate")) {
+                query = "SELECT * FROM undergraduate_student";
+            } else if (bscOrMsc.equals("BSc")) {
+                query = "SELECT * FROM postgraduate_student WHERE degree_type = 'BSc'";
+            } else {
+                query = "SELECT * FROM postgraduate_student WHERE degree_type = 'MSc'";
+            }
+            pst = (PreparedStatement) con.prepareStatement(query);                                                                              // preaparing the query to execute     
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Student s = new Student();
+                s.setRegNum(rs.getString(1));
+                s.setFullName(rs.getString(2));
+                s.setAddress(rs.getString(4));
+                s.setEmail(rs.getString(7));
+                s.setPhoneNumber(rs.getInt(5));
+                s.setDob(rs.getString(6));
+                s.setNic(rs.getString(3));
+
+                std.add(s);
+            }
+
+            return std;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                                                                                // closing the connection with the database
+                }
+
+                if (pst != null) {
+                    pst.close();                                                                                                                // closing the prepared statement for reusing
+                }
+            } catch (Exception e) {
             }
         }
     }

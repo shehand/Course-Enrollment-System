@@ -445,7 +445,7 @@ public class StudentDBOperations {
     boolean insertPayments(Payment pay) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "INSERT INTO payments VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO payments VALUES (?,?,?,?,?,?)";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             pst.setInt(1, pay.getPayID());
@@ -453,6 +453,7 @@ public class StudentDBOperations {
             pst.setInt(3, pay.getSemester());
             pst.setString(4, pay.getCourse());
             pst.setString(5, pay.getRegNumber());
+            pst.setString(6, pay.getYear());
 
             pst.executeUpdate();
             return true;

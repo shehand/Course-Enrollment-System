@@ -26,7 +26,8 @@ public class AdminFrame extends javax.swing.JFrame {
         loadTransactionDetails();               // load table at the very first of profile loading
         loadFourthYearStudents();               // load table at the very first of profile loading
         loadLecturerDetails();                  // load table at the very first of profile loading
-    }   
+        loadStudentDetails();                   // load table at the very first of profile loading
+    }
 
     AdminDBOperations adminOps = new AdminDBOperations();               // instance for do back end operations belong to administrator
     ArrayList<Instructor> instDetails;                                  // array list for hosling instructor details when instructor details loading to the instructor details table
@@ -34,7 +35,8 @@ public class AdminFrame extends javax.swing.JFrame {
     ArrayList<Payment> payDetails;                                      // array list to store payment details for table details loading
     ArrayList<FourthYears> fourthYears;                                 // array list to store fourth year details for table fourth year details loading
     ArrayList<Lecturers> lecDetails;                                    // array list to store lecturer details for table lecturer details loading
-    
+    ArrayList<Student> stuDetails;                                      // array list to store student details for table student details loading
+
     /**
      * method to load the instructor details table
      *
@@ -75,11 +77,26 @@ public class AdminFrame extends javax.swing.JFrame {
         tblFourthYears.setModel(frDetails);                                                     // loading the table
     }
     
-    void loadLecturerDetails(){
+    /**
+     * method to load lecturer selections details
+     *
+     */
+    void loadLecturerDetails() {
         lecDetails = adminOps.getLecturerDetails();
         LecturrerDetails lecDet = new LecturrerDetails(lecDetails);
         tblLecturerDetails.setModel(lecDet);
     }
+    
+    /**
+     * method to load student selections details
+     *
+     */
+    void loadStudentDetails() {
+        stuDetails = adminOps.getStudentDetails(cmboUnderOrPost.getSelectedItem().toString(), cmboBscMsc.getSelectedItem().toString());
+        StudentDetails std = new StudentDetails(stuDetails);
+        tblUndPostStudentDetails.setModel(std);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -189,6 +206,12 @@ public class AdminFrame extends javax.swing.JFrame {
         btnUpdateLecturer = new javax.swing.JButton();
         btnDeleteLecturer = new javax.swing.JButton();
         btnRefreshLec = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        cmboUnderOrPost = new javax.swing.JComboBox<>();
+        cmboBscMsc = new javax.swing.JComboBox<>();
+        btnViewStudentDetails = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblUndPostStudentDetails = new javax.swing.JTable();
         btnAdminLogout = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -196,10 +219,13 @@ public class AdminFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(232, 248, 232));
+
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setText("Registration Number :");
 
+        btnCheckAvailability.setBackground(new java.awt.Color(0, 0, 153));
         btnCheckAvailability.setText("Check Availability");
         btnCheckAvailability.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +233,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel6.setBackground(new java.awt.Color(232, 248, 232));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Full Name :");
@@ -227,6 +254,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         txtUpFullName.setEditable(false);
 
+        btnUpdateStudent.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateStudent.setText("Update");
         btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,6 +359,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Student Results Details");
 
+        tblFourthYears.setBackground(new java.awt.Color(232, 248, 232));
         tblFourthYears.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -346,6 +375,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         cmboFacultyFourth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "School of Business", "School of Computing", "School of Engineering" }));
 
+        btnFacultyFourthYears.setBackground(new java.awt.Color(0, 0, 153));
         btnFacultyFourthYears.setText("Load");
         btnFacultyFourthYears.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,12 +426,14 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jPanel9.setBackground(new java.awt.Color(232, 248, 232));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel10.setText("Delete Student");
 
         jLabel11.setText("Registration Number :");
 
+        btnDeleteStudent.setBackground(new java.awt.Color(204, 0, 51));
         btnDeleteStudent.setForeground(new java.awt.Color(204, 0, 0));
         btnDeleteStudent.setText("Delete");
         btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -440,10 +472,12 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
+        jPanel10.setBackground(new java.awt.Color(232, 248, 232));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel12.setText("Register New Student :");
 
+        btnRegisterStudent.setBackground(new java.awt.Color(0, 0, 153));
         btnRegisterStudent.setText("Register");
         btnRegisterStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -521,6 +555,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Student Management", jPanel2);
 
+        btnRemoveInstructor.setBackground(new java.awt.Color(204, 0, 0));
         btnRemoveInstructor.setForeground(new java.awt.Color(204, 0, 0));
         btnRemoveInstructor.setText("Remove Instructor");
         btnRemoveInstructor.addActionListener(new java.awt.event.ActionListener() {
@@ -529,6 +564,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        tblInstructorDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblInstructorDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -542,6 +578,7 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblInstructorDetails);
 
+        jPanel11.setBackground(new java.awt.Color(232, 248, 232));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel13.setText("Add a new Instructor ");
@@ -558,6 +595,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel19.setText("Password :");
 
+        btnAddInstructor.setBackground(new java.awt.Color(0, 0, 153));
         btnAddInstructor.setText("Register");
         btnAddInstructor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -675,6 +713,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Instructor Management", jPanel3);
 
+        tblSubjectDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblSubjectDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -688,6 +727,7 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblSubjectDetails);
 
+        btnRemoveSubject.setBackground(new java.awt.Color(204, 0, 51));
         btnRemoveSubject.setForeground(new java.awt.Color(204, 0, 51));
         btnRemoveSubject.setText("Remove Subject");
         btnRemoveSubject.addActionListener(new java.awt.event.ActionListener() {
@@ -696,6 +736,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel12.setBackground(new java.awt.Color(232, 248, 232));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel20.setText("Insert New Subject");
@@ -855,6 +896,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Subject Management", jPanel4);
 
+        tblTransactionDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblTransactionDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -887,6 +929,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Payment Details", jPanel13);
 
+        tblLecturerDetails.setBackground(new java.awt.Color(232, 248, 232));
         tblLecturerDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -900,6 +943,7 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tblLecturerDetails);
 
+        btnInsertLecturer.setBackground(new java.awt.Color(0, 0, 153));
         btnInsertLecturer.setText("Insert New Lecturer");
         btnInsertLecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -907,6 +951,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateLecturer.setBackground(new java.awt.Color(0, 0, 153));
         btnUpdateLecturer.setText("Update Lecturer");
         btnUpdateLecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -914,6 +959,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteLecturer.setBackground(new java.awt.Color(204, 0, 0));
         btnDeleteLecturer.setForeground(new java.awt.Color(204, 0, 51));
         btnDeleteLecturer.setText("Delete Lecturer");
         btnDeleteLecturer.addActionListener(new java.awt.event.ActionListener() {
@@ -922,6 +968,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRefreshLec.setBackground(new java.awt.Color(0, 0, 153));
         btnRefreshLec.setText("Refresh Table");
         btnRefreshLec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -976,6 +1023,65 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lecturer Management", jPanel14);
 
+        cmboUnderOrPost.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Undergraduate", "Postgraduate" }));
+
+        cmboBscMsc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BSc", "MSc" }));
+
+        btnViewStudentDetails.setBackground(new java.awt.Color(0, 0, 153));
+        btnViewStudentDetails.setText("View Table");
+        btnViewStudentDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewStudentDetailsActionPerformed(evt);
+            }
+        });
+
+        tblUndPostStudentDetails.setBackground(new java.awt.Color(232, 248, 232));
+        tblUndPostStudentDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tblUndPostStudentDetails);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmboUnderOrPost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cmboBscMsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewStudentDetails)
+                .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1225, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmboUnderOrPost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmboBscMsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewStudentDetails))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Student Details", jPanel16);
+
+        btnAdminLogout.setBackground(new java.awt.Color(0, 0, 153));
         btnAdminLogout.setForeground(new java.awt.Color(0, 51, 153));
         btnAdminLogout.setText("Logout");
         btnAdminLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -1222,29 +1328,31 @@ public class AdminFrame extends javax.swing.JFrame {
      *
      */
     private void btnFacultyFourthYearsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacultyFourthYearsActionPerformed
-        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString(),cmboYear.getSelectedItem().toString());// retrieving the array list from the backend
+        fourthYears = adminOps.getFourthYears(cmboFacultyFourth.getSelectedItem().toString(), cmboYear.getSelectedItem().toString());// retrieving the array list from the backend
         FourthYearDetails frDetails = new FourthYearDetails(fourthYears);                                               // create an instance of table loading class
         tblFourthYears.setModel(frDetails);                                                                             // loading the table
     }//GEN-LAST:event_btnFacultyFourthYearsActionPerformed
-    
+
     /**
      * method to register student
-     **/
+     *
+     */
     private void btnRegisterStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterStudentActionPerformed
         StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
         strf.setVisible(true);                                                                      // set vsisble
         strf.setResizable(false);                                                                   // set resiazable false
     }//GEN-LAST:event_btnRegisterStudentActionPerformed
-    
+
     /**
      * method to insert lecturer
-     **/
+     *
+     */
     private void btnInsertLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertLecturerActionPerformed
         InsertLecturerFrame isnt = new InsertLecturerFrame();
         isnt.setVisible(true);
         isnt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         isnt.setResizable(false);
-        
+
         // listner to update table
         isnt.addWindowListener(new WindowListener() {
             @Override
@@ -1276,12 +1384,13 @@ public class AdminFrame extends javax.swing.JFrame {
             public void windowDeactivated(WindowEvent e) {
             }
         });
-        
+
     }//GEN-LAST:event_btnInsertLecturerActionPerformed
-    
+
     /**
      * method to update lecturer
-     **/
+     *
+     */
     private void btnUpdateLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLecturerActionPerformed
         UpdateLecturerFrame uplec = new UpdateLecturerFrame();
         uplec.setVisible(true);
@@ -1319,28 +1428,34 @@ public class AdminFrame extends javax.swing.JFrame {
             public void windowDeactivated(WindowEvent e) {
             }
         });
-        
+
     }//GEN-LAST:event_btnUpdateLecturerActionPerformed
     /**
      * method to delete lecturer
-     **/
+     *
+     */
     private void btnDeleteLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLecturerActionPerformed
-        String id  = lecDetails.get(tblLecturerDetails.getSelectedRow()).getLecID();
-        
-        if(adminOps.deleteLecturer(id)){
+        String id = lecDetails.get(tblLecturerDetails.getSelectedRow()).getLecID();
+
+        if (adminOps.deleteLecturer(id)) {
             JOptionPane.showMessageDialog(this, "Row deleted successfully");
             loadLecturerDetails();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Oops, Something went wrong");
         }
     }//GEN-LAST:event_btnDeleteLecturerActionPerformed
-    
+
     /**
      * method to refresh table
-     **/
+     *
+     */
     private void btnRefreshLecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshLecActionPerformed
         loadLecturerDetails();
     }//GEN-LAST:event_btnRefreshLecActionPerformed
+
+    private void btnViewStudentDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStudentDetailsActionPerformed
+        loadStudentDetails();
+    }//GEN-LAST:event_btnViewStudentDetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1392,12 +1507,15 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveSubject;
     private javax.swing.JButton btnUpdateLecturer;
     private javax.swing.JButton btnUpdateStudent;
+    private javax.swing.JButton btnViewStudentDetails;
+    private javax.swing.JComboBox<String> cmboBscMsc;
     private javax.swing.JComboBox<String> cmboCompusoryTag;
     private javax.swing.JComboBox<String> cmboDegreeType;
     private javax.swing.JComboBox<String> cmboFacultName;
     private javax.swing.JComboBox<String> cmboFacultyFourth;
     private javax.swing.JComboBox<String> cmboSemesterNumber;
     private javax.swing.JComboBox<String> cmboSourseName;
+    private javax.swing.JComboBox<String> cmboUnderOrPost;
     private javax.swing.JComboBox<String> cmboYear;
     private javax.swing.JComboBox<String> cmboYoS;
     private javax.swing.JLabel jLabel1;
@@ -1442,6 +1560,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1455,12 +1574,14 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblFourthYears;
     private javax.swing.JTable tblInstructorDetails;
     private javax.swing.JTable tblLecturerDetails;
     private javax.swing.JTable tblSubjectDetails;
     private javax.swing.JTable tblTransactionDetails;
+    private javax.swing.JTable tblUndPostStudentDetails;
     private javax.swing.JTextField txtCourseFee;
     private javax.swing.JTextField txtCredit;
     private javax.swing.JTextField txtDeleteInstID;

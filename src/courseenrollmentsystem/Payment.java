@@ -16,6 +16,7 @@ public class Payment {
     private String amount;
     private int semester;
     private String course;
+    private String year;
 
     /**
      * @return the payID
@@ -85,6 +86,20 @@ public class Payment {
      */
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    /**
+     * @return the year
+     */
+    public String getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(String year) {
+        this.year = year;
     }
 
 }
