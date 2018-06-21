@@ -1095,6 +1095,8 @@ public class InstructorProfile extends javax.swing.JFrame {
      *
      */
     private void btnDeleteAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAssignmentActionPerformed
+        txtDeleteAssignment.setText(Integer.toString(asgList.get(tblAvalableAssignmnets.getSelectedRow()).getAssignmentID()));
+        
         Assignment asg = new Assignment();                                              // instane to take lab session details
 
         asg.setAssignmentID(Integer.parseInt(txtDeleteAssignment.getText()));           // setting values
@@ -1117,6 +1119,8 @@ public class InstructorProfile extends javax.swing.JFrame {
      *
      */
     private void btnUpdateAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAssignmentActionPerformed
+        txtAssignmnetIDUp.setText(Integer.toString(asgList.get(tblAvalableAssignmnets.getSelectedRow()).getAssignmentID()));
+        
         Assignment asg = new Assignment();                                              // instane to take lab session details
 
         asg.setAssignmentID(Integer.parseInt(txtAssignmnetIDUp.getText()));             // setting values

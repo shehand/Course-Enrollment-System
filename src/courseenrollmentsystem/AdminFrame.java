@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;         // importing libraries
 import javax.swing.JOptionPane;     // importing libraries
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -676,6 +678,12 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtDeleteInstID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteInstIDActionPerformed(evt);
+            }
+        });
+
         jLabel25.setText("Instructor ID");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1250,6 +1258,8 @@ public class AdminFrame extends javax.swing.JFrame {
      *
      */
     private void btnRemoveInstructorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInstructorActionPerformed
+        txtDeleteInstID.setText(instDetails.get(tblInstructorDetails.getSelectedRow()).getInstructorID());
+        
         String tmpID = txtDeleteInstID.getText();                                               // assignning values
 
         if (adminOps.removeInstructor(tmpID)) {
@@ -1297,6 +1307,8 @@ public class AdminFrame extends javax.swing.JFrame {
      *
      */
     private void btnRemoveSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveSubjectActionPerformed
+        txtDeleteSubjectCode.setText(sbjDetails.get(tblSubjectDetails.getSelectedRow()).getSubCode());
+        
         String tempID = txtDeleteSubjectCode.getText();                                         // assignning values
 
         if (adminOps.removeSubject(tempID)) {
@@ -1434,6 +1446,7 @@ public class AdminFrame extends javax.swing.JFrame {
      * method to delete lecturer
      *
      */
+    
     private void btnDeleteLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLecturerActionPerformed
         String id = lecDetails.get(tblLecturerDetails.getSelectedRow()).getLecID();
 
@@ -1456,6 +1469,10 @@ public class AdminFrame extends javax.swing.JFrame {
     private void btnViewStudentDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStudentDetailsActionPerformed
         loadStudentDetails();
     }//GEN-LAST:event_btnViewStudentDetailsActionPerformed
+
+    private void txtDeleteInstIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteInstIDActionPerformed
+        
+    }//GEN-LAST:event_txtDeleteInstIDActionPerformed
 
     /**
      * @param args the command line arguments
