@@ -186,9 +186,11 @@ public class AdminFrame extends javax.swing.JFrame {
         btnRefreshLec = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnAdminLogout.setForeground(new java.awt.Color(0, 51, 153));
         btnAdminLogout.setText("Logout");
         btnAdminLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +404,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel11.setText("Registration Number :");
 
+        btnDeleteStudent.setForeground(new java.awt.Color(204, 0, 0));
         btnDeleteStudent.setText("Delete");
         btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -520,6 +523,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Student Management", jPanel2);
 
+        btnRemoveInstructor.setForeground(new java.awt.Color(204, 0, 0));
         btnRemoveInstructor.setText("Remove Instructor");
         btnRemoveInstructor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -686,6 +690,7 @@ public class AdminFrame extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblSubjectDetails);
 
+        btnRemoveSubject.setForeground(new java.awt.Color(204, 0, 51));
         btnRemoveSubject.setText("Remove Subject");
         btnRemoveSubject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -887,6 +892,7 @@ public class AdminFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteLecturer.setForeground(new java.awt.Color(204, 0, 51));
         btnDeleteLecturer.setText("Delete Lecturer");
         btnDeleteLecturer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -950,8 +956,13 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/1472541558_nsbm-logo.png"))); // NOI18N
 
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/admin_v01D_support__1528706276_40500__1528706276_50386.png"))); // NOI18N
         jLabel31.setText("Admin Profile");
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel33.setText("NSBM Green University");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -964,26 +975,27 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdminLogout, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel31)
-                                .addGap(21, 21, 21)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdminLogout)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAdminLogout)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel33)))
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1010,6 +1022,10 @@ public class AdminFrame extends javax.swing.JFrame {
 
     private void btnAdminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLogoutActionPerformed
         this.dispose();                                                                         // loging out from the system
+        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
+        mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mf.setResizable(false);
     }//GEN-LAST:event_btnAdminLogoutActionPerformed
 
     /**
@@ -1188,7 +1204,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private void btnInsertLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertLecturerActionPerformed
         InsertLecturerFrame isnt = new InsertLecturerFrame();
         isnt.setVisible(true);
-        isnt.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        isnt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         isnt.setResizable(false);
         loadLecturerDetails();
     }//GEN-LAST:event_btnInsertLecturerActionPerformed
@@ -1196,7 +1212,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private void btnUpdateLecturerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLecturerActionPerformed
         UpdateLecturerFrame uplec = new UpdateLecturerFrame();
         uplec.setVisible(true);
-        uplec.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        uplec.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         uplec.setResizable(false);
         uplec.setFields(lecDetails.get(tblLecturerDetails.getSelectedRow()));
         loadLecturerDetails();
@@ -1298,6 +1314,7 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -19,10 +19,10 @@ public class CourseEnrollmentSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MainFrame mf = new MainFrame();                                                     // create inctance to run interface
 
         try {
             UIManager.setLookAndFeel(new SyntheticaSilverMoonLookAndFeel());                // load synthetica look and feel for interfaces
+            MainFrame mf = new MainFrame();                                                     // create inctance to run interface
             mf.setVisible(true);
             mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             mf.setResizable(false);                                                         // resizeble false

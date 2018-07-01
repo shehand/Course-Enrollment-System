@@ -630,4 +630,36 @@ public class InstructorDBOperations {
             }
         }
     }
+
+    String findCredit(String sub) {
+        
+        int credit = 0;
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);// extablishing the connection
+            String query = "SELECT num_of_credits FROM subjects WHERE name ='" + sub + "'";// query
+            pst = (PreparedStatement) con.prepareStatement(query);              // preparing the query
+
+            ResultSet rs = pst.executeQuery();                                  // execute the query
+
+            while (rs.next()) {
+                credit = rs.getInt(1);                                          // setting values
+            }
+            return Integer.toString(credit);                                    // return value
+
+        } catch (Exception e) {                                                 // exception handling
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();                                                // closing the connection
+                }
+
+                if (pst != null) {
+                    pst.close();                                                // closing the prepared statement
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 }

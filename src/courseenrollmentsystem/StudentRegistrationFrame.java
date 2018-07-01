@@ -92,6 +92,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         txtPostRegNumber = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         cmboDegreeType = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("frmStudentReg"); // NOI18N
@@ -146,6 +147,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Island Rank");
 
+        btnCancelUnd.setForeground(new java.awt.Color(204, 0, 51));
         btnCancelUnd.setText("Cancel");
         btnCancelUnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +155,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRegisterUnd.setForeground(new java.awt.Color(0, 51, 153));
         btnRegisterUnd.setText("Register");
         btnRegisterUnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +290,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                     .addComponent(txtPasswordUnd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30)
                     .addComponent(txtUndRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jpnlUnergraduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelUnd)
                     .addComponent(btnRegisterUnd))
@@ -328,6 +331,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
         jLabel27.setText("Qualification Type :");
 
+        btnCancelPost.setForeground(new java.awt.Color(204, 0, 51));
         btnCancelPost.setText("Cancel");
         btnCancelPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +339,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRegisterPost.setForeground(new java.awt.Color(0, 51, 153));
         btnRegisterPost.setText("Register");
         btnRegisterPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,7 +480,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                     .addComponent(txtPasswordPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
                     .addComponent(txtPostRegNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(jpnlPostgaduateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelPost)
                     .addComponent(btnRegisterPost))
@@ -483,6 +488,10 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
         );
 
         tbdRegistration.addTab("Postgraduate", jpnlPostgaduate);
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel33.setText("NSBM Green University");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -492,11 +501,17 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tbdRegistration)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(261, 261, 261))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tbdRegistration)
                 .addContainerGap())
         );
@@ -612,10 +627,12 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
 
     private void btnCancelUndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUndActionPerformed
         this.dispose(); // cancel registration
+    
     }//GEN-LAST:event_btnCancelUndActionPerformed
 
     private void btnCancelPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelPostActionPerformed
         this.dispose(); // cancel registration
+        
     }//GEN-LAST:event_btnCancelPostActionPerformed
 
     /**
@@ -688,6 +705,7 @@ public class StudentRegistrationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

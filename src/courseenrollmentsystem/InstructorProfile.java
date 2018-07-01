@@ -5,6 +5,8 @@
  */
 package courseenrollmentsystem;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;                                                                    // importing java libraries
 import java.util.ArrayList;                                                             // importing java libraries
 import javax.swing.JFileChooser;                                                        // importing java libraries
@@ -177,9 +179,11 @@ public class InstructorProfile extends javax.swing.JFrame {
         cmboSemester = new javax.swing.JComboBox<>();
         bntLoadTable = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnInstructorLogout.setForeground(new java.awt.Color(0, 0, 204));
         btnInstructorLogout.setText("Logout");
         btnInstructorLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,6 +402,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jLabel13.setText("Assignment ID :");
 
+        btnDeleteAssignment.setForeground(new java.awt.Color(204, 0, 0));
         btnDeleteAssignment.setText("Delete");
         btnDeleteAssignment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -793,8 +798,13 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Result Management", jPanel10);
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/female_instructor_icon_79553__1528707653_60698.png"))); // NOI18N
         jLabel20.setText("Instructor Profile");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 204, 0));
+        jLabel21.setText("NSBM Green University");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -807,11 +817,12 @@ public class InstructorProfile extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnInstructorLogout, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnInstructorLogout)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(168, 168, 168)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -819,14 +830,16 @@ public class InstructorProfile extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInstructorLogout)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(31, 31, 31)))
+                        .addComponent(btnInstructorLogout)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21))
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -878,6 +891,7 @@ public class InstructorProfile extends javax.swing.JFrame {
 
         add.setChoosed(subDetails.get(tblStudentDetails.getSelectedRow()));             // setting fields
         add.setCompulsory(instOps.getCompulsorySubjectDetails(instOps.getStudentCourse(subDetails.get(tblStudentDetails.getSelectedRow()).getRegNum())));// setting fields
+        add.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnAddResultsActionPerformed
 
     /**
@@ -1029,6 +1043,10 @@ public class InstructorProfile extends javax.swing.JFrame {
      */
     private void btnInstructorLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructorLogoutActionPerformed
         this.dispose();                                                                 // logging out
+        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
+        mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mf.setResizable(false);
     }//GEN-LAST:event_btnInstructorLogoutActionPerformed
 
     /**
@@ -1091,6 +1109,7 @@ public class InstructorProfile extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;

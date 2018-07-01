@@ -25,6 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     StudentDBOperations stdOps = new StudentDBOperations();                                             // instance to access student db operations in StudentDBOperation class
     InstructorDBOperations instOps = new InstructorDBOperations();                                      // instance to access instructor db operations in InstructorDBOperation class
     LecturerDBOperations lecOps = new LecturerDBOperations();                                           // instance to access lecturer db operations in LecturerDBOperation class
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 0));
         jLabel1.setText("NSBM University Course Management System");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -73,6 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setForeground(new java.awt.Color(0, 153, 0));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +131,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel6.setText("New Student ?? Register with us...");
 
+        btnRegisterStudent.setForeground(new java.awt.Color(0, 0, 204));
         btnRegisterStudent.setText("Register");
         btnRegisterStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -253,7 +257,7 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,114 +277,120 @@ public class MainFrame extends javax.swing.JFrame {
          * algorithm to verify deferent user levels
          *
          */
-        if (temp.charAt(0) == 'S') {
-            if (temp.charAt(1) == 'U') {
-                Undergraduate und = new Undergraduate();                                                // instance to store undergraduate student details
-                und.setRegNum(txtLoginUserName.getText());                                              // setting values
-                und.setPassword(txtLoginPassword.getText());                                            // setting values
-                /**
-                 * load student profile if the user is a undergraduate student
-                 *
-                 */
-                if (stdOps.undergraduateStudentVerification(und)) {                                     // if undergraduate
-                    txtLoginPassword.setText("");                                                       // setting values
-                    txtLoginUserName.setText("");                                                       // setting values
-                    StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
-                    stdProfile.setVisible(true);                                                        // set visible
-                    stdProfile.setRegNumber(temp);                                                      // setting values
-                    stdProfile.loadAssignments();                                                       // setting values
-                    stdProfile.loadLabSessions();                                                       // setting values
-                    stdProfile.loadPaymentDetails();                                                    // setting values
-                    stdProfile.loadSubjectDetails();                                                    // setting values
-                    stdProfile.setFacultyName(temp);                                                    // setting values
-                    stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    stdProfile.setResizable(false);                                                     // set resizable false
-                    this.dispose();                                                                     // dispose the logging frame
+        if (!txtLoginUserName.getText().isEmpty()) {
+            if (temp.charAt(0) == 'S') {
+                if (temp.charAt(1) == 'U') {
+                    Undergraduate und = new Undergraduate();                                                // instance to store undergraduate student details
+                    und.setRegNum(txtLoginUserName.getText());                                              // setting values
+                    und.setPassword(txtLoginPassword.getText());                                            // setting values
+                    /**
+                     * load student profile if the user is a undergraduate
+                     * student
+                     *
+                     */
+                    if (stdOps.undergraduateStudentVerification(und)) {                                     // if undergraduate
+                        txtLoginPassword.setText("");                                                       // setting values
+                        txtLoginUserName.setText("");                                                       // setting values
+                        StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
+                        stdProfile.setVisible(true);                                                        // set visible
+                        stdProfile.setRegNumber(temp);                                                      // setting values
+                        stdProfile.loadAssignments();                                                       // setting values
+                        stdProfile.loadLabSessions();                                                       // setting values
+                        stdProfile.loadPaymentDetails();                                                    // setting values
+                        stdProfile.loadSubjectDetails();                                                    // setting values
+                        stdProfile.setFacultyName(temp);                                                    // setting values
+                        stdProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        stdProfile.setResizable(false);                                                     // set resizable false
+                        this.dispose();                                                                     // dispose the logging frame
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                        txtLoginPassword.setText("");                                                       // setting values
+                        txtLoginUserName.setText("");                                                       // setting values
+                    }
+                } else if (temp.charAt(1) == 'P') {                                                         // if postgraduate
+                    Postgraduate pst = new Postgraduate();
+                    pst.setRegNum(txtLoginUserName.getText());                                              // setting values
+                    pst.setPassword(txtLoginPassword.getText());                                            // setting values
+                    /**
+                     * load postgraduate profile if the user is postgraduate
+                     * student
+                     *
+                     */
+                    if (stdOps.postgraduateStudentVerification(pst)) {
+                        txtLoginPassword.setText("");                                                       // setting values
+                        txtLoginUserName.setText("");                                                       // setting values
+                        StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
+                        stdProfile.setVisible(true);                                                        // set visible
+                        stdProfile.setRegNumber(temp);                                                      // setting values
+                        stdProfile.loadAssignments();                                                       // setting values
+                        stdProfile.loadLabSessions();                                                       // setting values
+                        stdProfile.loadPaymentDetails();                                                    // setting values
+                        stdProfile.loadSubjectDetails();                                                    // setting values
+                        stdProfile.setFacultyName(temp);                                                    // setting values
+                        stdProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        stdProfile.setResizable(false);                                                     // set reziable false
+                        this.dispose();                                                                     // dispose the logging frame
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");       // message box
+                        txtLoginPassword.setText("");                                                       // setting values
+                        txtLoginUserName.setText("");                                                       // setting values
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
-                    txtLoginPassword.setText("");                                                       // setting values
-                    txtLoginUserName.setText("");                                                       // setting values
+
                 }
-            } else if (temp.charAt(1) == 'P') {                                                         // if postgraduate
-                Postgraduate pst = new Postgraduate();
-                pst.setRegNum(txtLoginUserName.getText());                                              // setting values
-                pst.setPassword(txtLoginPassword.getText());                                            // setting values
-                /**
-                 * load postgraduate profile if the user is postgraduate student
-                 *
-                 */
-                if (stdOps.postgraduateStudentVerification(pst)) {
-                    txtLoginPassword.setText("");                                                       // setting values
-                    txtLoginUserName.setText("");                                                       // setting values
-                    StudentProfileFrame stdProfile = new StudentProfileFrame();                         // instance of the student profile view
-                    stdProfile.setVisible(true);                                                        // set visible
-                    stdProfile.setRegNumber(temp);                                                      // setting values
-                    stdProfile.loadAssignments();                                                       // setting values
-                    stdProfile.loadLabSessions();                                                       // setting values
-                    stdProfile.loadPaymentDetails();                                                    // setting values
-                    stdProfile.loadSubjectDetails();                                                    // setting values
-                    stdProfile.setFacultyName(temp);                                                    // setting values
-                    stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    stdProfile.setResizable(false);                                                     // set reziable false
-                    this.dispose();                                                                     // dispose the logging frame
+            } else if (temp.charAt(0) == 'I') {                                                             // if instructor
+                Instructor inst = new Instructor();
+                inst.setInstructorID(txtLoginUserName.getText());                                           // setting values
+                inst.setPassword(txtLoginPassword.getText());                                               // setting values
+
+                if (instOps.instructorAuthentication(inst)) {
+                    txtLoginPassword.setText("");                                                           // setting values
+                    txtLoginUserName.setText("");                                                           // setting values
+                    InstructorProfile instProfile = new InstructorProfile();
+                    instProfile.setVisible(true);                                                           // set visible
+                    instProfile.facName = instOps.getFacultyName(inst.getInstructorID());                   // set faculty name
+                    instProfile.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    instProfile.setResizable(false);                                                        // resizable is false
+                    this.dispose();                                                                         // dispose the logging frame
                 } else {
-                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");       // message box
-                    txtLoginPassword.setText("");                                                       // setting values
-                    txtLoginUserName.setText("");                                                       // setting values
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
+                    txtLoginPassword.setText("");                                                           // setting values
+                    txtLoginUserName.setText("");                                                           // setting values
+                }
+            } else if (temp.equals("Admin")) {                                                              // if admin
+                if (txtLoginPassword.getText().equals("admin")) {
+                    txtLoginPassword.setText("");                                                           // setting values
+                    txtLoginUserName.setText("");                                                           // setting values
+                    AdminFrame adProfil = new AdminFrame();                                                 // instance to load admin profile view
+                    adProfil.setVisible(true);                                                              // set visible
+                    adProfil.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    adProfil.setResizable(false);                                                           // set resizable false
+                    this.dispose();                                                                         // dispose the logging frame
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
+                }
+            } else if (temp.charAt(0) == 'L') {
+                Lecturers lec = new Lecturers();
+                lec.setLecID(txtLoginUserName.getText());
+                lec.setPassword(txtLoginPassword.getText());
+
+                if (lecOps.authenticateLecturer(lec)) {
+                    LecturerProfileFrame lecProfile = new LecturerProfileFrame();
+                    lecProfile.setVisible(true);
+                    lecProfile.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                    lecProfile.facultyName = lecOps.getFacultyName(temp);
+                    lecProfile.setResizable(false);
+                    txtLoginPassword.setText("");                                                           // setting values
+                    txtLoginUserName.setText("");                                                           // setting values
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
                 }
             } else {
-
-            }
-        } else if (temp.charAt(0) == 'I') {                                                             // if instructor
-            Instructor inst = new Instructor();
-            inst.setInstructorID(txtLoginUserName.getText());                                           // setting values
-            inst.setPassword(txtLoginPassword.getText());                                               // setting values
-
-            if (instOps.instructorAuthentication(inst)) {
-                txtLoginPassword.setText("");                                                           // setting values
-                txtLoginUserName.setText("");                                                           // setting values
-                InstructorProfile instProfile = new InstructorProfile();
-                instProfile.setVisible(true);                                                           // set visible
-                instProfile.facName = instOps.getFacultyName(inst.getInstructorID());                   // set faculty name
-                instProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                instProfile.setResizable(false);                                                        // resizable is false
-                this.dispose();                                                                         // dispose the logging frame
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
-                txtLoginPassword.setText("");                                                           // setting values
-                txtLoginUserName.setText("");                                                           // setting values
-            }
-        } else if (temp.equals("Admin")) {                                                              // if admin
-            if (txtLoginPassword.getText().equals("admin")) {
-                txtLoginPassword.setText("");                                                           // setting values
-                txtLoginUserName.setText("");                                                           // setting values
-                AdminFrame adProfil = new AdminFrame();                                                 // instance to load admin profile view
-                adProfil.setVisible(true);                                                              // set visible
-                adProfil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                adProfil.setResizable(false);                                                           // set resizable false
-                this.dispose();                                                                         // dispose the logging frame
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
-            }
-        }else if(temp.charAt(0) == 'L'){
-            Lecturers lec = new Lecturers();
-            lec.setLecID(txtLoginUserName.getText());
-            lec.setPassword(txtLoginPassword.getText());
-            
-            if(lecOps.authenticateLecturer(lec)){
-                LecturerProfileFrame lecProfile = new LecturerProfileFrame();
-                lecProfile.setVisible(true);
-                lecProfile.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                lecProfile.facultyName = lecOps.getFacultyName(temp);
-                lecProfile.setResizable(false);
-                txtLoginPassword.setText("");                                                           // setting values
-                txtLoginUserName.setText("");                                                           // setting values
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");           // message box
+                JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");               //message box
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");               //message box
+            JOptionPane.showMessageDialog(this, "Oops ! Fields are Empty");               //message box
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -396,6 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
             StudentRegistrationFrame strf = new StudentRegistrationFrame();                             // instance to preview registration frame
             strf.setVisible(true);                                                                      // set vsisble
             strf.setResizable(false);                                                                   // set resiazable false
+            strf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } else {
             JOptionPane.showMessageDialog(this, "Sorry this is not an intake month. Please contanct us for further details"); //message box
         }

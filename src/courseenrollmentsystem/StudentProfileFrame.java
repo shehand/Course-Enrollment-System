@@ -134,12 +134,12 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         txtRe2 = new javax.swing.JTextField();
         txtRe3 = new javax.swing.JTextField();
-        btnRequestResults = new javax.swing.JButton();
         txtRe4 = new javax.swing.JTextField();
         txtRe5 = new javax.swing.JTextField();
         txtRe6 = new javax.swing.JTextField();
         txtRe7 = new javax.swing.JTextField();
         txtRe8 = new javax.swing.JTextField();
+        btnRequestResults = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblLectureNotes = new javax.swing.JTable();
@@ -162,6 +162,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
             }
         });
 
+        btnStudentLogout.setForeground(new java.awt.Color(0, 0, 153));
         btnStudentLogout.setText("Logout");
         btnStudentLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -699,13 +700,6 @@ public class StudentProfileFrame extends javax.swing.JFrame {
 
         txtRe3.setEditable(false);
 
-        btnRequestResults.setText("Request Results");
-        btnRequestResults.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRequestResultsActionPerformed(evt);
-            }
-        });
-
         txtRe4.setEditable(false);
 
         txtRe5.setEditable(false);
@@ -726,11 +720,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel35))
                     .addComponent(jLabel34))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 158, Short.MAX_VALUE)
-                .addComponent(btnRequestResults, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addContainerGap(319, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addContainerGap()
@@ -769,9 +759,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                 .addComponent(jLabel34)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRequestResults)
-                .addGap(50, 50, 50))
+                .addContainerGap(407, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(72, 72, 72)
@@ -810,17 +798,30 @@ public class StudentProfileFrame extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtChoose4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtRe8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(144, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        btnRequestResults.setText("Request Results");
+        btnRequestResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRequestResultsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRequestResults, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -831,15 +832,17 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRequestResults))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnDownloadResults)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5)))
+                .addGap(101, 101, 101))
         );
 
         tpdStudentProfile.addTab("Results", jPanel6);
@@ -985,6 +988,10 @@ public class StudentProfileFrame extends javax.swing.JFrame {
      */
     private void btnStudentLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentLogoutActionPerformed
         this.dispose();
+        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
+        mf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        mf.setResizable(false);
     }//GEN-LAST:event_btnStudentLogoutActionPerformed
 
     /**
@@ -1043,7 +1050,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         CardDetails crdFrame = new CardDetails();
         crdFrame.setVisible(true);
         crdFrame.setCardDetails(pay);
-        crdFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        crdFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         crdFrame.setResizable(false);
     }//GEN-LAST:event_btnPayActionPerformed
 
@@ -1137,7 +1144,7 @@ public class StudentProfileFrame extends javax.swing.JFrame {
         DownloadResults down = new DownloadResults();
         down.setVisible(true);
         down.setFields(resultDetails.get(tblResultSet.getSelectedRow()));
-        down.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        down.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         down.setResizable(false);
     }//GEN-LAST:event_btnDownloadResultsActionPerformed
 
