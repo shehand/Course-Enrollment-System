@@ -6,7 +6,6 @@
 package courseenrollmentsystem;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 /**
  *
@@ -15,6 +14,7 @@ import java.io.FileOutputStream;
 public class Results {
     private String subjectName;
     private File fileName;
+    private String name;
 
     /**
      * @return the subjectName
@@ -42,6 +42,20 @@ public class Results {
      */
     public void setFileName(File fileName) {
         this.fileName = fileName;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

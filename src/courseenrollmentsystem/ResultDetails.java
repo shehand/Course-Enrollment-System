@@ -38,7 +38,7 @@ public class ResultDetails extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0: return list.get(rowIndex).getSubjectName();
-            case 1: return list.get(rowIndex).getFileName();
+            case 1: return list.get(rowIndex).getName();
             default: return "ERROR";
         }
     }

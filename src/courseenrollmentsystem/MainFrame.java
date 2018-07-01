@@ -8,7 +8,6 @@ package courseenrollmentsystem;
 import java.util.Calendar;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author Sono
@@ -20,12 +19,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     
     public MainFrame() {
-        initComponents();
-        
+        initComponents();   
     }
     
-    StudentDBOperations stdOps = new StudentDBOperations();
-    InstructorDBOperations instOps = new InstructorDBOperations();
+    StudentDBOperations stdOps = new StudentDBOperations();   // instance to access student db operations in StudentDBOperation class
+    InstructorDBOperations instOps = new InstructorDBOperations();  // instance to access instructor db operations in InstructorDBOperation class
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,8 +47,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnRegisterStudent = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -149,7 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel6)))
-                        .addGap(0, 87, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnRegisterStudent)))
@@ -165,27 +161,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegisterStudent)
                 .addContainerGap())
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), new javax.swing.border.MatteBorder(null)));
-
-        jLabel7.setText("News Feed");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(524, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -214,17 +189,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,14 +203,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -267,16 +234,23 @@ public class MainFrame extends javax.swing.JFrame {
     private void txtLoginUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginUserNameActionPerformed
-
+    /**
+     * method to auth the user (login forum)
+     **/
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String temp = txtLoginUserName.getText();
+        String temp = txtLoginUserName.getText();   // assign username to verify user
         
+        /**
+         * algorithm to verify deferent user levels
+         **/
         if(temp.charAt(0) == 'S'){
             if(temp.charAt(1) == 'U'){
                 Undergraduate und = new Undergraduate();
                 und.setRegNum(txtLoginUserName.getText());
                 und.setPassword(txtLoginPassword.getText());
-                
+                /**
+                 * load student profile if the user is a undergraduate student
+                 **/
                 if(stdOps.undergraduateStudentVerification(und)){
                     txtLoginPassword.setText("");
                     txtLoginUserName.setText("");
@@ -289,14 +263,20 @@ public class MainFrame extends javax.swing.JFrame {
                     stdProfile.loadSubjectDetails();
                     stdProfile.setFacultyName(temp);
                     stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    stdProfile.setResizable(false);
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                    txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                 }
             }else if(temp.charAt(1) == 'P'){
                 Postgraduate pst = new Postgraduate();
                 pst.setRegNum(txtLoginUserName.getText());
                 pst.setPassword(txtLoginPassword.getText());
-                
+                /**
+                 * load instructor profile if the user is postgraduate student
+                 **/
                 if(stdOps.postgraduateStudentVerification(pst)){
                      txtLoginPassword.setText("");
                     txtLoginUserName.setText("");
@@ -309,8 +289,12 @@ public class MainFrame extends javax.swing.JFrame {
                     stdProfile.loadSubjectDetails();
                     stdProfile.setFacultyName(temp);
                     stdProfile.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    stdProfile.setResizable(false);
+                    this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid Username or Password mismatch");
+                    txtLoginPassword.setText("");
+                    txtLoginUserName.setText("");
                 }
             }else{
                 
@@ -398,12 +382,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField txtLoginPassword;
     private javax.swing.JTextField txtLoginUserName;

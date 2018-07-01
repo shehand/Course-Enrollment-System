@@ -5,6 +5,10 @@
  */
 package courseenrollmentsystem;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -99,7 +103,7 @@ public class StudentDBOperations {
         ArrayList<Assignment> lst = new ArrayList<Assignment>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='"+facultyName+"')";
+            String query = "SELECT * FROM assignments WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -140,7 +144,7 @@ public class StudentDBOperations {
 
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='"+facultyName+"')";
+            String query = "SELECT * FROM lab_sessions WHERE subject_name IN (SELECT name FROM subjects WHERE course ='" + facultyName + "')";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -223,12 +227,12 @@ public class StudentDBOperations {
         }
     }
 
-    ArrayList<Subject> getSubjectDetails(String facultyName) {
+    ArrayList<Subject> getSubjectDetails(String facultyName, int semester) {
 
         ArrayList<Subject> sbjList = new ArrayList<Subject>();
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM subjects WHERE course ='"+facultyName+"'";
+            String query = "SELECT * FROM subjects WHERE course ='" + facultyName + "' AND semester ='" + semester + "'";
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
@@ -419,7 +423,7 @@ public class StudentDBOperations {
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
-            
+
             return rs.getInt(1);
         } catch (Exception e) {
             return 0;
@@ -437,7 +441,7 @@ public class StudentDBOperations {
             }
         }
     }
-    
+
     int getSecondSemesterAmountToPay(String regNumber) {
         try {
             con = (Connection) DriverManager.getConnection(url, username, password);
@@ -445,7 +449,7 @@ public class StudentDBOperations {
             pst = (PreparedStatement) con.prepareStatement(query);
 
             ResultSet rs = pst.executeQuery();
-            
+
             return rs.getInt(1);
         } catch (Exception e) {
             return 0;
@@ -463,11 +467,11 @@ public class StudentDBOperations {
             }
         }
     }
-    
-    Student getFacultyName(String regNumber){
+
+    Student getFacultyName(String regNumber) {
         Student st = new Student();
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
             if (regNumber.charAt(1) == 'U') {
                 query = "SELECT faculty FROM undergraduate_student WHERE reg_number ='" + regNumber + "'";
@@ -477,7 +481,7 @@ public class StudentDBOperations {
 
             pst = (PreparedStatement) con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-  
+
             while (rs.next()) {
                 st.setFacultyName(rs.getString("faculty"));
             }
@@ -499,21 +503,21 @@ public class StudentDBOperations {
             }
         }
     }
-    
-    boolean updateFirstSemesterSubjects(String sjdet[], int sem){
+
+    boolean updateFirstSemesterSubjects(String sjdet[], int sem) {
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
-            int month = Calendar.getInstance().get(Calendar.MONTH)+1;
-            
-            if (month==2) {
-                query = "UPDATE semester_1_subjects SET reg_number ='"+sjdet[0]+"', semester ='"+sem+"', first = '"+sjdet[1]+"', second ='"+sjdet[2]+"', third = '"+sjdet[3]+"', fourth = '"+sjdet[4]+"'";
-            }else{
+            int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+
+            if (month == 2) {
+                query = "UPDATE semester_1_subjects SET reg_number ='" + sjdet[0] + "', semester ='" + sem + "', first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "'";
+            } else {
                 return false;
             }
 
             pst = (PreparedStatement) con.prepareStatement(query);
-            
+
             pst.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -533,21 +537,21 @@ public class StudentDBOperations {
             }
         }
     }
-    
-    boolean updateSecondSemesterSubjects(String sjdet[], int sem){
+
+    boolean updateSecondSemesterSubjects(String sjdet[], int sem) {
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
+            con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "";
-            int month = Calendar.getInstance().get(Calendar.MONTH)+1;
-            
-            if (month==7 || month==2) {
-                query = "UPDATE semester_2_subjects SET reg_number ='"+sjdet[0]+"', semester ='"+sem+"', first = '"+sjdet[1]+"', second ='"+sjdet[2]+"', third = '"+sjdet[3]+"', fourth = '"+sjdet[4]+"'";
-            }else{
+            int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+
+            if (month == 7 || month == 2) {
+                query = "UPDATE semester_2_subjects SET reg_number ='" + sjdet[0] + "', semester ='" + sem + "', first = '" + sjdet[1] + "', second ='" + sjdet[2] + "', third = '" + sjdet[3] + "', fourth = '" + sjdet[4] + "'";
+            } else {
                 return false;
             }
-            
+
             pst = (PreparedStatement) con.prepareStatement(query);
-            
+
             pst.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -566,26 +570,42 @@ public class StudentDBOperations {
 
             }
         }
-    } 
+    }
 
-    double getCurrentGPA(String regNumber) {
+    FourthYears getCurrentGPA(String regNumber, int sem) {
+
+        FourthYears f = new FourthYears();
         try {
-            con = (Connection)DriverManager.getConnection(url, username, password);
-            String query = "SELECT gpa FROM ranking WHERE reg_number='"+regNumber+"'";
-            
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM ranking WHERE reg_number='" + regNumber + "' AND semester ='" + sem + "'";
+
             pst = (PreparedStatement) con.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
-            int count = 1;
-            double gpa = 0;
-            
-            while(rs.next()){
-                gpa += Integer.parseInt(rs.getString(1));
-                count++;
+
+            while (rs.next()) {
+                f.setGpa(rs.getString(2));
+                f.setSub1(rs.getString(4));
+                f.setSub2(rs.getString(6));
+                f.setSub3(rs.getString(8));
+                f.setSub4(rs.getString(10));
+                f.setSub5(rs.getString(12));
+                f.setSub6(rs.getString(14));
+                f.setSub7(rs.getString(16));
+                f.setSub8(rs.getString(18));
+                f.setRes1(rs.getString(5));
+                f.setRes2(rs.getString(7));
+                f.setRes3(rs.getString(9));
+                f.setRes4(rs.getString(11));
+                f.setRes5(rs.getString(13));
+                f.setRes6(rs.getString(15));
+                f.setRes7(rs.getString(17));
+                f.setRes8(rs.getString(19));
             }
-            return (gpa/count);
+
+            return f;
         } catch (Exception e) {
             System.out.println(e);
-            return 0;
+            return null;
         } finally {
             try {
                 if (con != null) {
@@ -601,5 +621,79 @@ public class StudentDBOperations {
         }
     }
 
-   
+    ArrayList<Results> getResultDetails() {
+
+        ArrayList<Results> res = new ArrayList<Results>();
+        byte[] fileBytes;
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM results";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Results r = new Results();
+                r.setSubjectName(rs.getString(1));
+//                fileBytes = rs.getBytes(4);
+//                OutputStream targetFile = new FileOutputStream(rs.getString(4));
+//                targetFile.write(fileBytes);
+//                targetFile.close();
+                r.setName(rs.getString(4));
+                res.add(r);
+            }
+            return res;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
+
+    boolean donwloadFile(String fileName) {
+        byte[] fileBytes;
+
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT * FROM results WHERE file_name='" + fileName + "'";
+            pst = (PreparedStatement) con.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                fileBytes = rs.getBytes(4);
+                OutputStream targetFile = new FileOutputStream("C:\\Users\\Public\\Documents\\" + rs.getString(4));
+                targetFile.write(fileBytes);
+                targetFile.close();
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+
+                if (pst != null) {
+                    pst.close();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+    }
 }
