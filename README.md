@@ -1,2 +1,3 @@
 # Course-Enrollment-System
-java project for a university course management
+
+A stand alone application to manage students and course enrollments
